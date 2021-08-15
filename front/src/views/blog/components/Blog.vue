@@ -1,70 +1,144 @@
 <template>
-  <el-page-header
-      class="font-monaco disable-select"
-      @back="() => $router.go(-1)"
-  >
-    <template #title>
-      <el-tag class="font-size-small back-tag" type="info">back</el-tag>
-    </template>
-    <template #content>
-      <el-tag class="font-size-small" type="info">ienyh</el-tag>
-      <el-divider direction="vertical"></el-divider>
-      <el-tag class="font-size-small" type="info">Javascript</el-tag>
-      <el-divider direction="vertical"></el-divider>
-      <el-tag class="font-size-small" type="info">{{ new Date().toLocaleDateString() }}</el-tag>
-    </template>
-  </el-page-header>
+  <div>
+    <div class="title-header" :class="headerNoneDisplay ? 'unvisable' : 'visable'">
+      <h1>{{ $route.params.id }} -- chenyh</h1>
+    </div>
 
-  <div class="blog_container font-hack">
-    <h1>title id: {{ $route.params.id }}</h1>
-    <p v-html="markdown"></p>
-    <p>测试数据</p>
+    <el-page-header class="disable-select font-harmony" @back="() => $router.go(-1)">
+      <template #title>
+        <el-tag class="font-size-small back-tag" type="info">back</el-tag>
+      </template>
+      <template #content>
+        <div class="classify">
+          <el-tag class="font-size-small" type="info">ienyh</el-tag>
+          <el-divider direction="vertical"></el-divider>
+          <el-tag class="font-size-small" type="info">Javascript</el-tag>
+          <el-divider direction="vertical"></el-divider>
+          <el-tag class="font-size-small" type="info">{{
+            new Date().toLocaleDateString()
+          }}</el-tag>
+        </div>
+      </template>
+    </el-page-header>
+    <div class="blog_container">
+      <!-- <h1>title id: {{ $route.params.id }}</h1> -->
+      <v-md-preview
+        :text="str"
+        @copy-code-success="handleCopyCodeSuccess"
+      ></v-md-preview>
+    </div>
+    <div class="blog_footer">
+      --------- 我也是有底线的啦 😆 ---------
+    </div>
   </div>
 </template>
 
 <script>
-import MarkdownIt from "markdown-it";
+import axios from "axios";
+import { ElMessage } from 'element-plus'; 
 
 export default {
   name: "Blog",
-  // eslint-disable-next-line no-unused-vars
-  // beforeRouteEnter: (to, from, next) => {},
-  data () {
+  data() {
     return {
-      htmlValue: "<h4>hello world</h4>",
-      initialValue: `
-      # biaoti-1
-      ## biaoti-2
-      ### biaoti-3
-      #### biaoti-4
-      `
-    }
+      str: "",
+      oldScrollTop: 0, // 滚动前，滚动条距文档顶部的距离
+      headerNoneDisplay: true,
+    };
   },
-  computed: {
-    markdown: {
-      get () {
-        const md = new MarkdownIt();
-        return md.render(this.initialValue);
-      }
-    }
-  },
-  created () {
+  mounted () {
     // 请求数据
+    axios.get(`md/${this.$route.params.id}.md`)
+      .then(res => res.data)
+      .then(data => { this.str = data })
+      .catch(console.warn);
+
+    window.addEventListener("scroll", () => {
+			let scrollTop = window.pageYOffset || document.documentElement.scrollTop ||
+				document.body.scrollTop
+			// 滚动条滚动的距离
+			let scrollStep = scrollTop - this.oldScrollTop;
+			// 更新——滚动前，滚动条距文档顶部的距离
+			this.oldScrollTop = scrollTop;
+			if (scrollStep < 0) {
+				this.headerNoneDisplay = true; // 向上滚动
+			} else {
+        this.headerNoneDisplay = false; // 向下滚动
+			}
+		});
+
+    // const md = document.querySelector(".github-markdown-body").getElementsByTagName("h2");
+    // console.log(md);
+    // const h2s = Array.from(md).map(item => item.innerText);
+    // console.log(h2s);
   },
-}
+  methods: {
+    handleCopyCodeSuccess () {
+      ElMessage.success({
+        message: "copied!",
+        showClose: true,
+      });
+    },
+  },
+};
 </script>
 
-<style scoped>
+<style>
+.title-header {
+  width: 100%;
+  height: 4.5rem;
+  background: #f5f5f5;
+  position: fixed;
+  
+  left: 0;
+  z-index: 99;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.visable {
+  /* opacity: 1; */
+  top: 0;
+  transition: top .2s ease-out;
+}
+
+.unvisable {
+  /* opacity: 0; */
+  top: -4.5rem;
+  transition: top .1s ease-in;
+}
+
 .blog_container {
   display: block;
-  margin-top: 10px;
-  padding: 10px;
+  margin-top: 5px;
+  /* padding: 5px; */
   background-color: #fff;
   border-radius: 8px;
+  font-family: "HarmonyOS_Sans_Regular", sans-serif;
+}
+
+.blog_container code {
+  font-family: "Hack", sans-serif;
 }
 
 .back-tag:hover {
-  background-color: #000;
-  color: #F6F5E7;
+  background-color: #373d41;
+  color: #f6f5e7;
+}
+
+.blog_footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 1.2rem;
+  margin: 1rem 0;
+}
+
+@media screen and (max-width: 750px) {
+  .classify {
+    display: none;
+  }
 }
 </style>

@@ -1,22 +1,26 @@
 <template>
-  <h3 v-if="title" class="disable-select" style="text-align: start">
-    {{ title }}
-  </h3>
-  <div class="tools-container ghost-background">
-    <ToolCard
-      v-for="card in list"
-      :key="card.url"
-      :title="card.title"
-      :info="card.info"
-      :url="card.url"
-      :icon="card.icon"
-    />
+  <div>
+    <div style="display: flex; justify-content: start; align-items: center">
+      <h4 class="disable-select">
+        {{ title || "Tools" }}
+      </h4>
+    </div>
+    <div class="tools-container ghost-background">
+      <ToolCard
+        v-for="card in list"
+        :key="card.url"
+        :title="card.title"
+        :info="card.info"
+        :url="card.url"
+        :icon="card.icon"
+      />
+    </div>
+    <el-divider></el-divider>
   </div>
-  <el-divider></el-divider>
 </template>
 
 <script>
-import ToolCard from "../../components/ToolCard";
+import ToolCard from "./components/ToolCard.vue";
 
 export default {
   name: "DesignBox",
@@ -25,21 +29,31 @@ export default {
     title: String,
     list: Array,
   },
+  data() {
+    return {
+      dialogFormVisible: false,
+      form: {
+        url: "",
+        icon: "",
+        title: "",
+        info: "",
+      },
+    };
+  },
+  methods: {
+    async commitForm () {
+      this.dialogFormVisible = false;
+    },
+  },
 };
 </script>
 
 <style scoped>
 .tools-container {
-  /*display: flex;*/
-  /*justify-content: space-between;*/
-  /*flex-wrap: wrap;*/
-  /*align-content: space-around;*/
-  /*background-color: #f5f5f5;*/
-
   /* 使用grid布局，为了最后一行元素左对齐 */
   display: grid;
   justify-content: space-between;
-  grid-template-columns: repeat(auto-fill, 210px);
-  grid-gap: 10px;
+  grid-template-columns: repeat(auto-fill, 21rem);
+  grid-gap: 1rem;
 }
 </style>

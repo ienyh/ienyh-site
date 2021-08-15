@@ -13,6 +13,12 @@ const tools = [
     icon: "onlineconvertfree.svg",
   },
   {
+    title: "docsmall",
+    info: "在线压缩 图片 gif pdf 免费好用",
+    url: "https://docsmall.com/",
+    icon: "https://cdn.docsmall.com/assets/img/33d17c9.png",
+  },
+  {
     title: "彼岸图网 4K壁纸",
     info:
       "4K壁纸_4K电脑壁纸_4K高清壁纸下载_4K，5K，6K，7K,8K壁纸图片素材_彼岸图网",
@@ -23,6 +29,12 @@ const tools = [
     info: "Emoji表情搜索 😃🤣😆😜",
     url: "https://emoji.svend.cc/",
     icon: "emoji.svg",
+  },
+  {
+    title: "Emoji 中文网",
+    info: "这是一本全面的EMOJI字典。它提供了每个EMOJI表情符号的含义。有一个方便的EMOJI复制和粘贴工具",
+    url: "https://www.emojiall.com/zh-hans",
+    icon: "https://www.emojiall.com/logo-dark.png",
   },
   {
     title: "中国色",
@@ -59,6 +71,12 @@ const tools = [
     info: "Search through 5,708,970 icons and illustrations",
     url: "https://www.iconfinder.com/",
     icon: "https://www.iconfinder.com/favicon.ico",
+  },
+  {
+    title: "Cool Backgrounds",
+    info: "Cool Backgrounds is a collection of tools to create compelling, colorful images for blogs, social media, and websites. Beyond backgrounds, the images generated can be used as 🖥 desktop wallpapers or cropped for 📱 mobile wallpapers.",
+    url: "https://coolbackgrounds.io/",
+    icon: "https://coolbackgrounds.io/favicon.ico",
   },
 ];
 

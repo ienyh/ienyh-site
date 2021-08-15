@@ -8,7 +8,7 @@ const routes = [
   {
     path: "/",
     name: "/",
-    component: Tools,
+    component: Index,
   },
   {
     path: "/index",
@@ -20,20 +20,38 @@ const routes = [
     component: Tools,
   },
   {
+    path: "/blog",
+    component: Note,
+    children: [
+      {
+        path: "/blog",
+        component: () => import("../views/blog/BlogList"),
+      },
+      {
+        path: "/blog/article/:id",
+        component: () => import("../views/blog/components/Blog"),
+      },
+    ],
+  },
+  {
     path: "/individual",
     component: () => import("../views/individual/Individual.vue"),
   },
   {
-    path: "/note",
-    component: Note,
+    path: "/three",
+    component: () => import("../views/threejs-demo/index.vue"),
     children: [
       {
-        path: "/note",
-        component: () => import("../views/blog/BlogList"),
+        path: "/three",
+        component: () => import("../views/threejs-demo/ThreeComponent1.vue"),
       },
       {
-        path: "/note/title/:id",
-        component: () => import("../views/blog/components/Blog"),
+        path: "/three/demo1",
+        component: () => import("../views/threejs-demo/ThreeComponent1.vue"),
+      },
+      {
+        path: "/three/demo2",
+        component: () => import("../views/threejs-demo/ThreeComponent2.vue"),
       },
     ],
   },

@@ -3,20 +3,20 @@
     <a :href="url" target="_blank">
       <div class="card-up font-size-small">
         <span>
-          <strong
+          <span
             style="border-radius: 2px; background-color: #f5f5f5; padding: 1px 3px;"
           >
             {{ title }}
-          </strong>
+          </span>
         </span>
         <span>
           <img v-if="icon" class="icon-img" :src="imgURL" />
-          <img v-else class="icon-img" src="../assets/icons/none.svg" />
+          <img v-else class="icon-img" src="../../../assets/icons/none.svg" />
         </span>
       </div>
       <hr style="margin: 0 auto; width: 95%" />
       <div class="card-down">
-        <span class="hidden font-size-small">{{ info }}</span>
+        <span class="hidden font-size-smaller">{{ info }}</span>
       </div>
     </a>
   </div>
@@ -36,7 +36,7 @@ export default {
       imgURL: this.icon
         ? this.icon.includes("/")
           ? this.icon
-          : require(`../assets/icons/${this.icon}`)
+          : require(`../../../assets/icons/${this.icon}`)
         : "",
     };
   },
@@ -47,32 +47,34 @@ export default {
 /* 卡片容器样式 */
 .card-container {
   display: block;
-  width: 210px;
-  height: 100px;
-  margin: 10px 0;
-  padding: 2px;
-  border-radius: 6px;
+  width: 21rem;
+  height: 10rem;
+  margin: 1rem 0;
+  padding: .2rem;
+  border-radius: 0.6rem;
   background-color: #fff;
+  overflow: hidden;
+  transition: all 0.25s ease-in;
 }
 
 .card-container:hover {
   border-radius: 6px;
-  /*background-color: #ddd;*/
-  box-shadow: 8px 8px 0px #929292, -8px -8px 0px #ffffff;
-  transition: all 0.25s ease;
+  box-shadow: 8px 8px 3px #929292, -8px -8px 3px #ffffff;
+  transition: all 0.3s ease;
+  transform: translateY(-3px);
 }
 
 /* 卡片上部样式 */
 .card-up {
-  padding: 6px;
+  padding: 0.6rem;
   background: #ffffff; /* fallback for old browsers */
   /*background: -webkit-linear-gradient(to right, rgb(65, 41, 90), rgb(47, 7, 67));  !* Chrome 10-25, Safari 5.1-6 *!*/
   /*background: linear-gradient(to right, rgb(65, 41, 90), rgb(47, 7, 67)); !* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ *!*/
   color: #000;
   display: flex;
   justify-content: space-between;
-  border-top-left-radius: 6px;
-  border-top-right-radius: 6px;
+  border-top-left-radius: 0.6rem;
+  border-top-right-radius: 0.6rem;
 }
 
 /* 卡片上部右侧图标样式 */

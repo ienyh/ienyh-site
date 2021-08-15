@@ -42,7 +42,7 @@ router.post("/queryCourse", (request, response) => {
       }
     );
   })
-    .then((result) => {
+    .then(result => {
       /** 如果result.length == 0，代表查询不到此课程 */
       if (result.length == 0) {
         response.send({
@@ -59,7 +59,7 @@ router.post("/queryCourse", (request, response) => {
         console.log("[COURSE SELECT SUCCESSFULLY]");
       }
     })
-    .catch((error) => {
+    .catch(error => {
       response.send({
         errCode: -1,
         message: "[COURSE SELECT ERROR]: " + error.message,
@@ -88,7 +88,7 @@ router.post("/creat", (request, response) => {
       if (error) {
         reject(error);
       } else {
-        resolve();
+        resolve(result);
       }
     });
   })
@@ -96,7 +96,7 @@ router.post("/creat", (request, response) => {
       console.log("[COURSE CREATED SUCCESSFULLY]");
       response.send({ errCode: 0, message: "[COURSE CREATED SUCCESSFULLY]" });
     })
-    .catch((error) => {
+    .catch(error => {
       console.log("[COURSE CREATE ERROR]: " + error.message);
       response.send({
         errCode: -1,
@@ -123,7 +123,7 @@ router.post("/deleteByNumber", (request, response) => {
       }
     });
   })
-    .then((result) => {
+    .then(result => {
       /**
        * result.affectedRows: sql语句执行后受影响行数
        * result.affectedRows == 0 时说明表中没有此学生
@@ -139,7 +139,7 @@ router.post("/deleteByNumber", (request, response) => {
         console.log("[COURSE DELETE SUCCESSFULLY]");
       }
     })
-    .catch((error) => {
+    .catch(error => {
       response.send({
         errorCode: -1,
         message: "[COURSE DELETE ERROR]: " + error.message,
@@ -172,7 +172,7 @@ router.post("/update", (request, response) => {
       }
     });
   })
-    .then((result) => {
+    .then(result => {
       /**
        * result.changedRows: sql语句执行后改变的行数
        * result.changedRows == 0 时说明表中没有行改变，没有此课程
@@ -188,7 +188,7 @@ router.post("/update", (request, response) => {
         response.send({ errCode: 0, message: "[COURSE UPDATE SUCCESSFULLY]" });
       }
     })
-    .catch((error) => {
+    .catch(error => {
       console.log("[COURSE UPDATE ERROR]: " + error.message);
       response.send({
         errCode: -1,

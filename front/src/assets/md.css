@@ -1,0 +1,33 @@
+/** github 主题样式自定义修改 */
+
+.github-markdown-body {
+  font-family: inherit;
+  font-size: 1.6rem;
+  padding: 1.6rem 3.2rem;
+}
+
+
+.github-markdown-body code, .github-markdown-body pre {
+  font-family: "Hack", "Monaco-server", "HarmonyOS_Sans_Regular", monospace;
+}
+
+.github-markdown-body pre {
+  padding: .8rem;
+}
+
+.github-markdown-body div[class*=v-md-pre-wrapper-].line-numbers-mode .line-numbers-wrapper {
+  position: absolute;
+  top: 0;
+  width: 3.5rem;
+  padding: .8rem 0;
+  color: #909399;
+  font-size: 85%;
+  line-height: 1.45;
+  text-align: center;
+}
+
+@media screen and (max-width: 479px) {
+  .github-markdown-body {
+    padding: 1.6rem 1rem;
+  }
+}

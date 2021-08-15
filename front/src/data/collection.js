@@ -50,9 +50,9 @@ const collections = [
     icon: "csdn.svg",
   },
   {
-    url: "https://www.sumicode.com/",
-    title: "粟米社区",
-    icon: "https://www.sumicode.com/favicon.ico",
+    url: "https://www.bootcdn.cn/",
+    title: "BootCDN",
+    icon: "https://www.bootcdn.cn/assets/ico/favicon.ico?1627896133737",
   },
   {
     url: "https://www.code-nav.cn/",

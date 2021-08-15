@@ -1,0 +1,18 @@
+@font-face {
+  font-family: 'HarmonyOS_Sans_Regular'; /* 重命名字体名 */
+  src: url('HarmonyOS_Sans_Regular.ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Monaco-server'; /* 重命名字体名 */
+  src: url('MONACO.TTF');
+  font-weight: lighter;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Estilo Regular'; /* 重命名字体名 */
+  src: url('./Estilo Regular.otf');
+}

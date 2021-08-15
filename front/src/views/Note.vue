@@ -3,7 +3,7 @@
     <div class="content">
       <router-view></router-view>
     </div>
-    <RightBar style="margin-left: 15px;" />
+    <RightBar style="margin-left: 15px; width: 20%" />
   </div>
 </template>
 
@@ -12,11 +12,8 @@ import RightBar from "../components/RightBar";
 
 export default {
   name: "Note",
-  components: {
-    RightBar,
-  },
-
-}
+  components: { RightBar },
+};
 </script>
 
 <style scoped>
@@ -24,17 +21,24 @@ export default {
   display: flex;
   justify-content: center;
   align-items: start;
-  padding: 10px 0;
-  background-color: #f5f5f5;
-  min-height: 450px;
+  padding: 5.5rem 0 0 0;
+  min-height: 100vh;
 }
 
 .content {
-  /*min-height: 370px;*/
-  width: 55%;
-  padding: 4px 0;
+  width: 58%;
+  padding: .4rem 0;
 }
 
+@media screen and (max-width: 1000px) {
+  .content {
+    width: 90%;
+  }
+}
 
-
+@media screen and (max-width: 1000px) {
+  .content {
+    width: 95%;
+  }
+}
 </style>

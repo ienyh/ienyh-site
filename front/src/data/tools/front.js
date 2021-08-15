@@ -8,7 +8,7 @@ export const apiDocuments = [
   {
     title: "Markdown 语法教程",
     info:
-      "什么是Markdown？Markdown是一种轻量级的「标记语言」，通常为程序员群体所用，目前它已是全球最大的技术分享网站 GitHub 和技术问答网站 StackOverFlow 的御用书写格式。",
+      "Markdown是一种轻量级的「标记语言」，通常为程序员群体所用，目前它已是全球最大的技术分享网站 GitHub 和技术问答网站 StackOverFlow 的御用书写格式。",
     url: "https://markdown.com.cn/",
     icon: "markdown.svg",
   },
@@ -17,6 +17,13 @@ export const apiDocuments = [
     info: "Redux 是 JavaScript 状态容器，提供可预测化的状态管理。",
     url: "https://www.redux.org.cn/",
     icon: "redux.svg",
+  },
+  {
+    title: "Vuex",
+    info:
+      "Vuex 是一个专为 Vue.js 应用程序开发的状态管理模式。它采用集中式存储管理应用的所有组件的状态，并以相应的规则保证状态以一种可预测的方式发生变化。",
+    url: "https://vuex.vuejs.org/zh/",
+    icon: "vue.svg",
   },
   {
     title: "Node.js",
@@ -95,6 +102,18 @@ export const frameworks = [
     url: "https://charts.ant.design/zh-CN/",
     icon: "antd.svg",
   },
+  {
+    title: "GRUNT",
+    info: "JavaScript 世界的构建工具",
+    url: "https://www.gruntjs.net/",
+    icon: "https://www.gruntjs.net/img/favicons/favicon.ico",
+  },
+  {
+    title: "webpack",
+    info: "打包所有的 资源 脚本 图片 样式 表",
+    url: "https://www.webpackjs.com/",
+    icon: "https://www.webpackjs.com/assets/favicon.ico",
+  },
 ];
 
 export const library = [
@@ -110,6 +129,24 @@ export const library = [
     url: "https://www.lodashjs.com/",
     icon: "https://www.lodashjs.com/img/lodash.png",
   },
+  {
+    title: "Day.js",
+    info: "Moment.js 的 2kB 轻量化方案，拥有同样强大的 API。Day.js 是一个轻量的处理时间和日期的 JavaScript 库，和 Moment.js 的 API 设计保持完全一样. 如果您曾经用过 Moment.js, 那么您已经知道如何使用 Day.js",
+    url: "https://dayjs.gitee.io/zh-CN/",
+    icon: "https://user-images.githubusercontent.com/17680888/39081119-3057bbe2-456e-11e8-862c-646133ad4b43.png",
+  },
+  {
+    title: "Three.js",
+    info: "Three.js是基于原生WebGL封装运行的三维引擎，在所有WebGL引擎中，Three.js是国内文资料最多、使用最广泛的三维引擎。",
+    url: "https://threejs.org/",
+    icon: "threejs.svg",
+  },
+  {
+    title: "tailwindcss",
+    info: "无需离开您的HTML，即可快速建立现代网站。",
+    url: "https://www.tailwindcss.cn/",
+    icon: "https://www.tailwindcss.cn/favicon-32x32.png",
+  },
 ];
 
 export const resource = [
@@ -124,5 +161,17 @@ export const resource = [
     info: "阮一峰的个人网站",
     url: "http://www.ruanyifeng.com/home.html",
     icon: "http://www.ruanyifeng.com/favicon.ico",
+  },
+  {
+    title: "ECMAScript 6 入门",
+    info: "《ECMAScript 6 入门教程》是一本开源的 JavaScript 语言教程，全面介绍 ECMAScript 6 新引入的语法特性。",
+    url: "https://es6.ruanyifeng.com/",
+    icon: "https://es6.ruanyifeng.com/favicon.ico",
+  },
+  {
+    title: "Three.js 入门教程",
+    info: "Three.js 是一款 webGL 框架，由于其易用性被广泛应用。Three.js 在 WebGL 的 API 接口基础上，又进行的一层封装。它是由居住在西班牙巴塞罗那的程序员 Ricardo Cabbello Miguel 所开发，他更为人知的网名是 Mr.doob。",
+    url: "https://gitchat.csdn.net/columnTopic/5b320731bebc3c4bd7e725cb?utm_source=juhe",
+    icon: "csdn.svg",
   },
 ];
