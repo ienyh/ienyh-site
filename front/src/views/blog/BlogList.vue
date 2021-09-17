@@ -1,20 +1,21 @@
 <template>
   <div class="blog-list">
     <BlogCard 
-      v-for="item in array" 
+      v-for="item in blogs" 
       :key="item.id"
       class="blog-card animated bounceInLeft" 
-      :blogId="item.id" 
       :title="item.title" 
-      :comments="item.comments"
-      :path="item.path"
+      :comments="item.desc"
+      :time="item.create_time"
+      :author="item.author"
     />
   </div>
 </template>
 
 <script>
+import dayjs from 'dayjs';
 import BlogCard from "./components/BlogCard.vue";
-import { markdownList } from "../../data/markdownList";
+import { getBlogs } from '../../apis/blogApis.js';
 
 export default {
   name: "BlogList",
@@ -23,14 +24,27 @@ export default {
   },
   data () {
     return {
-      array: markdownList.map(item => {
-        item.isVisiable = false;
-        return item;
-      }),
       blogCards: [],
+      blogs: [],
     }
   },
-  mounted () {
+  async mounted () {
+    const { data } = await getBlogs();
+    this.blogs = data
+      .sort((a, b) => new Date(b.create_time).getTime() - new Date(a.create_time).getTime())
+      .map((item) => {
+      const { title, content, desc, author, create_time, update_time, numbers } = item;
+      return {
+        title, 
+        content, 
+        desc, 
+        author,
+        numbers,
+        create_time: dayjs(new Date(create_time)).format('YYYY-MM-DD'),
+        update_time: dayjs(new Date(update_time)).format('YYYY-MM-DD'),
+      }
+    });
+
     this.initVis();
 
     const scrollHandler = () => {
@@ -48,7 +62,7 @@ export default {
       //   // setTimeout(() => { this.array.forEach(item => item.isVisiable = false) }, 1000);
       // }
     }
-    window.addEventListener("scroll", scrollHandler);
+    // window.addEventListener("scroll", scrollHandler);
   },
   methods: {
     initVis () {
@@ -71,5 +85,6 @@ export default {
 
 .blog-card {
   margin-bottom: 1rem;
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
 }
 </style>

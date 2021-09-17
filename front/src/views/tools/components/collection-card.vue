@@ -1,7 +1,8 @@
 <template>
   <a class="collection-card" :href="url" target="_blank" title="点击进入">
     <span>
-      <img class="icon-img" v-if="icon" :src="iconURL" />
+      <img v-if="icon" class="icon-img" :src="iconURL" />
+      <img v-else class="icon-img" src="../../../assets/icons/none.svg">
     </span>
     <span class="title font-size-small" style="margin-left: 5px">{{
       title

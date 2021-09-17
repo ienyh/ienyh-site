@@ -26,7 +26,7 @@ export default {
 }
 
 .content {
-  width: 58%;
+  width: 65%;
   padding: .4rem 0;
 }
 

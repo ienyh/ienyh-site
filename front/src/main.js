@@ -26,7 +26,8 @@ import "@kangc/v-md-editor/lib/plugins/copy-code/copy-code.css";
 import hljs from "highlight.js";
 
 // 选择使用主题
-VMdPreview.use(githubTheme, { Hljs: hljs })
+VMdPreview
+  .use(githubTheme, { Hljs: hljs })
   .use(createTodoListPlugin())
   .use(createLineNumbertPlugin())
   .use(createCopyCodePlugin());

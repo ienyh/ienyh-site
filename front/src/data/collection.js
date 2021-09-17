@@ -55,9 +55,9 @@ const collections = [
     icon: "https://www.bootcdn.cn/assets/ico/favicon.ico?1627896133737",
   },
   {
-    url: "https://www.code-nav.cn/",
-    title: "编程导航",
-    icon: "https://www.code-nav.cn/logo.png",
+    url: "https://hub.docker.com/search/",
+    title: "Docker",
+    icon: "https://d1q6f0aelx0por.cloudfront.net/product-logos/644d2f15-c5db-4731-a353-ace6235841fa-registry.png",
   },
 ];
 

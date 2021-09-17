@@ -1,6 +1,6 @@
 <template>
   <div class="right-bar animated bounceInRight">
-    <div class="bar-content">
+    <div v-if="$route.path === '/blog'" class="bar-content">
       <el-avatar
         class="avatar"
         shape="circle"
@@ -51,13 +51,10 @@
       </div>
     </div>
     
-    <div class="title_bar" :class="isFixed ? 'fixed' : ' '">
-      #
-      ###
-      #####
+    <div v-else id="title_bar" class="title_bar">
+      <el-tree :data="title_list" @node-click="handleNodeClick" empty-text="没有标题 🤒"></el-tree>
     </div>
-
-    <Weather style="margin: 10px 0; height: 6rem" />
+    <Weather style="margin: 10px 0; height: 6rem; box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);" />
   </div>
 </template>
 
@@ -110,26 +107,26 @@ export default {
           hoverImg: require("../assets/img/qq.png"),
         },
       ],
-      isFixed: false,
+      title_list: [
+        {
+          label: "title-1",
+          children: [{ label: "title-2", temp: "title-2" }],
+        },
+        {
+          label: "title-1",
+          children: [{ label: "title-2", temp: "title-2" }],
+        }
+      ]
     };
-  },
-  mounted () {
-    const bar = document.querySelector(".title_bar");
-    console.log(bar);
-    window.addEventListener("scroll", () => {
-      if (bar.getBoundingClientRect().top === 45) {
-        this.isFixed = true;
-        console.log("1");
-      } else {
-        this.isFixed = false;
-      }
-    });
   },
   methods: {
     clickImg() {
       window.open(this.avatar_url, "_blank");
     },
   },
+  mounted () {
+    // console.log(this.$route);
+  }
 };
 </script>
 
@@ -152,6 +149,7 @@ export default {
   background-color: #fff;
   padding: .5rem;
   border-radius: .8rem;
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
 }
 
 /* 头像 */
@@ -178,8 +176,8 @@ export default {
 
 .tag {
   display: block;
-  margin: 4px;
-  font-size: 1rem;
+  margin: 2px;
+  font-size: .8rem;
   color: #000;
 }
 
@@ -216,6 +214,7 @@ export default {
   color: #73777a;
   border-radius: 0.8rem;
   border: 1px solid #73777a;
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
   overflow: hidden;
 }
 
@@ -241,16 +240,12 @@ export default {
 
 .title_bar {
   border-radius: 1rem;
-  background: rgb(241, 152, 152);
-  min-height: 20rem;
+  background: #fff;
   margin-top: 1rem;
+  width: 100%;
   overflow: hidden;
   padding: 1rem;
-}
-
-.fixed {
-  position: fixed;
-  top: 5.5rem;
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
 }
 
 </style>

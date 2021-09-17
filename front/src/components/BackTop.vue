@@ -40,6 +40,13 @@ export default {
 </script>
 
 <style scoped>
+
+@media screen and (max-width: 750px) {
+  .back-to-top {
+    display: none;
+  }
+}
+
 .back-to-top {
 	border: 1px solid #73777a;
 	border-top-left-radius: 2rem;

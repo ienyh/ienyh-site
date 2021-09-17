@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="title-header" :class="headerNoneDisplay ? 'unvisable' : 'visable'">
-      <h1>{{ $route.params.id }} -- chenyh</h1>
+      <h1>{{ $route.params.id }} -- {{ blog.author }}</h1>
     </div>
 
     <el-page-header class="disable-select font-harmony" @back="() => $router.go(-1)">
@@ -10,32 +10,31 @@
       </template>
       <template #content>
         <div class="classify">
-          <el-tag class="font-size-small" type="info">ienyh</el-tag>
+          <el-tag class="font-size-small" type="info">{{ blog.author }}</el-tag>
+          <!-- <el-divider direction="vertical"></el-divider>
+          <el-tag class="font-size-small" type="info">Javascript</el-tag> -->
           <el-divider direction="vertical"></el-divider>
-          <el-tag class="font-size-small" type="info">Javascript</el-tag>
-          <el-divider direction="vertical"></el-divider>
-          <el-tag class="font-size-small" type="info">{{
-            new Date().toLocaleDateString()
-          }}</el-tag>
+          <el-tag class="font-size-small" type="info">{{ blog.create_time }}</el-tag>
         </div>
       </template>
     </el-page-header>
     <div class="blog_container">
       <!-- <h1>title id: {{ $route.params.id }}</h1> -->
       <v-md-preview
-        :text="str"
+        :text="blog.content"
         @copy-code-success="handleCopyCodeSuccess"
       ></v-md-preview>
     </div>
     <div class="blog_footer">
-      --------- 我也是有底线的啦 😆 ---------
+      --------- [字数 {{ blog.numbers }}] 我也是有底线的啦 😆 ---------
     </div>
   </div>
 </template>
 
 <script>
-import axios from "axios";
+import { getBlogByTitle } from '../../../apis/blogApis';
 import { ElMessage } from 'element-plus'; 
+import dayjs from 'dayjs';
 
 export default {
   name: "Blog",
@@ -44,21 +43,36 @@ export default {
       str: "",
       oldScrollTop: 0, // 滚动前，滚动条距文档顶部的距离
       headerNoneDisplay: true,
+      blog: {
+        title: '',
+        content: '',
+        desc: '',
+        author: '',
+        create_time: '',
+        update_time: '',
+        numbers: '',
+      },
     };
   },
-  mounted () {
-    // 请求数据
-    axios.get(`md/${this.$route.params.id}.md`)
-      .then(res => res.data)
-      .then(data => { this.str = data })
-      .catch(console.warn);
+  async mounted () {
+    const { data } = await getBlogByTitle(this.$route.params.id);
+    const { title, content, desc, author, create_time, update_time, numbers } = data;
+    this.blog = {
+      title, 
+      content, 
+      desc, 
+      author,
+      numbers,
+      create_time: dayjs(new Date(create_time)).format('YYYY-MM-DD HH:mm:ss'),
+      update_time: dayjs(new Date(update_time)).format('YYYY-MM-DD HH:mm:ss'),
+    };
 
     window.addEventListener("scroll", () => {
 			let scrollTop = window.pageYOffset || document.documentElement.scrollTop ||
 				document.body.scrollTop
 			// 滚动条滚动的距离
 			let scrollStep = scrollTop - this.oldScrollTop;
-			// 更新——滚动前，滚动条距文档顶部的距离
+			// 更新--滚动前，滚动条距文档顶部的距离
 			this.oldScrollTop = scrollTop;
 			if (scrollStep < 0) {
 				this.headerNoneDisplay = true; // 向上滚动
@@ -116,6 +130,7 @@ export default {
   background-color: #fff;
   border-radius: 8px;
   font-family: "HarmonyOS_Sans_Regular", sans-serif;
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
 }
 
 .blog_container code {

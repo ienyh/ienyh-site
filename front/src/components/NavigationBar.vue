@@ -13,6 +13,31 @@
     </ul>
     <span class="ienyh font-estilo">
       <strong @click="() => $router.push('/')">ienyh</strong>
+      <!-- <select class="select" name="" id="">
+        <option 
+          v-for="item in dropList" 
+          :key="item.routerPath"
+          :value="item.title"
+        >
+          <span @click="routeTo(item.routerPath)">{{ item.title }}</span>
+        </option>
+      </select> -->
+      <el-dropdown>
+        <span class="el-dropdown-link">
+          drop<i class="el-icon-arrow-down el-icon--right"></i>
+        </span>
+        <template #dropdown>
+          <el-dropdown-menu>
+            <el-dropdown-item 
+              v-for="item in dropList" 
+              :key="item.routerPath"
+              :value="item.title"
+            >
+              <span @click="routeTo(item.routerPath)">{{ item.title }}</span>
+            </el-dropdown-item>
+          </el-dropdown-menu>
+        </template>
+      </el-dropdown>
     </span>
   </header>
 </template>
@@ -33,19 +58,28 @@ export default {
           routerPath: "/blog",
           img: require("../assets/svg/Blog.svg"),
         },
-        {
-          name: "3D",
-          routerPath: "/three",
-          img: require("../assets/svg/3D.svg"),
-        },
+        // {
+        //   name: "3D",
+        //   routerPath: "/three",
+        //   img: require("../assets/svg/3D.svg"),
+        // },
         {
           name: "Comments",
-          routerPath: "/individual",
+          routerPath: "/message",
           img: require("../assets/svg/message.svg"),
         },
+      ],
+      dropList: [
+        { title: '上传', routerPath: '/manage', icon: '' },
+        // { title: 'null', routerPath: '/manage2', icon: '' },
       ]
     };
   },
+  methods: {
+    routeTo (path) {
+      this.$router.push(path);
+    }
+  }
 };
 </script>
 
@@ -61,12 +95,12 @@ header {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  background-color: rgba(56, 61, 65, 0.3);
+  background-color: rgba(225, 225, 225, 0.3);
   text-shadow: 0px 0px 0px rgba(225, 225, 225, 0.6);
-  backdrop-filter: blur(0.3rem);
-  font-size: 20px;
-  border-radius: 0;
-  box-shadow: .2rem 1rem 2rem rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(3px);
+  font-size: 1.4rem;
+  /* box-shadow: .4rem .4rem .4rem rgba(9, 9, 9, 0.3); */
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
 }
 
 .menu-flex {
@@ -77,7 +111,7 @@ header {
 
 .item {
   margin: 0 0.4rem;
-  padding: 0.4rem 1rem;
+  padding: 0.2rem 1rem;
   font-weight: bold;
   font-size: 2.2rem;
   color: rgba(18, 150, 219, 0.7);
@@ -99,7 +133,7 @@ header {
   margin-right: 2rem;
   font-size: 4.5rem;
   letter-spacing: 0.75rem;
-  color: rgba(255, 255, 255, 0.5);
+  color: rgba(9, 9, 9, 0.5);
   cursor: pointer;
   display: flex;
   justify-content: center;
@@ -112,14 +146,28 @@ header {
   align-items: center;
 }
 
+.ienyh .select {
+  padding: 2px 4px;
+}
+
 ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
 }
 
+.el-dropdown-link {
+  letter-spacing: 2px;
+  font-size: 2rem;
+  margin: 0 1rem;
+}
+
 @media screen and (max-width: 599px) {
   .menu_name {
+    display: none;
+  }
+
+  .ienyh strong {
     display: none;
   }
 }

@@ -1,6 +1,7 @@
 import * as THREE from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import { DRACOLoader } from "three/examples/jsm/loaders/DRACOLoader";
+import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader';
 
 
 // 递归遍历 让 3d 对象产生阴影
@@ -31,6 +32,15 @@ export function loadGLTF (_3dFilePath) {
       console.log((xhr.loaded / xhr.total * 100).toFixed(2) + "% loaded");
     }, reject);
   });
+}
+
+export function loadObj (_3dFilePath) {
+  const objLoader = new OBJLoader();
+  return new Promise((resolve, reject) => {
+    objLoader.load(_3dFilePath, resolve, xhr => {
+      console.log('[OBJ]: ' + (xhr.loaded / xhr.total * 100).toFixed(2) + "% loaded");
+    }, reject);
+  })
 }
 
 /**

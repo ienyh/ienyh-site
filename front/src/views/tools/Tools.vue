@@ -54,8 +54,6 @@ import {
 import CollectionCard from "./components/collection-card";
 import collections from "../../data/collection";
 
-import { queryCardMessage } from "../../apis/cardApis";
-
 export default {
   name: "Tools",
   components: { CollectionCard, DesignBox },
@@ -79,16 +77,7 @@ export default {
   methods: {
     search() {
       console.log(this.searchContent);
-      queryCardMessage(this.searchContent)
-        .then(result => {
-          console.log(result);
-          if (Array.isArray(result.data) && result.data.length > 0) {
-            ElMessage.success("查询成功");
-          } else {
-            ElMessage.warning("未查询到数据");
-          }
-        })
-        .catch(console.log);
+      
     },
   },
 };
@@ -110,9 +99,9 @@ export default {
 .collection-site {
   width: 85%;
   margin: 0 auto;
-  background: linear-gradient(to right bottom, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.2));
+  background-color: #fff;
   backdrop-filter: blur(0.8rem);
-  box-shadow: 1rem 1rem 2rem rgba(0, 0, 0, 0.2);
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
   border-radius: .8rem;
   padding: .4rem 0;
 }
@@ -122,7 +111,19 @@ export default {
   margin: 1rem 8rem;
   display: grid;
   justify-content: space-between;
-  grid-template-columns: repeat(auto-fill, 17rem);
+  grid-template-columns: repeat(auto-fill, 15rem);
   grid-gap: .5rem;
+}
+
+@media screen and (max-width: 599px) {
+  .tabs-container {
+    width: unset;
+    margin: .5rem .2rem;
+  }
+
+  .collection-site {
+    width: unset;
+    margin: .5rem .2rem;
+  }
 }
 </style>

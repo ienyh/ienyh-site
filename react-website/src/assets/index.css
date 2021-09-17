@@ -1,0 +1,41 @@
+@import './font/fonts.css';
+
+/* @tailwind base;
+@tailwind components;
+@tailwind utilities; */
+
+:root {
+  --black: rgba(31, 41, 55, 1);
+  --dark: rgba(17, 24, 39, 1);
+  --white: rgb(255, 255, 255, 1);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100vw;
+  height: 100vh;
+  background-color: #e6e6e6;
+  font-family: 'HarmonyOS_Sans_Regular', "Microsoft Yahei", 'Times New Roman', Times, serif;
+  font-size: 10px;
+}
+
+/* 设置滚动条的样式 */
+::-webkit-scrollbar {
+  width: 6px;
+}
+/* 滚动槽 */
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 4px rgba(40, 77, 126, 0.3);
+  border-radius: 4px;
+}
+/* 滚动条滑块 */
+::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  background: #bbb;
+  -webkit-box-shadow: inset 0 0 4px rgba(40, 77, 126, 0.5);
+}

@@ -6,7 +6,7 @@
 }
 
 @font-face {
-  font-family: 'Monaco-server'; /* 重命名字体名 */
+  font-family: 'MONACO'; /* 重命名字体名 */
   src: url('MONACO.TTF');
   font-weight: lighter;
   font-style: normal;

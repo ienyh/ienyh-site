@@ -1,7 +1,7 @@
 <template>
   <div class="blog_card">
     <div style="display: flex; justify-content: space-between">
-      <router-link :to="to + path || 'title-temp'">
+      <router-link :to="to + title || 'title-temp'">
         <h2 class="title">{{ title }}</h2>
       </router-link>
       <el-tag class="blog_tag" type="info">{{
@@ -46,7 +46,7 @@
     <p class="comments">{{ comments || "暂无" }}</p>
     <div class="title" style="text-align: end">
       <router-link 
-        :to="to + path" 
+        :to="to + title" 
         style="font-size: 1.4rem; color: #396b94"
       >查看全文</router-link>
       <span><i class="el-icon-right"></i></span>

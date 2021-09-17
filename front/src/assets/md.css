@@ -6,6 +6,10 @@
   padding: 1.6rem 3.2rem;
 }
 
+.github-markdown-body h1 {
+  font-size: 2.8rem;
+}
+
 
 .github-markdown-body code, .github-markdown-body pre {
   font-family: "Hack", "Monaco-server", "HarmonyOS_Sans_Regular", monospace;
@@ -30,4 +34,69 @@
   .github-markdown-body {
     padding: 1.6rem 1rem;
   }
+}
+
+
+.markdown pre {
+  background-color: #f5f5f5;
+  border: 1px solid #72777a;
+  border-radius: 4px;
+  padding: 4px 12px;
+  font-family: Verdana, monospace;
+  margin: 1rem 0;
+}
+
+.markdown pre > code {
+  border: none;
+}
+
+.markdown code {
+  font-family: Verdana, monospace;
+  background-color: #f5f5f5;
+  border: 1px solid #72777a;
+  border-radius: 2px;
+  padding: 1px 2px;
+  font-size: 1.2rem;
+}
+
+.markdown li {
+  margin-top: 4px;
+}
+
+.markdown h1 {
+  text-align: center;
+  margin: 1.6rem 0;
+}
+
+.markdown h3 {
+  font-size: 1rem;
+  line-height: 1.25;
+  font-weight: 600;
+  margin-top: 1.6rem;
+  margin-bottom: 1.6rem;
+}
+
+.markdown p {
+  font-size: 1.6rem;
+  line-height: 1.5;
+  margin: .5rem 0;
+}
+
+.markdown table {
+  border: 2px solid #72777a;
+  padding: 0;
+  margin: 1rem 0;
+
+}
+
+.markdown table > thead {
+  border: 2px solid #72777a;
+  padding: 0;
+  margin: 0;
+}
+
+.markdown table th {
+  border: 1px solid #72777a;
+  padding: 2px 1rem;
+  margin: 0;
 }

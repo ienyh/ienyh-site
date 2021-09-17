@@ -3,6 +3,8 @@
 /* @import "./tailwind.css"; */
 @import "./fonts/fonts.css";
 @import "./md.css";
+/* @import './github.css'; */
+
 
 * {
   margin: 0;
@@ -14,6 +16,7 @@ body, html {
   font-family: 'HarmonyOS_Sans_Regular', Verdana, Helvetica, Arial, sans-serif;
   font-size: 10px;
   min-height: 100vh;
+  line-height: 1.425;
 }
 
 @media screen and (max-width: 479px) {
@@ -42,12 +45,12 @@ body, html {
 
 @media screen and (min-width: 1200px) {
   body, html {
-    font-size: 12px;
+    font-size: 11px;
   }
 }
 
 code {
-  font-family: "Hack", sans-serif;
+  font-family: "Hack", "Consolas", sans-serif;
 }
 
 .font-estilo {
@@ -59,7 +62,7 @@ code {
 }
 
 .font-monaco {
-  font-family: "Monaco-server", sans-serif;
+  font-family: "MONACO", sans-serif;
 }
 
 .font-hack {

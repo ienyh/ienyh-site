@@ -43,17 +43,27 @@ const routes = [
     children: [
       {
         path: "/three",
-        component: () => import("../views/threejs-demo/ThreeComponent1.vue"),
-      },
-      {
-        path: "/three/demo1",
-        component: () => import("../views/threejs-demo/ThreeComponent1.vue"),
+        component: () => import("../views/threejs-demo/ThreeComponent2.vue"),
       },
       {
         path: "/three/demo2",
         component: () => import("../views/threejs-demo/ThreeComponent2.vue"),
       },
     ],
+  },
+  {
+    path: '/manage',
+    component: () => import('../views/manage/index.vue'),
+    // children: [
+    //   {
+    //     path: '/manage',
+    //     component: () => import('../views/manage/index.vue'),
+    //   }
+    // ],
+  },
+  {
+    path: '/message',
+    component: () => import('../views/message/index.vue'),
   },
   {
     path: "/:catchAll(.*)",
