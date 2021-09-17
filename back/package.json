@@ -3,11 +3,15 @@
   "version": "0.0.0",
   "description": "",
   "scripts": {
-    "start": "node server.js"
+    "start": "node ./bin/www"
   },
   "author": "chenyh",
   "dependencies": {
+    "consola": "^2.15.3",
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
     "mongodb": "^4.1.0",
+    "mongoose": "^5.13.7",
     "yargs": "^17.1.0"
   }
 }
