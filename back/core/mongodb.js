@@ -10,7 +10,10 @@ const connect = () => {
   // console.log('CONFIG.MONGODB.uri :', CONFIG.MONGODB.uri)
 
   // 连接数据库
-  mongoose.connect(CONFIG.MONGODB_CONFIG.url)
+  mongoose.connect(CONFIG.MONGODB_CONFIG.url, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
     .then(() => {
       console.log("数据库连接成功!");
     })
