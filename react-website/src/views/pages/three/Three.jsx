@@ -11,7 +11,7 @@ class Three extends React.Component {
   componentDidMount () {
     this.three = new SimplyThree({ id: 'three' });
     console.log(this.three);
-    SimplyThree.loadGLTF('/src/assets/3d/bluecar.glb')
+    SimplyThree.asyncLoadGLTF('/src/assets/3d/bluecar.glb')
       .then(res => {
         this.three.addMesh(res.scene, mesh => {
           mesh.scale.set(4, 4, 4);

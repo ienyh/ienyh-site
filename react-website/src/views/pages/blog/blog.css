@@ -1,3 +1,36 @@
 .blog {
-  padding: 5rem 0 0 0;
+  margin: 1rem auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+}
+
+
+.blogs {
+  flex: 3;
+  background: #fff;
+  padding: 0.4rem .8rem;
+  border-radius: 5px;
+}
+
+.bar {
+  flex: 1;
+}
+
+@media screen and (max-width: 1080px) {
+  .blog {
+    margin: 1rem .5rem;
+  }
+
+  .bar {
+    display: none;
+  }
+}
+
+.bottom-line {
+  width: 10%;
+  height: 2px;
+  background-color: #ddd;
+  overflow: hidden;
+  margin-top: 4px;
 }

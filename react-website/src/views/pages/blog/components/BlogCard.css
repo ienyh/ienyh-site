@@ -1,9 +1,10 @@
 .blog-card {
-  margin: 1rem;
+  margin: 1rem 0;
   padding: 1rem;
   background-color: #fff;
   color: var(--dark);
   border-radius: 5px;
+  border: 1px solid #ddd;
 
   display: flex;
   justify-content: space-between;

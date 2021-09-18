@@ -23,16 +23,18 @@ const list = [
 const Header = () => {
   return (
     <header>
-      <span>chenyh</span>
-      <ul className="menu">
-        {
-          list.map(item => {
-            return <li className="item" key={ item.path }>
-              <Link to={ item.path }>{ item.title }</Link>
-            </li>
-          })
-        }
-      </ul>
+      <div className="header-container">
+        <span>chenyh</span>
+        <ul className="menu">
+          {
+            list.map(item => {
+              return <li className="item" key={ item.path }>
+                <Link to={ item.path }>{ item.title }</Link>
+              </li>
+            })
+          }
+        </ul>
+      </div>
     </header>
   )
 }

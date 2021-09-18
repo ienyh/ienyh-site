@@ -1,4 +1,3 @@
-
 header {
   margin: 0;
   background-color: var(--black);
@@ -9,11 +8,17 @@ header {
   overflow: hidden;
   width: 100%;
   height: 5rem;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
   font-size: 1.4rem;
   box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+}
+
+.header-container {
+  max-width: 1200px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 5rem;
+  margin: 0 auto;
 }
 
 header .menu {

@@ -4,6 +4,10 @@ import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader';
 import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 
+const processDefault = xhr => {
+  console.log('[Geometry]: ' + (xhr.loaded / xhr.total * 100).toFixed(2) + "% loaded");
+}
+
 class SimplyThree {
 
   _renderer = null;
@@ -79,12 +83,20 @@ class SimplyThree {
     this._scene.add(mesh);
   }
 
+  static loadGLTF (_3dFilePath, success, process = processDefault, error = console.log) {
+    const gltfLoader = new GLTFLoader();
+    const dracoLoader = new DRACOLoader();
+    dracoLoader.setDecoderPath("../../../assets/js/draco/gltf/");
+    gltfLoader.setDRACOLoader(dracoLoader);
+    gltfLoader.load(_3dFilePath, success, process, error);
+  }
+
   /**
    * 异步加载 .gltf & .glb 3d 文件
    * @param {*} _3dFilePath 
    * @returns {Promise}
    */
-  static loadGLTF (_3dFilePath) {
+  static asyncLoadGLTF (_3dFilePath) {
     const gltfLoader = new GLTFLoader();
     const dracoLoader = new DRACOLoader();
     dracoLoader.setDecoderPath("../../../assets/js/draco/gltf/");

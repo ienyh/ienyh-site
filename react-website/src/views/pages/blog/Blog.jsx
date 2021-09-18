@@ -11,18 +11,27 @@ const Blog = () => {
     const fetch = async () => {
       const res = await get('/findAllBlog');
       setList(res.data);
+      console.log(res.data);
     }
     fetch();
   }, []);
 
   return (
-    <div className="blog">
-      <span>123</span>
-      {
-        list === [] ?
-          list.map(blog => <BlogCard {...blog} key={uuidv4()} />) :
-          <h2>没有数据</h2>
-      }
+    <div className="blog container">
+      <div className="blogs">
+        <span style={{ fontSize: '1.4rem' }}>技术博文</span>
+        <div className="bottom-line"></div>
+        {
+          list.map(blog => <BlogCard {...blog} key={uuidv4()} />)
+        }
+      </div>
+      <div className="bar">
+        <div>hello world</div>
+        <div>hello world</div>
+        <div>hello world</div>
+        <div>hello world</div>
+        <div>hello world</div>
+      </div>
     </div>
   )
 }
