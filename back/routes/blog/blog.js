@@ -2,6 +2,11 @@ const consola = require('consola');
 const Blog = require("../../models/blog");
 const { responseClient, save, find, deleteOne } = require('../../utils/utils');
 
+/**
+ * @method POST
+ * @param {*} req 
+ * @param {*} res 
+ */
 exports.addBlog = async (req, res) => {
   const { title, content, author, numbers = 0, keyword, desc } = req.body;
   const date = new Date();
@@ -23,7 +28,12 @@ exports.addBlog = async (req, res) => {
   }
 }
 
-
+/**
+ * 通过标题来查询一篇博客
+ * @method GET
+ * @param {*} req 
+ * @param {*} res 
+ */
 exports.getBlogByTitle = (req, res) => {
   // GET
   const { title } = req.query;
@@ -41,6 +51,7 @@ exports.getBlogByTitle = (req, res) => {
 
 /**
  * 查询所有博客
+ * @method GET
  * @param {*} req 
  * @param {*} res 
  */
@@ -59,6 +70,12 @@ exports.findAllBlog = async (req, res) => {
   }
 }
 
+/**
+ * 通过标题来删除一篇博客
+ * @method GET
+ * @param {*} req 
+ * @param {*} res 
+ */
 exports.deleteBlogByTitle = async (req, res) => {
   const { title } = req.body;
   try {
