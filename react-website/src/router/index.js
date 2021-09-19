@@ -3,6 +3,8 @@ import Pages from '../views/pages/Pages';
 import NotFound from '../views/others/404';
 import Blog from '../views/pages/blog/Blog';
 import Three from '../views/pages/three/Three';
+import UpLoad from "../views/pages/admin/upload/Upload";
+import Admin from "../views/pages/admin/Admin";
 
 const routes = [
   {
@@ -40,6 +42,20 @@ const routes = [
         component: Three,
         exact: true,
         title: 'three',
+      },
+      {
+        path: '/pages/admin',
+        component: Admin,
+        exact: false,
+        title: 'admin',
+        children: [
+          {
+            path: '/pages/admin/upload',
+            component: UpLoad,
+            exact: true,
+            title: 'upload',
+          },
+        ]
       },
     ]
   },

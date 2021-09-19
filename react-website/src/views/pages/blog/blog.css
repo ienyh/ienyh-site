@@ -11,6 +11,8 @@
   background: #fff;
   padding: 0.4rem .8rem;
   border-radius: 5px;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
+
 }
 
 .bar {

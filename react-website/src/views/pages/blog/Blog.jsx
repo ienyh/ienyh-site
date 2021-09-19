@@ -11,7 +11,6 @@ const Blog = () => {
     const fetch = async () => {
       const res = await get('/findAllBlog');
       setList(res.data);
-      console.log(res.data);
     }
     fetch();
   }, []);

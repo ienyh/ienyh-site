@@ -24,6 +24,12 @@ html, body {
   font-size: 10px;
 }
 
+a {
+  text-decoration: none;
+  color: unset;
+  cursor: pointer;
+}
+
 /* 设置滚动条的样式 */
 ::-webkit-scrollbar {
   display: none;

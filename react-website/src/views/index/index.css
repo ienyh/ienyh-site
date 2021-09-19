@@ -1,4 +1,12 @@
 .index {
   text-align: center;
   color: var(--black);
+  font-size: 40px;
+  background-image: url('../../assets/imgs/bg.jpg');
+  width: 100vw;
+  height: 100vh;
+  background-position: bottom;
+  background-size: cover;
+
+  padding-top: 40vh;
 }
