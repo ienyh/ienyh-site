@@ -6,4 +6,4 @@
 
 具体查看对应项目的 README.md
 
-person site => [http://www.chenyh.site/](http://www.chenyh.site/)
+personal site => [www.chenyh.site](http://www.chenyh.site/)

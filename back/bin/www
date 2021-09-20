@@ -1,5 +1,14 @@
 const app = require('../app.js');
 const http = require('http');
+const https = require('https');
+const fs = require('fs');
+
+// Configuare https
+// 注意这里文件的路径，是相对于 npm scripts 文件（也就是 package.json）的路径 
+const httpsOption = {
+  key : fs.readFileSync("./https/chenyh.site.key"),
+  cert: fs.readFileSync("./https/chenyh.site.pem")
+}
 
 /**
  * Get port from environment and store in Express.
@@ -10,13 +19,14 @@ app.set('port', port);
 /**
 * Create HTTP server.
 */
-const server = http.createServer(app);
+// const server = http.createServer(app);
+const server = https.createServer(httpsOption, app);
 
 /**
 * Listen on provided port, on all network interfaces.
 */
 server.listen(port,() => {
-  console.log("应用实例，访问地址为 http://localhost:%s", port);
+  console.log("应用实例，访问地址为 https://localhost:%s", port);
 })
 server.on('error', onError);
 server.on('listening', onListening);

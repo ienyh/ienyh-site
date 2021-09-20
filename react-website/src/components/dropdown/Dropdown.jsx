@@ -1,11 +1,14 @@
 import React from 'react';
 import './dropdown.css';
 
-const Dropdown = () => {
+const Dropdown = (props) => {
+  const { title, content } = props;
   return (
     <>
-      <div className="dropdown"></div>
-      <div className="dropdown-content"></div>
+      <div className="dropdown">
+        <span>{ title || 'dropdown' }</span>
+        <div className="dropdown-content">{ content || <div>dropdown</div> }</div> 
+      </div>
     </>
   )
 }

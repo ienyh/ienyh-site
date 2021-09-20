@@ -1,52 +1,63 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import './header.css';
+import Dropdown from '../dropdown/Dropdown';
+/** 导入 icon */
+import search from '../../assets/icons/search.svg';
+import link from '../../assets/icons/link.svg';
+import arrow_right from '../../assets/icons/arrow-right.svg';
+import home from '../../assets/icons/home.svg';
+import document from '../../assets/icons/document.svg';
+import music from '../../assets/icons/music.svg';
+import discount from '../../assets/icons/discount.svg';
+import tool from '../../assets/icons/tool.svg';
+import picture from '../../assets/icons/picture.svg';
 
 const list = [
   {
     title: '搜索',
     path: '/pages/blog',
-    icon: '/src/assets/icons/search.svg',
+    icon: search,
   },
   {
     title: '首页',
     path: '/index',
-    icon: '/src/assets/icons/home.svg',
+    icon: home,
   },
   {
     title: '归档',
     path: '/pages/blog3',
-    icon: '/src/assets/icons/document.svg',
+    icon: document,
   },
   {
     title: '音乐',
     path: '/pages/blog4',
-    icon: '/src/assets/icons/music.svg',
+    icon: music,
   },
   {
     title: '标签',
     path: '/pages/blog5',
-    icon: '/src/assets/icons/discount.svg',
+    icon: discount,
   },
   {
     title: '工具',
     path: '/pages/blog6',
-    icon: '/src/assets/icons/tool.svg',
+    icon: tool,
   },
   {
     title: '图片',
     path: '/pages/blog7',
-    icon: '/src/assets/icons/picture.svg',
+    icon: picture,
   },
   {
     title: '关于',
     path: '/pages/blog8',
-    icon: '',
+    icon: null,
   },
   {
     title: 'three',
     path: '/pages/three9',
-    icon: '',
+    icon: null,
   },
 ]
 
@@ -61,8 +72,9 @@ const Header = () => {
 
   useEffect(() => {
     window.addEventListener('scroll', e => {
-      let t = document.documentElement.scrollTop || document.body.scrollTop;
-      if (t <= 4) setMask(false);
+      let t = document?.documentElement?.scrollTop || document?.body?.scrollTop;
+      console.log(t);
+      if (t <= 5) setMask(false);
       else setMask(true);
     });
   }, []);
@@ -75,7 +87,7 @@ const Header = () => {
           {
             list.map(item => {
               return <li key={ item.path }>
-                <img src={item.icon || "/src/assets/icons/link.svg"} />
+                <img src={ item.icon || link } />
                 <Link to={ item.path }>{ item.title }</Link>
                 <div className="line"></div>
               </li>
@@ -83,11 +95,19 @@ const Header = () => {
           }
           <li>
             <Link to="/pages/admin">站长</Link>
-            <img src={"/src/assets/icons/arrow-right.svg"} style={{
+            <img src={ arrow_right } style={{
               width: '16px',
               height: '16px',
               marginLeft: "4px",
             }} />
+          </li>
+          <li>
+            <Dropdown title="站长" content={
+              <>
+                <div style={{ marginBottom: "8px" }}>upload</div>
+                <div>exit</div>
+              </>
+            } ></Dropdown>
           </li>
         </ul>
         {
