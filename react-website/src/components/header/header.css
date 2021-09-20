@@ -93,6 +93,27 @@ nav {
   color: aliceblue;
 }
 
+.hiddenInMobile {
+  display: block;
+}
+
+.flex {
+  display: flex;
+  align-items: center;
+}
+
+.dropdown-img {
+  width: 16px;
+  height: 16px;
+  margin-left: 4px;
+  transition: all .2s ease-in-out;
+}
+
+.hiddenInMobile:hover .dropdown-img {
+  transform: rotate(0.25turn);
+  transition: all .2s ease-in-out;
+}
+
 @media screen and (max-width: 1000px) {
   nav {
     padding: 0 40px;
@@ -106,7 +127,7 @@ nav {
     bottom: 0;
     width: 50vw;
     height: calc(100vh - 60px);
-    background-color: var(--dark);
+    background-color: var(--black);
     z-index: 1;
     transform: translateX(100%);
     transition: 0.4s ease-in-out;
@@ -119,5 +140,9 @@ nav {
 
   .menu-img {
     display: block;
+  }
+
+  .hiddenInMobile {
+    display: none !important;
   }
 }

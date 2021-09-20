@@ -7,7 +7,12 @@
 :root {
   --black: rgba(31, 41, 55, 1);
   --dark: rgba(17, 24, 39, 1);
-  --white: rgb(255, 255, 255, 1);
+  --white: rgba(255, 255, 255, 1);
+  --honeydew: #EBF5DF;
+  --tea-green: #BAD4AA;
+  --pale-spring-bud: #D4D4AA;
+  --sunray: #EDB458;
+  --fulvous: #E8871E;
 }
 
 * {
@@ -33,4 +38,9 @@ a {
 /* 设置滚动条的样式 */
 ::-webkit-scrollbar {
   display: none;
+}
+
+::selection {
+  background-color: #EBF5DF;
+  color: #E8871E;
 }
