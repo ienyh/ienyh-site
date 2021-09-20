@@ -88,9 +88,9 @@ nav {
   color: #1D3557;
 }
 
-.header-content p {
-  font-size: 16px;
-  color: aliceblue;
+.header-content .h-text {
+  font-size: 20px;
+  color: var(--sunray);
 }
 
 .hiddenInMobile {

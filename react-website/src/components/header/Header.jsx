@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import './header.css';
 import Dropdown from '../dropdown/Dropdown';
+import Typing from '../typing/typing';
 /** 导入 icon */
 import icon_search from '../../assets/icons/search.svg';
 import icon_link from '../../assets/icons/link.svg';
@@ -75,7 +76,6 @@ const Header = () => {
   }
 
   const scrollHandler = () => {
-    // console.log(document);
     const t = document.documentElement.scrollTop || document.body.scrollTop;
     if (t <= 5) setMask(false);
     else setMask(true);
@@ -137,7 +137,9 @@ const Header = () => {
       <header className="animated fadeInDown">
         <div className="header-content">
           <h1>Chenyh's Blog</h1>
-          <p className="h-text">start coding</p>
+          <span className="h-text">
+            <Typing time={ 6000 } circle>start coding, start life</Typing>
+          </span>
         </div>
       </header>
     </div>
