@@ -4,7 +4,7 @@ import './blog.css';
 import BlogCard from './components/BlogCard';
 import { get } from '../../../utils/request';
 
-const Blog = () => {
+const Blog = (props) => {
   const [list, setList] = useState([]);
 
   useEffect(() => {

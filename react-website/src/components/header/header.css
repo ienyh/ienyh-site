@@ -12,11 +12,6 @@ header {
   align-items: flex-end;
   justify-content: center;
   z-index: -9;
-
-  /* visibility: visible; 
-  opacity: 1; 
-  transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); 
-  transition: opacity 1s ease-out 0s, transform 1s ease-out 0s; */
 }
 
 nav {
@@ -85,11 +80,13 @@ nav {
 
 .header-content h1 {
   font-size: 50px;
+  font-family: 'Monaco', 'HarmonyOS_Sans_Regular', "Microsoft Yahei", 'Times New Roman', Times, serif;
   color: #1D3557;
 }
 
 .header-content .h-text {
   font-size: 20px;
+  font-family: 'Monaco', 'HarmonyOS_Sans_Regular', "Microsoft Yahei", 'Times New Roman', Times, serif;
   color: var(--sunray);
 }
 

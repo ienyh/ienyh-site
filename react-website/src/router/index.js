@@ -5,6 +5,7 @@ import Blog from '../views/pages/blog/Blog';
 import Three from '../views/pages/three/Three';
 import UpLoad from "../views/pages/admin/upload/Upload";
 import Admin from "../views/pages/admin/Admin";
+import Article from '../views/pages/blog/article/Article';
 
 const routes = [
   {
@@ -36,6 +37,12 @@ const routes = [
         component: Blog,
         exact: true,
         title: '博客',
+      },
+      {
+        path: '/pages/article/:id',
+        component: Article,
+        exact: true,
+        title: 'article',
       },
       {
         path: '/pages/three',

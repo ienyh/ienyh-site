@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import './typing.css';
 
+/*
+ * @props params time {number} 毫秒数 一次打字特效执行的事件
+ * @props params circle {boolean} 是否循环打字特效 默认为 true
+ */
 const Typing = (props) => {
   const { children, time, circle = true } = props;
   const [typing, setTyping] = useState('');

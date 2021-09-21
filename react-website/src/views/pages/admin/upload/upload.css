@@ -1,0 +1,12 @@
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: start;
+
+  font-size: 16px;
+}
+
+input[type='file'] {
+  margin: 10px;
+}

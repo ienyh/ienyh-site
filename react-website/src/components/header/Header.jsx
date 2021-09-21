@@ -13,6 +13,7 @@ import icon_music from '../../assets/icons/music.svg';
 import icon_discount from '../../assets/icons/discount.svg';
 import icon_tool from '../../assets/icons/tool.svg';
 import icon_picture from '../../assets/icons/picture.svg';
+import icon_3d from '../../assets/icons/3d.svg';
 import icon_menu from '../../assets/icons/menu.svg';
 import icon_menu_open from '../../assets/icons/menu-open.svg';
 
@@ -20,7 +21,7 @@ import icon_menu_open from '../../assets/icons/menu-open.svg';
 const list = [
   {
     title: '搜索',
-    path: '/pages/blog',
+    path: '/pages/search',
     icon: icon_search,
   },
   {
@@ -30,7 +31,7 @@ const list = [
   },
   {
     title: '归档',
-    path: '/pages/blog3',
+    path: '/pages/blog',
     icon: icon_document,
   },
   {
@@ -55,15 +56,17 @@ const list = [
   },
   {
     title: '关于',
-    path: '/pages/blog8',
-    icon: null,
+    path: '/pages/three',
+    icon: icon_link,
   },
   {
     title: 'three',
-    path: '/pages/three9',
-    icon: null,
+    path: '/example/index.html',
+    icon: icon_3d,
+    external: true,
+    comment: '测试多页面',
   },
-]
+];
 
 const Header = () => {
   let defaultBarStatus = document.documentElement.clientWidth >= 1000;
@@ -104,11 +107,16 @@ const Header = () => {
             list.map(item => {
               return <li key={ item.path }>
                 <img src={ item.icon || icon_link } />
-                <Link to={ item.path }>{ item.title }</Link>
+                {
+                  item?.external ?
+                    <a href={item.path} >{item.title}</a> :
+                    <Link to={item.path}>{item.title}</Link>
+                }
                 <div className="line"></div>
               </li>
             })
           }
+          <li></li>
           <li className="hiddenInMobile">
             <Dropdown title={
               <div className="flex">
@@ -138,7 +146,7 @@ const Header = () => {
         <div className="header-content">
           <h1>Chenyh's Blog</h1>
           <span className="h-text">
-            <Typing time={ 6000 } circle>start coding, start life</Typing>
+            <Typing time={ 6000 } circle>Start Coding Start Life</Typing>
           </span>
         </div>
       </header>

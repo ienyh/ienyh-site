@@ -2,8 +2,8 @@ import React from 'react'
 
 function NotFound () {
   return (
-    <div className="Index">
-      notfound
+    <div className="" style={{ textAlign: "center" }}>
+      <h1>404 not found</h1>
     </div>
   )
 }
