@@ -12,7 +12,11 @@ const Blog = (props) => {
       const res = await get('/findAllBlog');
       setList(res.data);
     }
-    fetch();
+    fetch()
+      // .then(() => {
+      //   // 确保滚动到正确的位置
+      //   window.scrollTo(0, window.innerHeight - 60);
+      // });
   }, []);
 
   return (
@@ -24,13 +28,13 @@ const Blog = (props) => {
           list.map(blog => <BlogCard {...blog} key={uuidv4()} />)
         }
       </div>
-      <div className="bar">
+      {/* <div className="bar">
         <div>hello world</div>
         <div>hello world</div>
         <div>hello world</div>
         <div>hello world</div>
         <div>hello world</div>
-      </div>
+      </div> */}
     </div>
   )
 }

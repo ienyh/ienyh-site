@@ -14,12 +14,15 @@ const Article = (props) => {
         res?.data?.content && setHtml({ __html: res.data.content });
       }
     }
-    fetch();
+    fetch().then(() => {
+      window.scrollTo(0, window.innerHeight - 60);
+    });
   }, []);
 
   return (
     <div className="container">
-      <div dangerouslySetInnerHTML={ html }></div>
+      <div className="article-header">header</div>
+      <div dangerouslySetInnerHTML={ html } className="article"></div>
     </div>
   )
 }

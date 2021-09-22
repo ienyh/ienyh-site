@@ -5,6 +5,7 @@
 @tailwind utilities; */
 
 :root {
+  --github-black: #24292f;
   --black: rgba(31, 41, 55, 1);
   --dark: rgba(17, 24, 39, 1);
   --white: rgba(255, 255, 255, 1);
@@ -22,8 +23,9 @@
 }
 
 html, body {
-  width: 100vw;
-  height: 100vh;
+  /* width: 100vw;
+  height: 100vh; */
+  display: block;
   background-color: #f8f8f8;
   font-family: 'HarmonyOS_Sans_Regular', "Microsoft Yahei", 'Times New Roman', Times, serif;
   font-size: 10px;
@@ -35,9 +37,32 @@ a {
   cursor: pointer;
 }
 
+code {
+  font-family: Menlo, "Monaco", Consolas, "Courier New", monospace;
+}
+
 /* 设置滚动条的样式 */
-::-webkit-scrollbar {
-  display: none;
+/*定义滚动条高宽及背景 高宽分别对应横竖滚动条的尺寸*/
+::-webkit-scrollbar
+{
+    width: 6px;
+    height: 6px;
+}
+ 
+/*定义滚动条轨道 内阴影+圆角*/
+::-webkit-scrollbar-track
+{
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+  border-radius: 6px;
+  background-color: #F5F5F5;
+}
+ 
+/*定义滑块 内阴影+圆角*/
+::-webkit-scrollbar-thumb
+{
+  border-radius: 6px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+  background-color: grey;
 }
 
 ::selection {

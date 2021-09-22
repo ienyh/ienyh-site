@@ -5,8 +5,75 @@ form {
   align-items: start;
 
   font-size: 16px;
+  padding: 2rem;
+  margin: 1.5rem 1rem;
+  background: var(--white);
+  border-radius: .8rem;
+  border: 1px solid rgba(0, 0, 0, 0.15);
 }
 
 input[type='file'] {
-  margin: 10px;
+  margin: 10px 0;
+  border-radius: 2px;
+  border: 2px solid rgba(0, 0, 0, 0.15);
+}
+
+input[type='text'] {
+  overflow: hidden;
+  margin: 5px 0;
+  padding: 4px 10px;
+  border-radius: 4px;
+  border: 2px solid rgba(0, 0, 0, 0.15);
+}
+
+input[type='checkbox'] {
+  margin-right: 6px;
+}
+
+input[type='button'], input[type='submit'] {
+  padding: 4px 8px;
+  background: var(--white);
+  border: 2px solid rgba(0, 0, 0, 0.15);
+  border-radius: 4px;
+  color: rgba(0, 0, 0, 0.6);
+  font-weight: bold;
+}
+
+input[type='button'], input[type='submit']:hover {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+
+input::placeholder {
+  color: rgba(0, 0, 0, 0.4);
+}
+
+.edit {
+  min-height: 16px;
+  border: 2px solid rgba(0, 0, 0, 0.15);
+  border-radius: 4px;
+  white-space: pre;
+  font-size: 12px;
+  line-height: 16px;
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+  padding: 10px;
+}
+
+.label-container {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 10px 0;
+}
+
+.label-checkbox {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  background: var(--white);
+  margin: 0 6px;
+  padding: 2px 4px;
 }

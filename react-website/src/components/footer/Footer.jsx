@@ -2,7 +2,7 @@ import React from 'react';
 import './footer.css';
 
 const config = {
-  github: "https://github.com@ienyh",
+  github: "https://www.github.com/ienyh",
 }
 
 const Footer = () => {

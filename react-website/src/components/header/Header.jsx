@@ -126,7 +126,7 @@ const Header = () => {
             } content={
               <>
                 <div style={{ marginBottom: "8px" }}>
-                <Link to="/pages/admin/upload">upload</Link>
+                  <Link to="/pages/admin/upload">upload</Link>
                 </div>
                 <div>exit</div>
               </>

@@ -1,0 +1,11 @@
+.article-header {
+  font-size: 1.6rem;
+  margin: 1rem 1rem 0 1rem;
+}
+
+.article {
+  margin: 1rem 0;
+  padding: 1rem 2rem;
+  border: 2px solid rgba(0, 0, 0, 0.15);
+  border-radius: .8rem;
+}

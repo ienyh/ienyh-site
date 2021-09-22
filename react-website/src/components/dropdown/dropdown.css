@@ -2,15 +2,21 @@
   position: relative;
   display: inline-block;
   cursor: pointer;
+
 }
 
 .dropdown-content {
   display: none;
   position: absolute;
-  background-color: var(--dark);
+  background-color: var(--white);
   min-width: 60px;
-  box-shadow: 0px 8px 12px 0px rgba(0, 0, 0, 0.2);
+  box-shadow: 2px 8px 12px 0px rgba(0, 0, 0, 0.3);
   padding: 10px 10px;
+  margin: 1px 0;
+  text-align: left;
+  color: var(--dark);
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
   transition: all 0.4s ease-in-out;
 }
 
