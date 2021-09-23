@@ -79,13 +79,13 @@ nav {
 }
 
 .header-content h1 {
-  font-size: 50px;
+  font-size: 4.5rem;
   font-family: 'Monaco', 'HarmonyOS_Sans_Regular', "Microsoft Yahei", 'Times New Roman', Times, serif;
   color: #1D3557;
 }
 
 .header-content .h-text {
-  font-size: 20px;
+  font-size: 1.8rem;
   font-family: 'Monaco', 'HarmonyOS_Sans_Regular', "Microsoft Yahei", 'Times New Roman', Times, serif;
   color: var(--sunray);
 }
@@ -141,5 +141,13 @@ nav {
 
   .hiddenInMobile {
     display: none !important;
+  }
+
+  .header-content h1 {
+    font-size: 4rem;
+  }
+
+  .header-content .h-text {
+    font-size: 1.6rem;
   }
 }

@@ -5,7 +5,7 @@ import './index.css';
 function Index () {
   return (
     <div className="index">
-      <Link to="/pages">start</Link>
+      <Link to="/pages">start blog</Link>
     </div>
   )
 }

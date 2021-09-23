@@ -11,6 +11,7 @@ const Blog = (props) => {
     const fetch = async () => {
       const res = await get('/findAllBlog');
       setList(res.data);
+      console.log(res.data);
     }
     fetch()
       // .then(() => {
@@ -28,13 +29,13 @@ const Blog = (props) => {
           list.map(blog => <BlogCard {...blog} key={uuidv4()} />)
         }
       </div>
-      {/* <div className="bar">
+      <div className="bar card">
         <div>hello world</div>
         <div>hello world</div>
         <div>hello world</div>
         <div>hello world</div>
         <div>hello world</div>
-      </div> */}
+      </div>
     </div>
   )
 }

@@ -5,7 +5,8 @@ import { addBlog } from '../../../../apis/blogApis';
 import markdownToHtml from '../../../../utils/markdown';
 
 
-const UpLoad = () => {
+const UpLoad = (props) => {
+  const { history } = props;
   const [blog, setBlog] = useState({
     title: '',
     author: '',
@@ -31,6 +32,9 @@ const UpLoad = () => {
       keyword: labels.map(label => label.checked ? label.name : null).filter(str => str !== null),
       content: markdownToHtml(blog.content),
     })
+    if (res.code === 1 && res.data) {
+      history.push('/pages/')
+    }
     console.log(res);
   }
 

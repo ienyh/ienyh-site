@@ -8,20 +8,24 @@
 
 .blogs {
   flex: 3;
-  background: #fff;
   padding: 0.4rem .8rem;
-  border-radius: 5px;
-  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
-
+  margin-right: 1rem;
+  /* border-radius: 5px; */
+  /* box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2); */
 }
 
 .bar {
   flex: 1;
+  padding: 1rem;
 }
 
 @media screen and (max-width: 1080px) {
   .blog {
     margin: 1rem .5rem;
+  }
+
+  .blogs {
+    margin: unset;
   }
 
   .bar {

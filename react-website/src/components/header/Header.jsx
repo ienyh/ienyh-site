@@ -101,7 +101,7 @@ const Header = () => {
   return (
     <div>
       <nav className="animated slideInDown">
-        <h1>陈一航</h1>
+        <h1>Chenyh</h1>
         <ul className="nav-menu" style={{ transform: isBar ? 'none' : 'translateX(100%)' }}>
           {
             list.map(item => {

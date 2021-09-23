@@ -4,8 +4,27 @@
 }
 
 .article {
-  margin: 1rem 0;
+  margin: 1rem 1rem;
   padding: 1rem 2rem;
   border: 2px solid rgba(0, 0, 0, 0.15);
   border-radius: .8rem;
 }
+
+.article code {
+  font-family: 'Monaco', 'Hack', Consolas, monospace !important;
+}
+
+.markdown-body * {
+  font-family: 'HarmonyOS_Sans_Regular', "Microsoft Yahei", 'Times New Roman', Times, serif;
+}
+
+.markdown-body .highlight pre, .markdown-body pre {
+  border: 2px solid rgba(0, 0, 0, 0.3);
+  background: #f5f5f5;
+}
+
+.markdown-body pre > code {
+  
+}
+
+

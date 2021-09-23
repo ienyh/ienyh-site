@@ -1,28 +1,47 @@
 .blog-card {
   margin: 1rem 0;
-  padding: 1rem;
-  background-color: #fff;
   color: var(--dark);
-  border-radius: 5px;
-  border: 1px solid #ddd;
-
+  border-radius: 8px;
+  /* overflow: hidden; */
   display: flex;
   justify-content: space-between;
   align-items: center;
+  height: 180px;
+  background: var(--white);
 }
 
-.title {
+.img-left {
+  max-width: 50%;
+  height: 100%;
+  overflow: hidden;
+  border-top-left-radius: .8rem;
+  border-bottom-left-radius: .8rem;
+}
+
+.img-left img {
+  width: 100%;
+  object-fit: contain;
+  transition: all .3s ease-in-out;
+}
+
+.img-left img:hover {
+  transform: scale(1.2);
+  transition: all .3s ease-in-out;
+}
+
+
+.title-right {
+  min-width: 50%;
+  flex: 1;
+  height: 100%;
+  padding: 2rem 1.8rem;
+  border: 1px solid var(--border-gery);
+  border-top-right-radius: .8rem;
+  border-bottom-right-radius: .8rem;
   font-size: 1.4rem;
-  width: 60%;
-  overflow: hidden;
-  text-overflow: ellipsis; 
-  white-space: nowrap;
 }
 
-.time {
-  font-size: 1.2rem;
-  background-color: #f5f5f5;
-  padding: 2px 4px;
-  border-radius: 4px;
-  overflow: hidden;
+.title-right h1 {
+  font-size: 2rem;
 }
+

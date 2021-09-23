@@ -6,6 +6,7 @@
 
 :root {
   --github-black: #24292f;
+  --border-gery: rgba(0, 0, 0, 0.15);
   --black: rgba(31, 41, 55, 1);
   --dark: rgba(17, 24, 39, 1);
   --white: rgba(255, 255, 255, 1);
