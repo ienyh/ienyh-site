@@ -6,6 +6,7 @@ import Three from '../views/pages/three/Three';
 import UpLoad from "../views/pages/admin/upload/Upload";
 import Admin from "../views/pages/admin/Admin";
 import Article from '../views/pages/blog/article/Article';
+import Music from "../views/pages/music/Music";
 
 const routes = [
   {
@@ -43,6 +44,12 @@ const routes = [
         component: Article,
         exact: true,
         title: 'article',
+      },
+      {
+        path: '/pages/music',
+        component: Music,
+        exact: true,
+        title: 'music',
       },
       {
         path: '/pages/three',

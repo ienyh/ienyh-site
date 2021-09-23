@@ -19,6 +19,7 @@ const Footer = () => {
           豫ICP备2021020011号-1
         </a>
       </div>
+      <div style={{ height: "32px" }}></div>
     </footer>
   )
 }

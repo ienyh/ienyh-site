@@ -21,10 +21,10 @@ const blogSchema = new mongoose.Schema({
   numbers: { type: String, default: 0 },
 
   // 创建日期
-  create_time: { type: Date, default: Date.now },
+  create_time: { type: Number, default: new Date().getTime() },
 
   // 最后修改日期
-  update_time: { type: Date, default: Date.now },
+  update_time: { type: Number, default: new Date().getTime() },
 });
 
 // 文章模型

@@ -36,7 +36,7 @@ const list = [
   },
   {
     title: '音乐',
-    path: '/pages/blog4',
+    path: '/pages/music',
     icon: icon_music,
   },
   {

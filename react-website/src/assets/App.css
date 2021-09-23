@@ -1,9 +1,8 @@
-
-
 .container {
   max-width: 1200px;
   overflow: hidden;
-  margin: 0 auto;
+  margin: 1rem auto;
+  padding: 1rem;
 }
 
 .card {

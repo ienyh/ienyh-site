@@ -9,7 +9,7 @@ const { responseClient, save, find, deleteOne } = require('../../utils/utils');
  */
 exports.addBlog = async (req, res) => {
   const { title, content, author, numbers = 0, keyword, desc } = req.body;
-  const date = new Date();
+  const date = new Date().getTime(); 
   const blog = new Blog({
     title,
     content,
@@ -59,8 +59,8 @@ exports.findAllBlog = async (req, res) => {
   try {
     const blogs = await Blog.find();
     const basicBlogs = blogs.map((blog) => {
-      const { title, author, create_time, desc } = blog;
-      return { title, author, create_time, desc };
+      const { title, author, create_time, update_time, desc, keyword, numbers } = blog;
+      return { title, author, create_time, update_time, desc, keyword, numbers };
     });
     consola.success('<findAllBlog>: 查询所有博客成功');
     responseClient(res, 1, "查询所有博客成功", basicBlogs);

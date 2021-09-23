@@ -11,7 +11,7 @@
 }
 
 .img-left {
-  max-width: 50%;
+  max-width: 40%;
   height: 100%;
   overflow: hidden;
   border-top-left-radius: .8rem;
@@ -31,7 +31,7 @@
 
 
 .title-right {
-  min-width: 50%;
+  min-width: 60%;
   flex: 1;
   height: 100%;
   padding: 2rem 1.8rem;
