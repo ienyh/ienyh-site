@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, createRef } from 'react';
 import dayjs from 'dayjs';
 import 'github-markdown-css/github-markdown.css';
+import 'highlight.js/styles/github.css';
 import './article.css';
 import { getBlogByTitle } from '../../../../apis/blogApis';
 
@@ -29,7 +30,15 @@ const Article = (props) => {
         <h3>{ blog.author }</h3>
         <h3>{ blog.create_time }</h3>
       </div>
-      <div dangerouslySetInnerHTML={ html } className="markdown-body article"></div>
+      <div
+        dangerouslySetInnerHTML={html}
+        className="markdown-body hljs article"
+      ></div>
+
+      <div className="article-footer">
+        <div className="item left">⬅️  Pymongo 去除数据库重复数据</div>
+        <div className="item right">利用 selenium 抓取局部刷新的网页  ➡️</div>
+      </div>
     </div>
   )
 }

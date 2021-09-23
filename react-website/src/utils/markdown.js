@@ -1,13 +1,12 @@
 import marked from "marked";
-// import hljs from "highlight.js";
-// import javascript from 'highlight.js/lib/languages/javascript';
-// import 'highlight.js/styles/monokai-sublime.css';
+import hljs from "highlight.js";
+import 'highlight.js/styles/github.css';
 
 marked.setOptions({
   renderer: new marked.Renderer(),
-  // highlight: function (code) {
-  //   return hljs.highlightAuto(code).value;
-  // },
+  highlight: function (code) {
+    return hljs.highlightAuto(code).value;
+  },
   pedantic: false,
   gfm: true,
   tables: true,

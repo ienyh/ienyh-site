@@ -27,9 +27,16 @@ html, body {
   /* width: 100vw;
   height: 100vh; */
   display: block;
-  background-color: #f8f8f8;
+  background-color: #f5f5f5;
   font-family: 'HarmonyOS_Sans_Regular', "Microsoft Yahei", 'Times New Roman', Times, serif;
   font-size: 10px;
+}
+
+@media screen and (max-width: 1000px) {
+  html, body {
+    background-color: #f5f5f5;
+    font-size: 9px;
+  }
 }
 
 a {

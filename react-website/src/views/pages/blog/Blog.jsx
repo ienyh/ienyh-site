@@ -9,9 +9,10 @@ const Blog = (props) => {
 
   useEffect(() => {
     const fetch = async () => {
-      const res = await get('/findAllBlog');
-      setList(res.data);
-      console.log(res.data);
+      const { data } = await get('/findAllBlog');
+      const blogs = data instanceof Array && data.sort((a, b) => b.create_time - a.create_time);
+      setList(blogs);
+      console.log(blogs);
     }
     fetch()
       // .then(() => {
