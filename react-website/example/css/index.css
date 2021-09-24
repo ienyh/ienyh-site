@@ -1,0 +1,28 @@
+:root {
+  --github-black: #24292f;
+  --border-grey: rgba(0, 0, 0, 0.15);
+  --black: rgba(31, 41, 55, 1);
+  --dark: rgba(17, 24, 39, 1);
+  --white: rgba(255, 255, 255, 1);
+  --honeydew: #EBF5DF;
+  --tea-green: #BAD4AA;
+  --pale-spring-bud: #D4D4AA;
+  --sunray: #EDB458;
+  --fulvous: #E8871E;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100vw;
+  min-height: 100vh;
+  display: block;
+  background-color: #f5f5f5;
+  font-family: 'HarmonyOS_Sans_Regular', "Microsoft Yahei", 'Times New Roman', Times, serif;
+  font-size: 10px;
+}
+

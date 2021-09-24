@@ -5,23 +5,25 @@ audio {
 .audio-controls {
   background: rgba(0, 0, 0, 0.7);
   backdrop-filter: blur(2px);
-  color: var(--white);
-  padding: .6rem 0;
+  color: rgba(255, 255, 255, 0.7);
   font-size: 1.6rem;
   position: fixed;
   bottom: 0;
   left: 0;
   right: 0;
   width: 100%;
+  height: 60px;
+  z-index: 10;
 }
 
 .audio-container {
   display: flex;
-  justify-content: space-between;
+  justify-content: start;
   align-items: center;
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 1rem;
+  height: 100%;
 }
 
 .audio-container .controls_img {
@@ -29,6 +31,7 @@ audio {
   height: 32px;
   border-radius: 2px;
   overflow: hidden;
+  margin: 0 20px;
 }
 
 .audio-container .controls_img img {
@@ -52,4 +55,54 @@ audio {
   width: 32px;
   height: 32px;
   margin: 0 6px;
+}
+
+.audio-bar {
+  font-size: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.audio-bar .audio-bar-bottom {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+}
+
+.audio-bar-before {
+  width: 300px;
+  height: 8px;
+  background: var(--dark);
+  position: relative;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.audio-bar-after {
+  width: 0px;
+  height: 8px;
+  background: var(--fulvous);
+  position: absolute;
+  top: 0;
+  left: 0;
+  /* border-radius: 5px; */
+}
+
+.audio-bar-time {
+  margin: 0 1rem;
+}
+
+@media screen and (max-width: 600px) {
+  .audio-container {
+    justify-content: space-evenly;
+  }
+
+  .audio-bar-time {
+    display: none;
+  }
+
+  .audio-bar {
+    display: none;
+  }
 }
