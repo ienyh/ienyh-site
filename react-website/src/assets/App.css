@@ -10,3 +10,10 @@
   border-radius: 8px;
   border: 1px solid var(--border-gery);
 }
+
+@media screen and (max-width: 1000px) {
+  .container {
+    margin: unset;
+    padding: unset;
+  }
+}

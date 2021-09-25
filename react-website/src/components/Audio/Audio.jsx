@@ -1,5 +1,4 @@
 import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
-import dayjs from 'dayjs';
 import './audio.css';
 import icon_pause from  '../../assets/icons/pause.svg';
 import icon_continue from  '../../assets/icons/continue.svg';
@@ -16,7 +15,7 @@ const format = (time = 0) => {
 const Audio = React.memo((props) => {
   const { name, singer, src, img } = props;
 
-  const [status, setStatus] = useState(false);
+  const [status, setStatus] = useState(true);
   const [duration, setDuration] = useState(0);
   const [currentTime, setCurrentTime] = useState(0);
   const [rate, setRate] = useState(0);
@@ -85,10 +84,13 @@ const Audio = React.memo((props) => {
             <img src="https://avatars.githubusercontent.com/u/51840260?s=48&v=4" alt="" />
           </div>
           <div className="audio-bar">
-            <div className="audio-bar-top">{name ?? '***'} - {singer ?? '***'}</div>
+            <div className="audio-bar-top">
+              <span>{name ?? '***'} - {singer ?? '***'}</span>
+              <div className="audio-bar-time-top">{ `${format(currentTime)} / ${format(duration)} ` }</div>
+            </div>
             <div className="audio-bar-bottom">
-              <div className="audio-bar-before" style={{ width: 300 }}>
-                <div className="audio-bar-after" style={{ width: 300 * rate }}></div>
+              <div className="audio-bar-before" style={{ width: 240 }}>
+                <div className="audio-bar-after" style={{ width: 240 * rate }}></div>
               </div>
               <div className="audio-bar-time">{ `${format(currentTime)} / ${format(duration)} ` }</div>
             </div>

@@ -36,8 +36,8 @@ const Article = (props) => {
       ></div>
 
       <div className="article-footer">
-        <div className="item left">⬅️  Pymongo 去除数据库重复数据</div>
-        <div className="item right">利用 selenium 抓取局部刷新的网页  ➡️</div>
+        <div className="item left">⬅️ Pymongo 去除数据</div>
+        <div className="item right">利用 selenium 抓取 ➡️</div>
       </div>
     </div>
   )

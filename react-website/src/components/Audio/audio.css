@@ -18,7 +18,7 @@ audio {
 
 .audio-container {
   display: flex;
-  justify-content: start;
+  justify-content: center;
   align-items: center;
   max-width: 1200px;
   margin: 0 auto;
@@ -86,23 +86,42 @@ audio {
   position: absolute;
   top: 0;
   left: 0;
-  /* border-radius: 5px; */
 }
 
-.audio-bar-time {
+.audio-bar-time-top {
   margin: 0 1rem;
+  display: inline;
 }
 
 @media screen and (max-width: 600px) {
   .audio-container {
-    justify-content: space-evenly;
+    justify-content: space-between;
+    background: var(--github-black);
+  }
+
+  .controls_img {
+    display: none;
   }
 
   .audio-bar-time {
     display: none;
   }
 
-  .audio-bar {
-    display: none;
+  .audio-bar-top {
+    margin-bottom: 2px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .audio-bar-bottom .audio-bar-before, .audio-bar-after {
+    height: 10px;
+  }
+
+  .audio-container .controls_bar img[name^="mid"] {
+    width: 32px;
+    height: 32px;
+    margin: 0 2px;
   }
 }

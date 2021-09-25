@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './music.css';
-import Audio from "../../../components/Audio/Audio";
+import Audio from "../../../components/audio/Audio";
 
 const tmp = [
   { name: '我太笨', singer: '锤娜丽莎', src: 'https://www.zhouxingxing.fun/music/1.mp3' },
