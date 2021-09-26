@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import './music.css';
 import Audio from "../../../components/audio/Audio";
+import EventEmitter from '../../../utils/EventEmitter.js';
+import { EVENT_CHANGE_HEADER } from '../../../utils/constant';
 
 const tmp = [
   { name: '我太笨', singer: '锤娜丽莎', src: 'https://www.zhouxingxing.fun/music/1.mp3' },
@@ -16,7 +18,7 @@ const Music = () => {
   const [current, setCurrent] = useState({});
 
   useEffect(() => {
-    window.scrollTo(0, window.innerHeight - 60);
+    EventEmitter.emit(EVENT_CHANGE_HEADER, { title: 'Music' });
   }, []);
 
   return (

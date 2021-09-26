@@ -1,24 +1,5 @@
 const localStorage = window.localStorage;
 
-export const get = (key) => {
-  return localStorage.getItem(key) || '';
-}
-
-export const set = (key, value) => {
-  if (typeof value !== 'string') {
-    value = JSON.stringify(value);
-  }
-  localStorage.setItem(key, value);
-}
-
-export const remove = (key) => {
-  localStorage.removeItem(key);
-}
-
-export const clear = () => {
-  localStorage.clear();
-}
-
 function storageAvailable (type) {
   let storage;
   try {
@@ -43,3 +24,49 @@ function storageAvailable (type) {
       (storage && storage.length !== 0);
   }
 }
+
+
+// window.localStorage 工具类
+class LocalStorage {
+
+  constructor () {
+    throw new Error('LocalStorage can not construct!')
+  }
+
+  /**
+   * 
+   * @param {string} key 键
+   * @param {string | Array | Object} value 值
+   * @param {number} expire 过期时间 单位 毫秒
+   */
+  static set = (key, value, expire = Infinity) => {
+    const tmp = {
+      data: value,
+      time: Date.now(),
+      expire,
+    }
+    localStorage.setItem(key, JSON.stringify(tmp));
+  }
+
+  static get = (key) => {
+    const temp = localStorage.getItem(key);
+    if (!temp) return null;
+    const value = JSON.parse(temp);
+    if (value?.time && value?.expire && Date.now() - value?.time >= value?.expire) {
+      // 满足条件则说明过期了
+      LocalStorage.remove(key);
+      return null;
+    }
+    return value?.data ?? {};
+  }
+
+  static remove = (key) => {
+    localStorage.removeItem(key);
+  }
+
+  static clear = () => {
+    localStorage.clear();
+  }
+}
+
+export default LocalStorage;

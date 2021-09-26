@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import './header.css';
 import Dropdown from '../dropdown/Dropdown';
 import Typing from '../typing/typing';
+import EventEmitter from '../../utils/EventEmitter';
+import { EVENT_CHANGE_HEADER } from '../../utils/constant';
 /** 导入 icon */
 import icon_search from '../../assets/icons/search.svg';
 import icon_link from '../../assets/icons/link.svg';
@@ -72,6 +74,11 @@ const Header = () => {
   let defaultBarStatus = document.documentElement.clientWidth >= 1000;
   const [isBar, setIsBar] = useState(defaultBarStatus); // 表示导航栏两种状态
   const [mask, setMask] = useState(false); // 导航栏的背景遮罩
+  const [header, setHeader] = useState({
+    headerHeight: 100, // 100 vh
+    title: `Chenyh's Blog`,
+    text: `Start Coding Start Life`,
+  });
 
   const switchBar = () => {
     if (!isBar) setIsBar(true);
@@ -86,13 +93,22 @@ const Header = () => {
 
   // resize 时将导航栏设置为展开状态，防止出现 导航栏切换时错位的 bug
   const resizeHandler = () => {
-    setIsBar(true);
+    setIsBar(window.innerWidth >= 1000);
   }
 
   useEffect(() => {
+    // 订阅事件
+    EventEmitter.on(EVENT_CHANGE_HEADER, ({ title, text }) => {
+      setHeader({
+        headerHeight: 36,
+        title,
+        text,
+      })
+    });
     window.addEventListener('scroll', scrollHandler);
     window.addEventListener('resize', resizeHandler);
     return () => {
+      EventEmitter.off(EVENT_CHANGE_HEADER);
       window.removeEventListener('scroll', scrollHandler);
       window.removeEventListener('resize', resizeHandler);
     }
@@ -142,12 +158,18 @@ const Header = () => {
       {
         mask ? <div className="mask"></div> : null
       }
-      <header className="animated fadeInDown">
+      <header className="animated fadeInDown" style={{ 
+        height: `${header.headerHeight}vh`,
+        minHeight: '27vh',
+      }}>
         <div className="header-content">
-          <h1>Chenyh's Blog</h1>
+          <h1>
+            {header.title}
+          </h1>
           <span className="h-text">
-            <Typing time={ 6000 } circle>Start Coding Start Life</Typing>
+            <Typing time={6000} circle>{ header.text }</Typing>
           </span>
+          <div className="h-text" style={{ fontFamily: 'unset' }}>{ header.text ?? null }</div>
         </div>
       </header>
     </div>

@@ -4,23 +4,29 @@ import 'github-markdown-css/github-markdown.css';
 import 'highlight.js/styles/github.css';
 import './article.css';
 import { getBlogByTitle } from '../../../../apis/blogApis';
+import EventEmitter from '../../../../utils/EventEmitter';
+import { EVENT_CHANGE_HEADER } from '../../../../utils/constant';
 
 const Article = (props) => {
   const { id } = props.match.params;
-  const [html, setHtml] = useState({ __html: '' });
   const [blog, setBlog] = useState({});
 
   useEffect(() => {
     const fetch = async () => {
       const res = await getBlogByTitle(id);
       if (res.code === 1 && res?.data) {
-        res?.data?.content && setHtml({ __html: res.data.content });
-        setBlog(Object.assign(res.data, { create_time: dayjs(new Date(res.data.create_time)).format('YYYY-MM-DD HH:mm') }));
+        const tmp = Object.assign(res.data, { create_time: dayjs(new Date(res.data.create_time)).format('YYYY-MM-DD HH:mm') });
+        setBlog(tmp);
+        return tmp;
       }
     }
-    fetch().then(() => {
-      window.scrollTo(0, window.innerHeight - 60);
-    });
+    fetch()
+      .then((res) => {
+        EventEmitter.emit(EVENT_CHANGE_HEADER, {
+          title: id,
+          text: res ? `${res.author} 发布于 ${res.create_time}` : null,
+        });
+      });
   }, []);
 
   return (
@@ -31,7 +37,7 @@ const Article = (props) => {
         <h3>{ blog.create_time }</h3>
       </div>
       <div
-        dangerouslySetInnerHTML={html}
+        dangerouslySetInnerHTML={{ __html: blog.content }}
         className="markdown-body hljs article"
       ></div>
 

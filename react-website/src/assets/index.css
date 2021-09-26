@@ -74,6 +74,6 @@ code {
 }
 
 ::selection {
-  background-color: #EBF5DF;
-  color: #E8871E;
+  background-color: var(--github-black);
+  color: var(--white);
 }

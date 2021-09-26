@@ -6,7 +6,7 @@ import './typing.css';
  * @props params circle {boolean} 是否循环打字特效 默认为 true
  */
 const Typing = (props) => {
-  const { children, time, circle = true } = props;
+  const { children, time, circle } = props;
   const [typing, setTyping] = useState('');
 
   useEffect(() => {
