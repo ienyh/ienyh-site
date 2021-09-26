@@ -1,11 +1,6 @@
-audio {
-  /* display: none; */
-}
-
 .audio-controls {
-  background: rgba(0, 0, 0, 0.7);
-  backdrop-filter: blur(2px);
-  color: rgba(255, 255, 255, 0.7);
+  background: var(--github-black);
+  color: var(--white);
   font-size: 1.6rem;
   position: fixed;
   bottom: 0;
@@ -14,6 +9,7 @@ audio {
   width: 100%;
   height: 60px;
   z-index: 10;
+  transition: all .5s ease-in-out;
 }
 
 .audio-container {
@@ -24,6 +20,24 @@ audio {
   margin: 0 auto;
   padding: 0 1rem;
   height: 100%;
+  position: relative;
+}
+
+.audio-container .switch_icon {
+  position: absolute;
+  bottom: 100%;
+  right: 0;
+  height: 18px;
+  width: 50px;
+  padding: 1px;
+  text-align: center;
+  background: var(--github-black);
+  border-top-right-radius: 4px;
+  border-top-left-radius: 4px;
+}
+
+.audio-container .switch_icon img {
+  transition: all .35s ease-in-out;
 }
 
 .audio-container .controls_img {
@@ -62,6 +76,14 @@ audio {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+}
+
+.audio-bar .audio-bar-top {
+  margin-bottom: 2px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .audio-bar .audio-bar-bottom {
@@ -107,13 +129,7 @@ audio {
     display: none;
   }
 
-  .audio-bar-top {
-    margin-bottom: 2px;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
+
 
   .audio-bar-bottom .audio-bar-before, .audio-bar-after {
     height: 10px;

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import dayjs from 'dayjs';
+import { v4 as uuidv4 } from 'uuid';
 import './BlogCard.css';
 import { isPC } from '../../../../utils/common';
 import tmp_img from '../../../../assets/imgs/tmp_blog.jpg';
@@ -30,10 +31,20 @@ function Blog (props) {
         {
           isPC() ?
             <>
-              
-              <div>归档：{ keyword }</div>
-              <div>{ desc || '懒狗! 不写摘要的懒狗！！！' }</div>
-            </> : null
+              <div className='tabs-container'>
+                {
+                  Array.isArray(keyword) ?
+                    keyword.map(item => {
+                      return <div className='tab' key={uuidv4()}>
+                        { item }
+                      </div>
+                    }) :
+                    null
+                }
+              </div>
+              <div className="desc">{ desc || '懒狗! 不写摘要的懒狗！！！' }</div>
+            </> :
+            null
         }
       </div>
     </div>

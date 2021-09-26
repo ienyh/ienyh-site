@@ -1,10 +1,12 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { Route, Switch, Redirect } from 'react-router-dom';
 import Header from '../../components/header/Header';
 import Footer from '../../components/footer/Footer';
+import Audio from '../../components/audio/Audio';
 
 const Pages = (props) => {
   const { routes } = props;
+
   return (
     <>
       <Header></Header>
@@ -22,6 +24,7 @@ const Pages = (props) => {
         <Redirect to="/index" />
       </Switch>
       <Footer></Footer>
+      <Audio></Audio>
     </>
   )
 }

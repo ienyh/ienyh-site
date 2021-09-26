@@ -24,7 +24,7 @@ const Blog = (props) => {
 
   useEffect(() => {
     // 发布事件
-    EventEmitter.emit(EVENT_CHANGE_HEADER, { title: '归档' });
+    EventEmitter.emit(EVENT_CHANGE_HEADER, { title: '归档', backdrop: true });
 
     // 如果本地有数据缓存则不向服务器请求数据
     const blogs = LocalStorage.get('blogs');

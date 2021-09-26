@@ -30,7 +30,7 @@ class EventEmitter {
   // 发布
   static emit = (...argv) => {
     const event = Array.prototype.shift.call(argv);
-    const funcs = [...this.list[event]];
+    const funcs = this.list[event] ? [...this.list[event]] : [];
     // 如果缓存列表里没有 fn 就返回 false
     if (!funcs || funcs.length === 0) return false;
     // 遍历 event 值对应的缓存列表，依次执行 fn
@@ -41,7 +41,7 @@ class EventEmitter {
   }
 
   static off = (event, func) => {
-    const funcs = this.list[event];
+    let funcs = this.list[event];
     if (!funcs) return this; // 如果缓存列表中没有相应的 func，返回
     if (!func) {
       funcs && (funcs = []); // 如果没有传 func 的话，就会将 event 值对应缓存列表中的 func 都清空

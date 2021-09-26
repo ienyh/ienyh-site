@@ -25,6 +25,7 @@ const Article = (props) => {
         EventEmitter.emit(EVENT_CHANGE_HEADER, {
           title: id,
           text: res ? `${res.author} 发布于 ${res.create_time}` : null,
+          backdrop: true,
         });
       });
   }, []);

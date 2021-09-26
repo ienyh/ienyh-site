@@ -19,7 +19,6 @@ import icon_3d from '../../assets/icons/3d.svg';
 import icon_menu from '../../assets/icons/menu.svg';
 import icon_menu_open from '../../assets/icons/menu-open.svg';
 
-
 const list = [
   {
     title: '搜索',
@@ -76,8 +75,9 @@ const Header = () => {
   const [mask, setMask] = useState(false); // 导航栏的背景遮罩
   const [header, setHeader] = useState({
     headerHeight: 100, // 100 vh
+    backdrop: false,
     title: `Chenyh's Blog`,
-    text: `Start Coding Start Life`,
+    text: ``,
   });
 
   const switchBar = () => {
@@ -98,9 +98,10 @@ const Header = () => {
 
   useEffect(() => {
     // 订阅事件
-    EventEmitter.on(EVENT_CHANGE_HEADER, ({ title, text }) => {
+    EventEmitter.on(EVENT_CHANGE_HEADER, ({ title, text, backdrop }) => {
       setHeader({
         headerHeight: 36,
+        backdrop,
         title,
         text,
       })
@@ -158,7 +159,7 @@ const Header = () => {
       {
         mask ? <div className="mask"></div> : null
       }
-      <header className="animated fadeInDown" style={{ 
+      <header className="animated fadeInDown" style={{
         height: `${header.headerHeight}vh`,
         minHeight: '27vh',
       }}>
@@ -167,10 +168,12 @@ const Header = () => {
             {header.title}
           </h1>
           <span className="h-text">
-            <Typing time={6000} circle>{ header.text }</Typing>
+            <Typing time={6000} circle>Start Coding Start Life</Typing>
           </span>
-          <div className="h-text" style={{ fontFamily: 'unset' }}>{ header.text ?? null }</div>
+          <div className="h-text-small">{ header.text ?? null }</div>
         </div>
+        {/* 蒙版 */}
+        <div className={ header.backdrop ? 'header-mask' : null }></div>
       </header>
     </div>
   )

@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import './music.css';
-import Audio from "../../../components/audio/Audio";
 import EventEmitter from '../../../utils/EventEmitter.js';
-import { EVENT_CHANGE_HEADER } from '../../../utils/constant';
+import {
+  EVENT_CHANGE_HEADER,
+  EVENT_DISPLAY_AUDIO,
+  EVENT_CHANGE_AUDIO,
+} from '../../../utils/constant';
 
 const tmp = [
   { name: '我太笨', singer: '锤娜丽莎', src: 'https://www.zhouxingxing.fun/music/1.mp3' },
@@ -18,7 +21,8 @@ const Music = () => {
   const [current, setCurrent] = useState({});
 
   useEffect(() => {
-    EventEmitter.emit(EVENT_CHANGE_HEADER, { title: 'Music' });
+    EventEmitter.emit(EVENT_CHANGE_HEADER, { title: 'Music', backdrop: true });
+    EventEmitter.emit(EVENT_DISPLAY_AUDIO, true);
   }, []);
 
   return (
@@ -28,7 +32,15 @@ const Music = () => {
           <div className="card music-top-left">
             {
               tmp.map(item => {
-                return <div className="music-item" key={item.src} onClick={() => setCurrent(item)}>
+                return <div
+                  className="music-item"
+                  key={item.src} onClick={
+                    async () => {
+                      console.log('setCurrent');
+                      await setCurrent(item);
+                      EventEmitter.emit(EVENT_CHANGE_AUDIO, item);
+                    }
+                  }>
                   {item.name} - {item.singer}
                 </div>
               })
@@ -40,7 +52,7 @@ const Music = () => {
         </div>
       </div>
 
-      <Audio {...current} autoplay></Audio>
+      {/* <Audio {...current} autoplay></Audio> */}
     </>
   )
 }
