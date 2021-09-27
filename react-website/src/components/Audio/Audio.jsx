@@ -5,7 +5,10 @@ import {
   EVENT_DISPLAY_AUDIO,
   EVENT_OPEN_AUDIO,
   EVENT_CHANGE_AUDIO,
+  EVENT_SWITCH_PREV_MUSIC,
+  EVENT_SWITCH_NEXT_MUSIC,
 } from '../../utils/constant';
+import { throttle } from '../../utils/common';
 /** 引入图标 */
 import icon_pause from  '../../assets/icons/pause.svg';
 import icon_continue from  '../../assets/icons/continue.svg';
@@ -21,7 +24,12 @@ const format = (time = 0) => {
 }
 
 const Audio = React.memo(() => {
-  const [basic, setBasic] = useState({});
+  const [basic, setBasic] = useState({
+    musicName: '',
+    singer: '',
+    src: '',
+    img: '',
+  });
   const [display, setDisplay] = useState(false);
   const [hide, setHide] = useState(false);
   const [status, setStatus] = useState(true);
@@ -48,15 +56,14 @@ const Audio = React.memo(() => {
     EventEmitter.on(EVENT_DISPLAY_AUDIO, isDisplay => {
       setDisplay(isDisplay);
     });
-    EventEmitter.on(EVENT_OPEN_AUDIO, isDisplay => {
-      setDisplay(isDisplay);
+    EventEmitter.on(EVENT_OPEN_AUDIO, isHide => {
+      setHide(!isHide);
     });
-    EventEmitter.on(EVENT_CHANGE_AUDIO, ({ name, singer, src, img }) => {
-      console.log({ name, singer, src, img });
-      setBasic({ name, singer, src, img });
+    EventEmitter.on(EVENT_CHANGE_AUDIO, ({ musicName = '', singer = '', src = '', img = '' }) => {
+      setBasic({ musicName, singer, src, img });
     });
     return () => {
-      // 取消订阅
+      // 该组件卸载则取消订阅
       EventEmitter.off(EVENT_DISPLAY_AUDIO);
       EventEmitter.off(EVENT_OPEN_AUDIO);
       EventEmitter.off(EVENT_CHANGE_AUDIO);
@@ -85,6 +92,15 @@ const Audio = React.memo(() => {
     }
     setStatus(!status);
   }
+
+  const switchMusicHandler = throttle((e) => {
+    const name = e.target.name;
+    if (name === 'left_previous') {
+      EventEmitter.emit(EVENT_SWITCH_PREV_MUSIC, basic);
+    } else if (name === 'right_next') {
+      EventEmitter.emit(EVENT_SWITCH_NEXT_MUSIC, basic);
+    }
+  }, 600);
 
   return (
     <>
@@ -117,20 +133,20 @@ const Audio = React.memo(() => {
             />
           </div>
           <div className="controls_bar">
-            <img src={icon_previous} name="left_previous" alt="previous" />
+            <img src={icon_previous} name="left_previous" alt="previous" onClick={switchMusicHandler} />
             {
               status ?
                 <img src={icon_pause} name="mid_pause" alt="pause" onClick={changePauseHandler} /> :
                 <img src={icon_continue} name="mid_continue" alt="continue" onClick={changePauseHandler} />
             }
-            <img src={icon_next} name="right_next" alt="next" />
+            <img src={icon_next} name="right_next" alt="next" onClick={switchMusicHandler} />
           </div>
           <div className="controls_img">
             <img src="https://avatars.githubusercontent.com/u/51840260?s=48&v=4" alt="" />
           </div>
           <div className="audio-bar">
             <div className="audio-bar-top">
-              <span>{basic.name ?? '***'} - {basic.singer ?? '***'}</span>
+              <span>{basic.musicName ?? '***'} - {basic.singer ?? '***'}</span>
               <div className="audio-bar-time-top">{ `${format(currentTime)} / ${format(duration)} ` }</div>
             </div>
             <div className="audio-bar-bottom">

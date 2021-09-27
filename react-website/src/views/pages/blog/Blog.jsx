@@ -15,7 +15,7 @@ const Blog = (props) => {
     const { data } = await get('/findAllBlog');
     const blogs = data instanceof Array && data.sort((a, b) => b.create_time - a.create_time);
     setList(blogs);
-    LocalStorage.set('blogs', blogs, 3600000); // 设置数据有效时长为一小时
+    LocalStorage.set('blogs', blogs, 7200000); // 设置数据有效时长为两小时
   }
 
   const loadHandler = () => {

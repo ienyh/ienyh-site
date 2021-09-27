@@ -7,6 +7,7 @@ import UpLoad from "../views/pages/admin/upload/Upload";
 import Admin from "../views/pages/admin/Admin";
 import Article from '../views/pages/blog/article/Article';
 import Music from "../views/pages/music/Music";
+import Search from "../views/pages/search/Search";
 
 const routes = [
   {
@@ -50,6 +51,12 @@ const routes = [
         component: Music,
         exact: true,
         title: 'music',
+      },
+      {
+        path: '/pages/search',
+        component: Search,
+        exact: true,
+        title: 'search',
       },
       {
         path: '/pages/three',

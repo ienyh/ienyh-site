@@ -98,9 +98,9 @@ const Header = () => {
 
   useEffect(() => {
     // 订阅事件
-    EventEmitter.on(EVENT_CHANGE_HEADER, ({ title, text, backdrop }) => {
+    EventEmitter.on(EVENT_CHANGE_HEADER, ({ headerHeight, title, text, backdrop }) => {
       setHeader({
-        headerHeight: 36,
+        headerHeight: headerHeight ?? 36,
         backdrop,
         title,
         text,
