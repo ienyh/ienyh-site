@@ -25,8 +25,8 @@ header .header-mask {
   bottom: 0;
   top: 0;
   z-index: 2;
-  backdrop-filter: grayscale(20%) blur(1px) saturate(120%);
-  -webkit-backdrop-filter: grayscale(20%) blur(1px) saturate(120%);
+  /* backdrop-filter: grayscale(20%) blur(1px) saturate(120%);
+  -webkit-backdrop-filter: grayscale(20%) blur(1px) saturate(120%); */
   background-color: rgba(0, 0, 0, .1);
 }
 
@@ -133,7 +133,7 @@ header .header-content .h-text-small {
   transition: all .2s ease-in-out;
 }
 
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 1080px) {
   nav {
     padding: 0 40px;
   }

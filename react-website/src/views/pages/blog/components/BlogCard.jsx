@@ -28,24 +28,22 @@ function Blog (props) {
           <Link to={ `/pages/article/${title}` }>{ title }</Link>
         </h1>
         <div className="time">{ author } 发布于 {create_time}</div>
-        {
-          isPC() ?
-            <>
-              <div className='tabs-container'>
-                {
-                  Array.isArray(keyword) ?
-                    keyword.map(item => {
-                      return <div className='tab' key={uuidv4()}>
-                        { item }
-                      </div>
-                    }) :
-                    null
-                }
-              </div>
-              <div className="desc">{ desc || '懒狗! 不写摘要的懒狗！！！' }</div>
-            </> :
-            null
-        }
+          <div className='tabs-container'>
+            {
+              Array.isArray(keyword) ?
+                keyword.map(item => {
+                  return <div className='tab' key={uuidv4()}>
+                    { item }
+                  </div>
+                }) :
+                null
+            }
+          </div>
+          {
+            isPC() ?
+              <div className="desc">{desc || '懒狗! 不写摘要的懒狗！！！'}</div> :
+              null
+          }
       </div>
     </div>
   )

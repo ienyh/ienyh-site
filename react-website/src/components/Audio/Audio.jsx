@@ -16,6 +16,7 @@ import icon_next from  '../../assets/icons/next.svg';
 import icon_previous from '../../assets/icons/previous.svg';
 import icon_arrow_right from '../../assets/icons/arrow-right.svg';
 
+// 格式化歌曲时间 比如 221s => 03:41
 const format = (time = 0) => {
   if (typeof time !== 'number' || time <= 0 || time >= 3599) return '00:00';
   time = Math.round(time);
@@ -51,6 +52,12 @@ const Audio = React.memo(() => {
     }
   }
 
+  // 当前歌曲播放完成处理的事件
+  const endedHandler = function () {
+    console.log('endedHandler');
+    EventEmitter.emit(EVENT_SWITCH_NEXT_MUSIC, basic);
+  }
+
   useEffect(() => {
     // 注册事件
     EventEmitter.on(EVENT_DISPLAY_AUDIO, isDisplay => {
@@ -78,9 +85,11 @@ const Audio = React.memo(() => {
     }
     audioRef.current.addEventListener('durationchange', durationchangeHandler);
     audioRef.current.addEventListener('timeupdate', timeupdateHandler);
+    audioRef.current.addEventListener('ended', endedHandler)
     return () => {
       audioRef.current.removeEventListener('durationchange', durationchangeHandler);
       audioRef.current.removeEventListener('timeupdate', timeupdateHandler);
+      audioRef.current.removeEventListener('ended', endedHandler);
     }
   }, [basic.src]);
 
@@ -93,6 +102,7 @@ const Audio = React.memo(() => {
     setStatus(!status);
   }
 
+  // 节流处理 上一首和下一首按钮点击事件
   const switchMusicHandler = throttle((e) => {
     const name = e.target.name;
     if (name === 'left_previous') {
@@ -105,8 +115,6 @@ const Audio = React.memo(() => {
   return (
     <>
       <audio
-        loop
-        controls
         ref={audioRef}
         style={{ display: 'none' }}
       >

@@ -161,15 +161,14 @@ const Header = () => {
       }
       <header className="animated fadeInDown" style={{
         height: `${header.headerHeight}vh`,
-        minHeight: '27vh',
       }}>
         <div className="header-content">
-          <h1>
+          <div>
             {header.title}
-          </h1>
-          <span className="h-text">
+          </div>
+          {/* <span className="h-text">
             <Typing time={6000} circle>Start Coding Start Life</Typing>
-          </span>
+          </span> */}
           <div className="h-text-small">{ header.text ?? null }</div>
         </div>
         {/* 蒙版 */}

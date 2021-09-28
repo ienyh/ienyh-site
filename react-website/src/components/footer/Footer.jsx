@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { EVENT_DISPLAY_FOOTER } from '../../utils/constant';
+import EventEmitter from '../../utils/EventEmitter';
 import './footer.css';
 
 const config = {
@@ -7,8 +9,16 @@ const config = {
 }
 
 const Footer = () => {
+  const [display, setDisplay] = useState(true);
+
+  useEffect(() => {
+    EventEmitter.on(EVENT_DISPLAY_FOOTER, (display) => {
+      setDisplay(display);
+    })
+  }, []);
+
   return (
-    <footer>
+    <footer style={{ display: display ? 'flex' : 'none' }}>
       <div style={{ whiteSpace: "pre" }}>
         <a href={config.github} target="_blank">项目地址    </a>
         <a href={config.baidu} target="_blank">百度统计    </a>
