@@ -24,7 +24,7 @@ header .header-mask {
   right: 0;
   bottom: 0;
   top: 0;
-  z-index: 2;
+  z-index: 999;
   /* backdrop-filter: grayscale(20%) blur(1px) saturate(120%);
   -webkit-backdrop-filter: grayscale(20%) blur(1px) saturate(120%); */
   background-color: rgba(0, 0, 0, .1);
@@ -48,7 +48,7 @@ nav {
   position: fixed;
   height: 60px;
   width: 100%;
-  z-index: 9;
+  z-index: 9999;
   background: var(--github-black);
   transition: all .5s ease-in-out;
 }

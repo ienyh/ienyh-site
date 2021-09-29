@@ -1,14 +1,34 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 import './search.css';
 import EventEmitter from '../../../utils/EventEmitter.js';
 import { EVENT_CHANGE_HEADER, EVENT_DISPLAY_FOOTER } from '../../../utils/constant';
-import icon_search from '../../../assets/icons/search.svg';
 
+import icon_search from '../../../assets/icons/search.svg';
+import icon_baidu from '../../../assets/icons/baidu.svg';
+import icon_google from '../../../assets/icons/google.svg';
+import icon_npm from '../../../assets/icons/npm.svg';
+import icon_docker from '../../../assets/icons/docker.svg';
+
+
+const typeOptions = [
+  { name: 'baidu', url: '', icon: icon_baidu },
+  { name: 'google', url: '', icon: icon_google },
+  { name: 'npm', url: '', icon: icon_npm },
+  { name: 'docker', url: '', icon: icon_docker },
+]
 
 const Search = React.memo(() => {
+  const [display, setDisplay] = useState(true);
+  const [current, setCurrent] = useState(typeOptions[0]);
+
+  const clickHandler = () => {
+    setDisplay(!display);
+  }
+
   useEffect(() => {
     // 触发事件
-    EventEmitter.emit(EVENT_CHANGE_HEADER, { title: SearchInput(), backdrop: true, headerHeight: 100 });
+    EventEmitter.emit(EVENT_CHANGE_HEADER, { title: '', backdrop: false, headerHeight: 100 });
     EventEmitter.emit(EVENT_DISPLAY_FOOTER, false);
     return () => {
       EventEmitter.emit(EVENT_DISPLAY_FOOTER, true);
@@ -17,32 +37,32 @@ const Search = React.memo(() => {
 
   return (
     <>
-      <div></div>
+      <div className="search">
+        <div className="search-input-container">
+          <div className="search-input">
+            <div className="search-left-type" onClick={ clickHandler }>
+              <img src={current.icon} />
+            </div>
+            <input type="text" />
+            <div className="search-right-icon">
+              <img src={icon_search} alt="" />
+              <span>点击搜索</span>
+            </div>
+          </div>
+
+          <div className="type-container" style={{ display: display ? 'flex' : 'none' }}>
+            {
+              typeOptions.map(item => {
+                return <div key={uuidv4()} onClick={() => { setCurrent(item) }}>
+                  <img src={item.icon}/>
+                </div>
+              })
+            }
+          </div>
+        </div>
+      </div>
     </>
   )
 })
-
-function SearchInput () {
-  return (
-    <div className="container search-input-container">
-      <div className="search-input">
-        <div className="search-left-type">
-          <img src='//www.baidu.com/img/baidu_85beaf5496f291521eb75ba38eacbd87.svg' alt="" />
-        </div>
-        <input type="text" />
-        <div className="search-right-icon">
-          <img src={icon_search} alt="" />
-          <span>点击搜索</span>
-        </div>
-      </div>
-
-      <div className="type-container">
-        <img src='//www.baidu.com/img/baidu_85beaf5496f291521eb75ba38eacbd87.svg' style={{ width: 36, height: 36, marginRight: '2rem' }} />
-        <img src='//www.baidu.com/img/baidu_85beaf5496f291521eb75ba38eacbd87.svg' style={{ width: 36, height: 36, marginRight: '2rem' }} />
-        <img src='//www.baidu.com/img/baidu_85beaf5496f291521eb75ba38eacbd87.svg' style={{ width: 36, height: 36, marginRight: '2rem' }} />
-      </div>
-    </div>
-  )
-}
 
 export default Search;
