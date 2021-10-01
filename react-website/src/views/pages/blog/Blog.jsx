@@ -11,7 +11,7 @@ const Blog = (props) => {
   const [list, setList] = useState([]);
 
   // 向服务器请求数据
-  const fetch = async () => {
+  const fetchBlogs = async () => {
     const { data } = await get('/findAllBlog');
     const blogs = data instanceof Array && data.sort((a, b) => b.create_time - a.create_time);
     setList(blogs);
@@ -19,7 +19,7 @@ const Blog = (props) => {
   }
 
   const loadHandler = () => {
-    fetch(); // 页面刷新则重新请求数据
+    fetchBlogs(); // 页面刷新则重新请求数据
   }
 
   useEffect(() => {
@@ -29,7 +29,7 @@ const Blog = (props) => {
     // 如果本地有数据缓存则不向服务器请求数据
     const blogs = LocalStorage.get('blogs');
     if (blogs) setList(blogs);
-    else fetch();
+    else fetchBlogs();
 
     window.addEventListener('load', loadHandler);
 

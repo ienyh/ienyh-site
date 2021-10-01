@@ -8,6 +8,7 @@ import Admin from "../views/pages/admin/Admin";
 import Article from '../views/pages/blog/article/Article';
 import Music from "../views/pages/music/Music";
 import Search from "../views/pages/search/Search";
+import PagesIndex from '../views/pages/index/Index';
 
 const routes = [
   {
@@ -30,9 +31,15 @@ const routes = [
     children: [
       {
         path: '/pages',
-        component: Blog,
+        component: PagesIndex,
         exact: true,
-        title: '博客',
+        title: 'PagesIndex',
+      },
+      {
+        path: '/pages/index',
+        component: PagesIndex,
+        exact: true,
+        title: 'PagesIndex',
       },
       {
         path: '/pages/blog',

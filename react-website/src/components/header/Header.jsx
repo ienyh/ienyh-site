@@ -27,7 +27,7 @@ const list = [
   },
   {
     title: '首页',
-    path: '/index',
+    path: '/pages/index',
     icon: icon_home,
   },
   {
@@ -76,8 +76,8 @@ const Header = () => {
   const [header, setHeader] = useState({
     headerHeight: 100, // 100 vh
     backdrop: false,
-    title: `Chenyh's Blog`,
-    text: ``,
+    title: <h1>Chenyh's Blog</h1>,
+    text: <Typing time={6000} circle>Start Coding Start Life</Typing>,
   });
 
   const switchBar = () => {
@@ -166,10 +166,9 @@ const Header = () => {
           <div>
             {header.title}
           </div>
-          {/* <span className="h-text">
-            <Typing time={6000} circle>Start Coding Start Life</Typing>
-          </span> */}
-          <div className="h-text-small">{ header.text ?? null }</div>
+          <div className="h-text">
+            { header.text ?? null }
+          </div>
         </div>
         {/* 蒙版 */}
         <div className={ header.backdrop ? 'header-mask' : null }></div>

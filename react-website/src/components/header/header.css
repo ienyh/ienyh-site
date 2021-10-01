@@ -48,7 +48,6 @@ nav {
   position: fixed;
   height: 60px;
   width: 100%;
-  z-index: 9999;
   background: var(--github-black);
   transition: all .5s ease-in-out;
 }
