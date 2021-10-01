@@ -91,6 +91,17 @@ const UpLoad = (props) => {
             onChange={ formItemChangeHandler }
           />
         </label>
+        <label>
+          封面：
+          <input
+            type="text"
+            required
+            placeholder="请输入封面 url"
+            name="imgUrl"
+            value={ blog.imgUrl }
+            onChange={ formItemChangeHandler }
+          />
+        </label>
         <div className="label-container">
           请勾选标签:
           {
@@ -104,7 +115,7 @@ const UpLoad = (props) => {
                     checked={ label.checked }
                     onChange={ checkboxChangeHandler }
                   />
-                  <span>{ label.name }</span>
+                  <div className='tab'>{ label.name }</div>
                 </label>
               )
             })

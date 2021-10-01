@@ -23,7 +23,7 @@ const Article = (props) => {
     fetch()
       .then((res) => {
         EventEmitter.emit(EVENT_CHANGE_HEADER, {
-          title: id,
+          title: <h1>{ id }</h1>,
           text: res ? `${res.author} 发布于 ${res.create_time}` : null,
           backdrop: true,
         });

@@ -20,6 +20,9 @@ const blogSchema = new mongoose.Schema({
   // 字数
   numbers: { type: String, default: 0 },
 
+  // 图片 url
+  img_url: { type: String },
+
   // 创建日期
   create_time: { type: Number, default: new Date().getTime() },
 

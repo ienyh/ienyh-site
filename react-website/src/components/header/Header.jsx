@@ -98,12 +98,12 @@ const Header = () => {
 
   useEffect(() => {
     // 订阅事件
-    EventEmitter.on(EVENT_CHANGE_HEADER, ({ headerHeight, title, text, backdrop }) => {
+    EventEmitter.on(EVENT_CHANGE_HEADER, ({ headerHeight, title, text, backdrop = false }) => {
       setHeader({
         headerHeight: headerHeight ?? 36,
         backdrop,
         title,
-        text,
+        text: text ?? <Typing time={6000} circle>Start Coding Start Life</Typing>,
       })
     });
     window.addEventListener('scroll', scrollHandler);

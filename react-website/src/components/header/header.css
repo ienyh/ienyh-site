@@ -50,6 +50,7 @@ nav {
   width: 100%;
   background: var(--github-black);
   transition: all .5s ease-in-out;
+  z-index: 2;
 }
 
 .nav-menu {

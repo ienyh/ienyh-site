@@ -25,7 +25,7 @@ const Music = () => {
 
   useEffect(() => {
     // 触发事件
-    EventEmitter.emit(EVENT_CHANGE_HEADER, { title: <h1>Music</h1>, backdrop: true });
+    EventEmitter.emit(EVENT_CHANGE_HEADER, { title: <h1>Music</h1>, headerHeight: 42, backdrop: true });
     EventEmitter.emit(EVENT_DISPLAY_AUDIO, true);
 
     // 订阅事件

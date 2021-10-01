@@ -17,7 +17,7 @@ const Index = () => {
     LocalStorage.set('blogs', blogs, 7200000); // 设置数据有效时长为两小时
   }
 
-  const loadHandler = () => {
+  const unloadHandler = () => {
     fetchBlogs(); // 页面刷新之前请求数据
   }
 
@@ -25,7 +25,6 @@ const Index = () => {
     // 发布事件
     EventEmitter.emit(EVENT_CHANGE_HEADER, {
       title: <h1>Chenyh's Blog</h1>,
-      headerHeight: 30,
       backdrop: true,
       text: <Typing time={6000} circle>Start Coding Start Life</Typing>,
     });
@@ -35,9 +34,9 @@ const Index = () => {
     if (blogs) setList(blogs);
     else fetchBlogs();
 
-    window.addEventListener('unload', loadHandler);
+    window.addEventListener('unload', unloadHandler);
     return () => {
-      window.removeEventListener('unload', loadHandler);
+      window.removeEventListener('unload', unloadHandler);
     }
   }, []);
 

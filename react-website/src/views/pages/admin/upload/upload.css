@@ -77,3 +77,11 @@ input::placeholder {
   margin: 0 6px;
   padding: 2px 4px;
 }
+
+form .tab {
+  border-radius: 4px;
+  padding: 2px 6px;
+  margin-right: 4px;
+  background: var(--sunray);
+  color: var(--github-black);
+}

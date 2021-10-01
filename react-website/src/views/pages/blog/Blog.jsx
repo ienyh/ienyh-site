@@ -18,7 +18,7 @@ const Blog = (props) => {
     LocalStorage.set('blogs', blogs, 7200000); // 设置数据有效时长为两小时
   }
 
-  const loadHandler = () => {
+  const unloadHandler = () => {
     fetchBlogs(); // 页面刷新则重新请求数据
   }
 
@@ -31,10 +31,9 @@ const Blog = (props) => {
     if (blogs) setList(blogs);
     else fetchBlogs();
 
-    window.addEventListener('load', loadHandler);
-
+    window.addEventListener('unload', unloadHandler);
     return () => {
-      window.removeEventListener('load', loadHandler);
+      window.removeEventListener('unload', unloadHandler);
     }
   }, []);
 
