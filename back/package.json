@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "description": "",
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "node ./bin/www",
+    "hot": "nodemon ./bin/www"
   },
   "author": "chenyh",
   "dependencies": {
@@ -13,6 +14,7 @@
     "jsonwebtoken": "^8.5.1",
     "mongodb": "^4.1.0",
     "mongoose": "^5.13.7",
+    "nodemon": "^2.0.13",
     "yargs": "^17.1.0"
   }
 }
