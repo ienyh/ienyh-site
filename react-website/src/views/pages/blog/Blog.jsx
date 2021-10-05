@@ -9,6 +9,7 @@ import LocalStorage from '../../../utils/LocalStorage';
 
 const Blog = (props) => {
   const [list, setList] = useState([]);
+  const [tags, setTags] = useState([]);
 
   // 向服务器请求数据
   const fetchBlogs = async () => {
@@ -16,6 +17,11 @@ const Blog = (props) => {
     const blogs = data instanceof Array && data.sort((a, b) => b.create_time - a.create_time);
     setList(blogs);
     LocalStorage.set('blogs', blogs, 7200000); // 设置数据有效时长为两小时
+  }
+
+  const fetchTags = async () => {
+    const { data } = await get('/getTags');
+    setTags(data);
   }
 
   const unloadHandler = () => {
@@ -31,6 +37,8 @@ const Blog = (props) => {
     if (blogs) setList(blogs);
     else fetchBlogs();
 
+    fetchTags();
+
     window.addEventListener('unload', unloadHandler);
     return () => {
       window.removeEventListener('unload', unloadHandler);
@@ -40,18 +48,23 @@ const Blog = (props) => {
   return (
     <div className="blog container">
       <div className="blogs">
-        <span style={{ fontSize: '1.4rem' }}>技术博文</span>
+        <div className="top-line"></div>
+        <h2>article</h2>
         <div className="bottom-line"></div>
         {
           list.map(blog => <BlogCard {...blog} key={uuidv4()} />)
         }
       </div>
-      <div className="bar card">
-        <div>hello world</div>
-        <div>hello world</div>
-        <div>hello world</div>
-        <div>hello world</div>
-        <div>hello world</div>
+      <div className="bar">
+        <ul>
+          {
+            tags.map(tag => {
+              return <li key={uuidv4()}>
+                {  tag.toString() }
+              </li>
+            })
+          }
+        </ul>
       </div>
     </div>
   )

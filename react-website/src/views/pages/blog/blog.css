@@ -1,3 +1,8 @@
+.blog h2 {
+  text-transform: uppercase;
+  color: var(--github-black);
+}
+
 .blog {
   margin: 1rem auto;
   display: flex;
@@ -9,27 +14,14 @@
   flex: 3;
   padding: 0.4rem .8rem;
   margin-right: 1rem;
-  /* border-radius: 5px; */
-  /* box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2); */
 }
 
-.bar {
-  flex: 1;
-  padding: 1rem;
-}
-
-@media screen and (max-width: 1080px) {
-  .blog {
-    margin: 1rem .5rem;
-  }
-
-  .blogs {
-    margin: unset;
-  }
-
-  .bar {
-    display: none;
-  }
+.top-line {
+  width: 100%;
+  height: 4px;
+  background-color: var(--github-black);
+  overflow: hidden;
+  margin-bottom: 2px;
 }
 
 .bottom-line {
@@ -39,3 +31,40 @@
   overflow: hidden;
   margin-top: 4px;
 }
+
+.bar {
+  flex: 1;
+  /* padding: 1rem; */
+}
+
+.bar ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.bar ul li {
+  font-size: 1.6rem;
+  margin: 0 4px;
+  padding: 4px 8px;
+  border-radius: 5px;
+  background: var(--white);
+}
+
+@media screen and (max-width: 1080px) {
+  .blog {
+    flex-direction: column-reverse;
+    margin: 1rem .5rem;
+  }
+
+  .blogs {
+    margin: unset;
+  }
+
+  .bar {
+    margin: 1rem .4rem;
+    width: 100%;
+  }
+}
+
