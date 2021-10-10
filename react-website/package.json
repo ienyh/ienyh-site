@@ -17,6 +17,7 @@
     "react-dom": "^17.0.0",
     "react-router-dom": "^5.2.0",
     "redux": "^4.1.1",
+    "scrollreveal": "^4.0.9",
     "three": "^0.132.2",
     "uuid": "^8.3.2"
   },

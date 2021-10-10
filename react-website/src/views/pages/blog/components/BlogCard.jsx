@@ -1,12 +1,17 @@
-import React from 'react';
+import React, { useRef, useLayoutEffect } from 'react';
 import { Link } from 'react-router-dom';
 import dayjs from 'dayjs';
 import { v4 as uuidv4 } from 'uuid';
+import ScrollReveal from 'scrollreveal';
+
 import './BlogCard.css';
 import { isPC } from '../../../../utils/common';
 import tmp_img from '../../../../assets/imgs/tmp_blog.jpg';
+import { BLOG_SCROLL_CONFIG } from '../../../../utils/config';
 
 function Blog (props) {
+  const cardRef = useRef();
+
   let { title, create_time, author, keyword, desc, head_img } = props;
   create_time = dayjs(new Date(create_time)).format('YYYY-MM-DD HH:mm');
 
@@ -14,8 +19,12 @@ function Blog (props) {
     e.target.src = tmp_img;
   }
 
+  useLayoutEffect(() => {
+    cardRef?.current && ScrollReveal().reveal(cardRef.current, BLOG_SCROLL_CONFIG);
+  }, []);
+
   return (
-    <div className="blog-card">
+    <div className="blog-card" ref={ cardRef }>
       <div className="img-left">
         {
           head_img ?

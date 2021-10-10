@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { v4 as uuidv4 } from 'uuid';
+
 import './blog.css';
 import BlogCard from './components/BlogCard';
 import { get } from '../../../utils/request';
@@ -48,11 +49,11 @@ const Blog = (props) => {
   return (
     <div className="blog container">
       <div className="blogs">
-        <div className="top-line"></div>
-        <h2>article</h2>
+        {/* <div className="top-line"></div> */}
+        <h2>Article</h2>
         <div className="bottom-line"></div>
         {
-          list.map(blog => <BlogCard {...blog} key={uuidv4()} />)
+          list.map(blog => <BlogCard id="card" {...blog} key={uuidv4()} data-scroll-reveal="enter left and move 50px over 1.33s"/>)
         }
       </div>
       <div className="bar">
