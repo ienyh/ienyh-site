@@ -8,6 +8,13 @@
 @font-face {
   font-family: 'MONACO'; /* 重命名字体名 */
   src: url('MONACO.TTF');
-  font-weight: lighter;
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Nunito-Regular'; /* 重命名字体名 */
+  src: url('Nunito-Regular.ttf');
+  font-weight: normal;
   font-style: normal;
 }

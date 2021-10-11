@@ -32,11 +32,11 @@ const Article = (props) => {
 
   return (
     <div className="container">
-      <div className="article-header">
+      {/* <div className="article-header">
         <h3>{ blog.title }</h3>
         <h3>{ blog.author }</h3>
         <h3>{ blog.create_time }</h3>
-      </div>
+      </div> */}
       <div
         dangerouslySetInnerHTML={{ __html: blog.content }}
         className="markdown-body hljs article"

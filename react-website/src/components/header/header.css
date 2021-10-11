@@ -96,13 +96,13 @@ header .header-content {
 
 header .header-content h1 {
   font-size: 3.6rem;
-  font-family: 'Monaco', 'HarmonyOS_Sans_Regular', "Microsoft Yahei", 'Times New Roman', Times, serif;
+  font-family: 'Nunito-Regular', 'HarmonyOS_Sans_Regular', "Microsoft Yahei", 'Times New Roman', Times, serif;
   color: rgba(232, 135, 30, 0.85);
 }
 
 header .header-content .h-text {
   font-size: 1.8rem;
-  font-family: 'Monaco', 'HarmonyOS_Sans_Regular', "Microsoft Yahei", 'Times New Roman', Times, serif;
+  font-family: 'Nunito-Regular', 'HarmonyOS_Sans_Regular', "Microsoft Yahei", 'Times New Roman', Times, serif;
   color: var(--white);
 }
 

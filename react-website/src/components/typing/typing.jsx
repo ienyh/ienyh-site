@@ -1,4 +1,4 @@
-import React, { memo, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './typing.css';
 
 /*
@@ -41,7 +41,7 @@ const Typing = React.memo((props) => {
   return (
     <>
       <div className="typing">
-        {typing}
+        <span>{ typing }</span>
       </div>
     </>
   )

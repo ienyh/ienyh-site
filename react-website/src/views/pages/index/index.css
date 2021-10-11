@@ -1,0 +1,14 @@
+.top-line {
+  background-color: var(--sunray);
+  height: 4rem;
+  border-radius: 2px;
+}
+
+.top-line h2 {
+  text-transform: uppercase;
+  padding: 0 1rem;
+  line-height: 4rem;
+  font-size: 1.6rem;
+  font-style: italic;
+  font-family: 'Nunito-Regular', Georgia, Times, monospace;
+}

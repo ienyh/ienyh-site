@@ -1,3 +1,26 @@
-.typing::after {
-  content: '_';
+.typing span {
+  position: relative;
+  font-family: 'Monaco', Consolas, monospace;
+  font-size: 1.8rem;
+  width: 1.8rem;
+}
+
+.typing span::after {
+  content: ' ';
+  position: absolute;
+  right: -4px;
+  height: 100%;
+  width: 4px;
+  border-radius: 1px;
+  background-color: var(--white);
+  animation: 1.1s cursor steps(2, jump-none) infinite;
+}
+
+@keyframes cursor {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }

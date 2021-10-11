@@ -50,8 +50,8 @@ const Blog = (props) => {
     <div className="blog container">
       <div className="blogs">
         {/* <div className="top-line"></div> */}
-        <h2>Article</h2>
-        <div className="bottom-line"></div>
+        <h2>Article<div className="bottom-line"></div></h2>
+        
         {
           list.map((blog, index) =>
             <BlogCard
@@ -63,7 +63,9 @@ const Blog = (props) => {
           )
         }
       </div>
+      
       <div className="bar">
+        <h2>Tags<div className="bottom-line"></div></h2>
         <ul>
           {
             tags.map(tag => {

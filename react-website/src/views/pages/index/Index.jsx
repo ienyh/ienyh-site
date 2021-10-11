@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
+
 import './index.css';
 import { get } from '../../../utils/request';
 import EventEmitter from '../../../utils/EventEmitter';
 import { EVENT_CHANGE_HEADER } from '../../../utils/constant';
 import LocalStorage from '../../../utils/LocalStorage';
 import Typing from '../../../components/typing/typing';
+import BlogCard from '../blog/components/BlogCard';
 
 const Index = () => {
   const [list, setList] = useState([]);
@@ -41,8 +44,26 @@ const Index = () => {
   }, []);
 
   return (
-    <div className="container">
-      <div className="card">chenyh</div>
+    <div>
+      
+      <div className="container">
+        <div className="blogs">
+          <div className="top-line">
+            <h2>Article</h2>
+          </div>
+          {
+            list.splice(0, 5).map((blog, index) =>
+              <BlogCard
+                id="card"
+                {...blog}
+                key={uuidv4()}
+                right={index % 2 === 0}
+              />
+            )
+          }
+        </div>
+        <div className="card">chenyh</div>
+      </div>
     </div>
   )
 }
