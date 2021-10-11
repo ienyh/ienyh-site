@@ -12,7 +12,7 @@ import { BLOG_SCROLL_CONFIG } from '../../../../utils/config';
 function Blog (props) {
   const cardRef = useRef();
 
-  let { title, create_time, author, keyword, desc, head_img } = props;
+  let { title, create_time, author, keyword, desc, head_img, right } = props;
   create_time = dayjs(new Date(create_time)).format('YYYY-MM-DD HH:mm');
 
   const imgErrorHandler = (e) => {
@@ -24,7 +24,7 @@ function Blog (props) {
   }, []);
 
   return (
-    <div className="blog-card" ref={ cardRef }>
+    <div className="blog-card" ref={ cardRef } style={{ flexDirection: right ? 'row-reverse' : null }}>
       <div className="img-left">
         {
           head_img ?

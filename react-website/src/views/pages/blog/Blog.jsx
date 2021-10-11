@@ -53,7 +53,14 @@ const Blog = (props) => {
         <h2>Article</h2>
         <div className="bottom-line"></div>
         {
-          list.map(blog => <BlogCard id="card" {...blog} key={uuidv4()} data-scroll-reveal="enter left and move 50px over 1.33s"/>)
+          list.map((blog, index) =>
+            <BlogCard
+              id="card"
+              {...blog}
+              key={uuidv4()}
+              // right={index % 2 === 0}
+            />
+          )
         }
       </div>
       <div className="bar">

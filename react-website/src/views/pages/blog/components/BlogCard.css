@@ -40,7 +40,7 @@
 
 .title-right h1 {
   font-size: 2rem;
-  font-family: Nunito, Helvetica Neue, Helvetica, sans-serif;
+  margin: 10px 0;
 }
 
 .title-right h1 a:hover {
@@ -106,5 +106,9 @@
     width: 100%;
     border: unset;
     padding: .6rem 1rem;
+  }
+
+  .title-right h1 {
+    margin: 0;
   }
 }

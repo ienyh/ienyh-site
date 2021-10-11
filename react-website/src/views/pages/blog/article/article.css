@@ -16,6 +16,21 @@
 .markdown-body .highlight pre, .markdown-body pre {
   /* border: 1px solid rgba(0, 0, 0, 0.3); */
   background: #f5f5f5;
+  position: relative;
+}
+
+.markdown-body .highlight pre, .markdown-body pre ::after {
+  content: 'copy';
+  position: absolute;
+  right: 4px;
+  top: 4px;
+  background-color: var(--sunray);
+  padding: 0 4px;
+  border-radius: 4px;
+}
+
+.markdown-body .highlight pre, .markdown-body pre ::after:active {
+  background-color: var(--github-black);
 }
 
 .article-footer {

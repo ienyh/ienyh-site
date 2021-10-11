@@ -1,4 +1,4 @@
-import React, { useState, useEffect, createRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import dayjs from 'dayjs';
 import 'github-markdown-css/github-markdown.css';
 import 'highlight.js/styles/github.css';

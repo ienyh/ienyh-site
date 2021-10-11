@@ -34,7 +34,9 @@
 
 .bar {
   flex: 1;
-  /* padding: 1rem; */
+  padding: 1rem;
+  background-color: var(--white);
+  border-radius: 5px;
 }
 
 .bar ul {
@@ -45,11 +47,30 @@
 }
 
 .bar ul li {
+  cursor: pointer;
   font-size: 1.6rem;
-  margin: 0 4px;
-  padding: 4px 8px;
+  margin: 0 12px;
+  padding: 4px 0;
   border-radius: 5px;
   background: var(--white);
+  color: var(--sunray);
+  position: relative;
+}
+
+.bar ul li:hover {
+  transform: scale(1.1) translateY(-2px);
+  transition: all .25s ease-in-out;
+}
+
+.bar ul li:hover::after  {
+  content: "";
+  position: absolute;
+  top: 90%;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: var(--sunray);
+
 }
 
 @media screen and (max-width: 1080px) {
@@ -65,6 +86,12 @@
   .bar {
     margin: 1rem .4rem;
     width: 100%;
+    padding: 0;
+    background-color: unset;
+  }
+
+  .bar ul li {
+    background: unset;
   }
 }
 
