@@ -12,3 +12,23 @@
   font-style: italic;
   font-family: 'Nunito-Regular', Georgia, Times, monospace;
 }
+
+.blogs-more {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+}
+
+.blogs-more span {
+  text-transform: uppercase;
+  font-size: 1.4rem;
+  font-style: italic;
+  font-weight: bold;
+  font-family: 'Nunito-Regular', Georgia, Times, monospace;
+  cursor: pointer;
+}
+
+.blogs-more span:hover {
+  color: var(--sunray);
+  text-decoration: underline;
+}

@@ -7,7 +7,7 @@ import {
   EVENT_CHANGE_AUDIO,
   EVENT_SWITCH_PREV_MUSIC,
   EVENT_SWITCH_NEXT_MUSIC,
-} from '../../utils/constant';
+} from '../../utils/events';
 import { throttle } from '../../utils/common';
 /** 引入图标 */
 import icon_pause from  '../../assets/icons/pause.svg';

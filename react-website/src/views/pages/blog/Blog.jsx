@@ -5,7 +5,7 @@ import './blog.css';
 import BlogCard from './components/BlogCard';
 import { get } from '../../../utils/request';
 import EventEmitter from '../../../utils/EventEmitter';
-import { EVENT_CHANGE_HEADER } from '../../../utils/constant';
+import { EVENT_CHANGE_HEADER } from '../../../utils/events';
 import LocalStorage from '../../../utils/LocalStorage';
 
 const Blog = (props) => {
@@ -56,8 +56,9 @@ const Blog = (props) => {
           list.map((blog, index) =>
             <BlogCard
               id="card"
-              {...blog}
-              key={uuidv4()}
+              { ...blog }
+              key={ uuidv4() }
+              animate
               // right={index % 2 === 0}
             />
           )

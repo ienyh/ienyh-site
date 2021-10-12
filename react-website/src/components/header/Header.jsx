@@ -4,7 +4,7 @@ import './header.css';
 import Dropdown from '../dropdown/Dropdown';
 import Typing from '../typing/typing';
 import EventEmitter from '../../utils/EventEmitter';
-import { EVENT_CHANGE_HEADER } from '../../utils/constant';
+import { EVENT_CHANGE_HEADER } from '../../utils/events';
 /** 导入 icon */
 import icon_search from '../../assets/icons/search.svg';
 import icon_link from '../../assets/icons/link.svg';
@@ -18,6 +18,7 @@ import icon_picture from '../../assets/icons/picture.svg';
 import icon_3d from '../../assets/icons/3d.svg';
 import icon_menu from '../../assets/icons/menu.svg';
 import icon_menu_open from '../../assets/icons/menu-open.svg';
+import { HEADER_HEIGHT } from '../../utils/config';
 
 const list = [
   {
@@ -57,7 +58,7 @@ const list = [
   },
   {
     title: '关于',
-    path: '/pages/three',
+    path: '/pages/about',
     icon: icon_link,
   },
   {
@@ -74,7 +75,7 @@ const Header = () => {
   const [isBar, setIsBar] = useState(defaultBarStatus); // 表示导航栏两种状态
   const [mask, setMask] = useState(false); // 导航栏的背景遮罩
   const [header, setHeader] = useState({
-    headerHeight: 100, // 100 vh
+    headerHeight: '100vh', // 100 vh
     backdrop: false,
     title: <h1>Chenyh's Blog</h1>,
     text: <Typing time={6000} circle>Start Coding Start Life</Typing>,
@@ -99,12 +100,21 @@ const Header = () => {
   useEffect(() => {
     // 订阅事件
     EventEmitter.on(EVENT_CHANGE_HEADER, ({ headerHeight, title, text, backdrop = false }) => {
-      setHeader({
-        headerHeight: headerHeight ?? 36,
-        backdrop,
-        title,
-        text: text ?? <Typing time={6000} circle>Start Coding Start Life</Typing>,
-      })
+      if (headerHeight === HEADER_HEIGHT) {
+        setHeader({
+          headerHeight: HEADER_HEIGHT,
+          backdrop: false,
+          title: null,
+          text: null,
+        });
+      } else {
+        setHeader({
+          headerHeight: headerHeight ?? '36vh',
+          backdrop,
+          title,
+          text: text ?? <Typing time={6000}>Start Coding Start Life</Typing>,
+        });
+      }
     });
     window.addEventListener('scroll', scrollHandler);
     window.addEventListener('resize', resizeHandler);
@@ -160,7 +170,7 @@ const Header = () => {
         mask ? <div className="mask"></div> : null
       }
       <header className="animated fadeInDown" style={{
-        height: `${header.headerHeight}vh`,
+        height: header.headerHeight,
       }}>
         <div className="header-content">
           <div>

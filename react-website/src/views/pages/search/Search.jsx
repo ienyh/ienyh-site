@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import './search.css';
 import EventEmitter from '../../../utils/EventEmitter.js';
-import { EVENT_CHANGE_HEADER, EVENT_DISPLAY_FOOTER } from '../../../utils/constant';
+import { EVENT_CHANGE_HEADER, EVENT_DISPLAY_FOOTER } from '../../../utils/events';
 
 import icon_search from '../../../assets/icons/search.svg';
 import icon_baidu from '../../../assets/icons/baidu.svg';
@@ -38,7 +38,7 @@ const Search = React.memo(() => {
 
   useEffect(() => {
     // 触发事件
-    EventEmitter.emit(EVENT_CHANGE_HEADER, { title: '', backdrop: false, headerHeight: 100 });
+    EventEmitter.emit(EVENT_CHANGE_HEADER, { title: '', backdrop: false, headerHeight: '100vh', text: '' });
     EventEmitter.emit(EVENT_DISPLAY_FOOTER, false);
 
     window.addEventListener('keydown',keydownHandler, false);

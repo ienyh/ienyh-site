@@ -4,12 +4,12 @@ import { v4 as uuidv4 } from 'uuid';
 import './index.css';
 import { get } from '../../../utils/request';
 import EventEmitter from '../../../utils/EventEmitter';
-import { EVENT_CHANGE_HEADER } from '../../../utils/constant';
+import { EVENT_CHANGE_HEADER } from '../../../utils/events';
 import LocalStorage from '../../../utils/LocalStorage';
 import Typing from '../../../components/typing/typing';
 import BlogCard from '../blog/components/BlogCard';
 
-const Index = () => {
+const Index = (props) => {
   const [list, setList] = useState([]);
 
   // 向服务器请求数据
@@ -28,8 +28,8 @@ const Index = () => {
     // 发布事件
     EventEmitter.emit(EVENT_CHANGE_HEADER, {
       title: <h1>Chenyh's Blog</h1>,
-      backdrop: true,
-      text: <Typing time={6000} circle>Start Coding Start Life</Typing>,
+      backdrop: false,
+      text: <Typing time={ 6000 } circle={ false }>Start Coding Start Life</Typing>,
     });
 
     // 如果本地有数据缓存则不向服务器请求数据
@@ -45,7 +45,6 @@ const Index = () => {
 
   return (
     <div>
-      
       <div className="container">
         <div className="blogs">
           <div className="top-line">
@@ -61,8 +60,13 @@ const Index = () => {
               />
             )
           }
+          <div
+            className="blogs-more"
+            onClick={ () => { props.history.push('/pages/blog') } }
+          >
+            <span>more ➡</span>
+          </div>
         </div>
-        <div className="card">chenyh</div>
       </div>
     </div>
   )

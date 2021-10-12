@@ -17,12 +17,7 @@ const server = ws.createServer(conn => {
 
   conn.on('text', function (result) {
     console.log('接收到消息', result);
-    let data;
-    if (typeof result === 'object' && res !== null) {
-      data = JSON.parse(result);
-    } else {
-      data = result;
-    }
+    const data = JSON.parse(result);
     broadcast(server, data);
   });
 });

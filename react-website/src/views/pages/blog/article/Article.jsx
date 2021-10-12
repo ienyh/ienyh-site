@@ -5,7 +5,7 @@ import 'highlight.js/styles/github.css';
 import './article.css';
 import { getBlogByTitle } from '../../../../apis/blogApis';
 import EventEmitter from '../../../../utils/EventEmitter';
-import { EVENT_CHANGE_HEADER } from '../../../../utils/constant';
+import { EVENT_CHANGE_HEADER } from '../../../../utils/events';
 
 const Article = (props) => {
   const { id } = props.match.params;

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { EVENT_DISPLAY_FOOTER } from '../../utils/constant';
+import { EVENT_DISPLAY_FOOTER } from '../../utils/events';
 import EventEmitter from '../../utils/EventEmitter';
 import './footer.css';
 

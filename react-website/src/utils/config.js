@@ -9,3 +9,7 @@ export const BLOG_SCROLL_CONFIG = {
   easing: 'ease-in-out', // 动画效果 缓动'ease', 'ease-in-out'，'linear'...
   distance: '40px',
 };
+
+export const HEADER_HEIGHT = '60px';
+
+export const WEBSOCKET_URL = 'ws://1.117.43.137:9001';

@@ -12,7 +12,7 @@ import { BLOG_SCROLL_CONFIG } from '../../../../utils/config';
 function Blog (props) {
   const cardRef = useRef();
 
-  let { title, create_time, author, keyword, desc, head_img, right } = props;
+  let { title, create_time, author, keyword, desc, head_img, right, animate = false } = props;
   create_time = dayjs(new Date(create_time)).format('YYYY-MM-DD HH:mm');
 
   const imgErrorHandler = (e) => {
@@ -20,7 +20,7 @@ function Blog (props) {
   }
 
   useLayoutEffect(() => {
-    cardRef?.current && ScrollReveal().reveal(cardRef.current, BLOG_SCROLL_CONFIG);
+    animate && cardRef?.current && ScrollReveal().reveal(cardRef.current, BLOG_SCROLL_CONFIG);
   }, []);
 
   return (

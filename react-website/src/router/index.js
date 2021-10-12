@@ -9,6 +9,7 @@ import Article from '../views/pages/blog/article/Article';
 import Music from "../views/pages/music/Music";
 import Search from "../views/pages/search/Search";
 import PagesIndex from '../views/pages/index/Index';
+import About from "../views/pages/about/About";
 
 const routes = [
   {
@@ -64,6 +65,12 @@ const routes = [
         component: Search,
         exact: true,
         title: 'search',
+      },
+      {
+        path: '/pages/about',
+        component: About,
+        exact: true,
+        title: 'about',
       },
       {
         path: '/pages/three',

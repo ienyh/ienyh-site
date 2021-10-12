@@ -8,7 +8,7 @@ import {
   EVENT_OPEN_AUDIO,
   EVENT_SWITCH_PREV_MUSIC,
   EVENT_SWITCH_NEXT_MUSIC,
-} from '../../../utils/constant';
+} from '../../../utils/events';
 
 const tmp = [
   { musicName: '我太笨', singer: '锤娜丽莎', src: 'https://www.zhouxingxing.fun/music/1.mp3' },
@@ -25,7 +25,7 @@ const Music = () => {
 
   useEffect(() => {
     // 触发事件
-    EventEmitter.emit(EVENT_CHANGE_HEADER, { title: <h1>Music</h1>, headerHeight: 42, backdrop: true });
+    EventEmitter.emit(EVENT_CHANGE_HEADER, { title: <h1>Music</h1>, headerHeight: '42vh', backdrop: true });
     EventEmitter.emit(EVENT_DISPLAY_AUDIO, true);
 
     // 订阅事件
