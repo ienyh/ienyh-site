@@ -4,7 +4,7 @@
 }
 
 .article {
-  margin: 1rem 1rem;
+  /* margin: 1rem; */
   padding: 1rem 2rem;
   border-radius: .8rem;
 }
@@ -45,10 +45,37 @@
   white-space: pre;
 }
 
+.reprint {
+  background-image: url('../../../../assets/imgs/tmp_blog.jpg');
+  background-position: center;
+  background-size: cover;
+  border-radius: .4rem;
+  overflow: hidden;
+  margin: 0 0 1rem 0;
+  font-size: 1.6rem;
+  color: var(--white);
+}
+
+.reprint div {
+  padding: 2rem 1rem;
+  backdrop-filter: blur(3px);
+}
+
+.reprint a {
+  color: var(--sunray);
+}
+
+.reprint a:hover {
+  text-decoration: underline;
+}
+
 @media screen and (max-width: 1000px) {
   .article {
     margin: 0;
     padding: 1rem;
-    /* border-radius: .8rem; */
+  }
+
+  .reprint {
+    margin: 1rem 0;
   }
 }

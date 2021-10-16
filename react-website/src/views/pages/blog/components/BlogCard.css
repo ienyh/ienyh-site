@@ -15,6 +15,20 @@
   max-width: 40%;
   height: 100%;
   overflow: hidden;
+  position: relative;
+}
+
+.img-left .corner {
+  position: absolute;
+  right: 1rem;
+  top: .5rem;
+
+  background: #8bc6ec;
+  color: var(--github-black);
+  font-size: 1.2rem;
+  font-weight: bold;
+  padding: 0 .6rem;
+  border-radius: .4rem;
 }
 
 .img-left img {
@@ -98,6 +112,21 @@
     height: 100%;
     object-fit: cover;
     transition: all .3s ease-in-out;
+  }
+
+  .img-left .corner {
+    position: absolute;
+    right: 1rem;
+    bottom: 1rem;
+    top: unset;
+    left: unset;
+  
+    background: none;
+    color: var(--white);
+    font-size: 1.4rem;
+    font-weight: bold;
+    padding: 0 .6rem;
+    border-radius: .4rem;
   }
 
   .title-right {

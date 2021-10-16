@@ -25,7 +25,7 @@ const Article = (props) => {
         EventEmitter.emit(EVENT_CHANGE_HEADER, {
           title: <h1>{ id }</h1>,
           text: res ? `${res.author} 发布于 ${res.create_time}` : null,
-          backdrop: true,
+          backdrop: false,
         });
       });
   }, []);
@@ -37,6 +37,17 @@ const Article = (props) => {
         <h3>{ blog.author }</h3>
         <h3>{ blog.create_time }</h3>
       </div> */}
+      {
+        blog?.isReprint ? 
+          <div className="reprint">
+            <div>
+              <span>转载自 </span>
+              <a href={blog.reprint_url ?? "//chenyh.site"} target="_blank">{blog.reprint_url ?? "undefined -- null"}</a>
+            </div>
+          </div> 
+          : null
+      }
+
       <div
         dangerouslySetInnerHTML={{ __html: blog.content }}
         className="markdown-body hljs article"

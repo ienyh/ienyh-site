@@ -22,10 +22,10 @@ const Blog = (props) => {
 
   const fetchTags = async () => {
     const { data } = await get('/getTags');
-    setTags(data);
+    setTags(data.filter(i => i !== null));
   }
 
-  const unloadHandler = () => {
+  const loadHandler = () => {
     fetchBlogs(); // 页面刷新则重新请求数据
   }
 
@@ -40,9 +40,9 @@ const Blog = (props) => {
 
     fetchTags();
 
-    window.addEventListener('unload', unloadHandler);
+    window.addEventListener('load', loadHandler);
     return () => {
-      window.removeEventListener('unload', unloadHandler);
+      window.removeEventListener('load', loadHandler);
     }
   }, []);
 

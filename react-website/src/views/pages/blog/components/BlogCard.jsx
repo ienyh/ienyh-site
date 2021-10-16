@@ -12,7 +12,7 @@ import { BLOG_SCROLL_CONFIG } from '../../../../utils/config';
 function Blog (props) {
   const cardRef = useRef();
 
-  let { title, create_time, author, keyword, desc, head_img, right, animate = false } = props;
+  let { title, create_time, author, keyword, desc, head_img, right, animate = false, isReprint } = props;
   create_time = dayjs(new Date(create_time)).format('YYYY-MM-DD HH:mm');
 
   const imgErrorHandler = (e) => {
@@ -20,7 +20,7 @@ function Blog (props) {
   }
 
   useLayoutEffect(() => {
-    animate && cardRef?.current && ScrollReveal().reveal(cardRef.current, BLOG_SCROLL_CONFIG);
+    // animate && cardRef?.current && ScrollReveal().reveal(cardRef.current, BLOG_SCROLL_CONFIG);
   }, []);
 
   return (
@@ -31,6 +31,7 @@ function Blog (props) {
             <img src={`${head_img}`} onError={imgErrorHandler} alt="head_img" /> :
             <img src={tmp_img} alt="tmp_img" />
         }
+        <div className="corner">{ isReprint ? '转载' : null }</div>
       </div>
       <div className="title-right">
         <h1 className="title">

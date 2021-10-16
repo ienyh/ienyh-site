@@ -8,7 +8,7 @@ const { responseClient, save, find, deleteOne } = require('../../utils/utils');
  * @param {*} res 
  */
 exports.addBlog = async (req, res) => {
-  const { title, content, author, numbers = 0, keyword, desc } = req.body;
+  const { title, content, author, numbers = 0, keyword, desc, img_url, isReprint, reprint_url } = req.body;
   const date = new Date().getTime(); 
   const blog = new Blog({
     title,
@@ -19,6 +19,9 @@ exports.addBlog = async (req, res) => {
     keyword,
     create_time: date,
     update_time: date,
+    img_url, 
+    isReprint, 
+    reprint_url,
   });
   try {
     const mongodb_res = await save(blog);
@@ -42,7 +45,7 @@ exports.getBlogByTitle = (req, res) => {
       consola.error('<getBlogByTitle>: 查询博客失败');
       responseClient(res, 0, "查找该博客失败", err);
     } else {
-      const isRes = typeof mongodb_res === 'array' && mongodb_res.length > 0; 
+      const isRes = mongodb_res || (typeof mongodb_res === 'array' && mongodb_res.length > 0); 
       consola.success(`<getBlogByTitle>: 查找该博客${isRes ? '成功' : '失败'}`);
       responseClient(res, 1, `查找该博客${isRes ? '成功' : '失败'}`, mongodb_res ?? {});
     }
@@ -59,8 +62,9 @@ exports.findAllBlog = async (req, res) => {
   try {
     const blogs = await Blog.find();
     const basicBlogs = blogs.map((blog) => {
-      const { title, author, create_time, update_time, desc, keyword, numbers } = blog;
-      return { title, author, create_time, update_time, desc, keyword, numbers };
+      // 这里过滤掉了 内容 content
+      const { title, author, create_time, update_time, desc, keyword, numbers, isReprint, img_url, reprint_url } = blog;
+      return { title, author, create_time, update_time, desc, keyword, numbers, isReprint, img_url, reprint_url };
     });
     consola.success('<findAllBlog>: 查询所有博客成功');
     responseClient(res, 1, "查询所有博客成功", basicBlogs);

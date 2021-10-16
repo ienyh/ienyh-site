@@ -14,11 +14,15 @@ const UpLoad = (props) => {
     numbers: 0,
     desc: '',
     content: '',
+    isReprint: false,
+    reprint_url: '',
+    img_url: '',
   });
   const [labels, setLabels] = useState([
     { name: 'javascript', checked: false },
     { name: 'html', checked: false },
     { name: 'css', checked: false },
+    { name: '计算机网络', checked: false },
   ]);
 
   useEffect(() => {
@@ -27,13 +31,16 @@ const UpLoad = (props) => {
 
   const submitHandler = async (e) => {
     e.preventDefault();
+    console.log(blog);
     const res = await addBlog({
       ...blog,
+      reprint_url: blog.reprint_url.replaceAll('/', ' '),
+      img_url: blog.img_url.replaceAll('/', ' '),
       keyword: labels.map(label => label.checked ? label.name : null).filter(str => str !== null),
       content: markdownToHtml(blog.content),
     })
     if (res.code === 1 && res.data) {
-      history.push('/pages/')
+      history.push('/pages/');
     }
     console.log(res);
   }
@@ -53,6 +60,10 @@ const UpLoad = (props) => {
 
   const formItemChangeHandler = (e) => {
     setBlog({ ...blog, [e.target.name]: e.target.value });
+  }
+
+  const radioChangeHandler = (e) => {
+    setBlog({ ...blog, isReprint: e.target.value === 'true' });
   }
 
   const checkboxChangeHandler = (e) => {
@@ -91,18 +102,55 @@ const UpLoad = (props) => {
             onChange={ formItemChangeHandler }
           />
         </label>
+        <fieldset className="fieldset-flex">
+          是否转载：
+          <label>
+            <input
+              type="radio"
+              value="false"
+              name="isReprint"
+              onChange={ radioChangeHandler }
+              checked={ !blog.isReprint }
+            />
+              原创
+          </label>
+          <label>
+            <input
+              type="radio"
+              value="true"
+              name="isReprint"
+              onChange={ radioChangeHandler }
+              checked={ blog.isReprint }
+            />
+              转载
+          </label>
+
+          {
+            blog.isReprint ?
+              <div>
+                <input
+                  type="text"
+                  placeholder="转载 url"
+                  name="reprint_url"
+                  value={ blog.reprint_url }
+                  onChange={ formItemChangeHandler }
+                />
+              </div> :
+              null
+          }
+        </fieldset>
         <label>
           封面：
           <input
             type="text"
             required
             placeholder="请输入封面 url"
-            name="imgUrl"
-            value={ blog.imgUrl }
+            name="img_url"
+            value={ blog.img_url }
             onChange={ formItemChangeHandler }
           />
         </label>
-        <div className="label-container">
+        <fieldset className="label-container">
           请勾选标签:
           {
             labels.map(label => {
@@ -120,11 +168,11 @@ const UpLoad = (props) => {
               )
             })
           }
-        </div>
-        <label>
+        </fieldset>
+        <fieldset>
           摘要：
-          <input type="text" placeholder="请输入" />
-        </label>
+          <textarea name="desc" id="" cols="40" rows="4"></textarea>
+        </fieldset>
         <div className="uploader">
           <input
             type="file"

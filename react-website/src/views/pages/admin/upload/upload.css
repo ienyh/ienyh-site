@@ -4,12 +4,21 @@ form {
   justify-content: start;
   align-items: start;
 
+  overflow: hidden;
   font-size: 16px;
   padding: 2rem;
   margin: 1.5rem 1rem;
   background: var(--white);
   border-radius: .8rem;
   border: 1px solid rgba(0, 0, 0, 0.15);
+}
+
+form fieldset {
+  margin: 1rem 0;
+  padding: .6rem 1rem;
+  border: none;
+  border-radius: 4px;
+  background: #f5f5f5;
 }
 
 form input[type='file'] {
@@ -24,10 +33,19 @@ form input[type='text'] {
   padding: 4px 10px;
   border-radius: 4px;
   border: 2px solid rgba(0, 0, 0, 0.15);
+  font-family: var(--font-family);
+}
+
+form input[type='text']:focus {
+  outline: none;
 }
 
 form input[type='checkbox'] {
-  margin-right: 6px;
+  margin-right: .6rem;
+}
+
+form input[type='radio'] {
+  margin: .4rem;
 }
 
 form input[type='button'], input[type='submit'] {
@@ -46,6 +64,7 @@ input[type='button'], input[type='submit']:hover {
 
 input::placeholder {
   color: rgba(0, 0, 0, 0.4);
+  font-family: var(--font-family);
 }
 
 .edit {
@@ -73,7 +92,7 @@ input::placeholder {
   display: flex;
   justify-content: start;
   align-items: center;
-  background: var(--white);
+  /* background: var(--white); */
   margin: 0 6px;
   padding: 2px 4px;
 }
@@ -84,4 +103,19 @@ form .tab {
   margin-right: 4px;
   background: var(--sunray);
   color: var(--github-black);
+}
+
+.fieldset-flex {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.fieldset-flex input[type='text'] {
+  overflow: hidden;
+  margin: 0 2rem;
+  padding: 4px 10px;
+  border-radius: 4px;
+  border: none;
 }

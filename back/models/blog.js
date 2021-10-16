@@ -21,7 +21,13 @@ const blogSchema = new mongoose.Schema({
   numbers: { type: String, default: 0 },
 
   // 图片 url
-  img_url: { type: String },
+  img_url: { type: String, default: '' },
+
+  // 是否是转载文章 默认 false 不是转载
+  isReprint: { type: Boolean, required: true, default: false },
+
+  // 转载文章 url 
+  reprint_url: { type: String, default: '' },
 
   // 创建日期
   create_time: { type: Number, default: new Date().getTime() },

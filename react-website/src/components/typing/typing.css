@@ -1,3 +1,7 @@
+.typing {
+  height: 1.8rem;
+}
+
 .typing span {
   position: relative;
   font-family: 'Monaco', Consolas, monospace;
