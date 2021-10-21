@@ -7,7 +7,7 @@ const Dropdown = (props) => {
     <>
       <div className="dropdown">
         <span>{ title || 'dropdown' }</span>
-        <div className="dropdown-content">{ content || <div>dropdown</div> }</div> 
+        <ul className="dropdown-content">{ content || <div>dropdown</div> }</ul> 
       </div>
     </>
   )

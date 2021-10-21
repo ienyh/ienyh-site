@@ -1,4 +1,5 @@
 import axios from "axios";
+import LocalStorage from './LocalStorage';
 
 const BASE_URL = "https://www.chenyh.site:9000";
 // const BASE_URL = "https://localhost:9000";
@@ -17,7 +18,8 @@ const instance = axios.create({
  * 全局请求拦截
  */
 instance.interceptors.request.use(
-  function(config) {
+  function (config) {
+    config.headers.Authorization = 'Bearer ' + LocalStorage.get('token');
     return config;
   },
   function(error) {

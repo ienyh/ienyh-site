@@ -1,0 +1,23 @@
+.container table {
+  padding: .4rem;
+  border: 2px solid var(--border-grey);
+  border-radius: 2px;
+  border-spacing: 0;
+}
+
+.container table thead {
+  font-weight: bold;
+  font-size: 1.4rem;
+
+
+}
+
+.container table tr {
+  border: 1px solid #000;
+  border-radius: 2px;
+  background-color: #fff;
+}
+
+.container table tr td {
+  padding: 2px 4px;
+}

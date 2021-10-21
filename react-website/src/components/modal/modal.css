@@ -1,0 +1,58 @@
+.modal-container {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.1);
+  z-index: 999;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-container .modal-card {
+  background-color: var(--white);
+  padding: 1rem;
+  border-radius: .4rem;
+  box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.2);
+  border: 1px solid var(--border-grey);
+  position: relative;
+}
+
+.modal-container .modal-content form {
+  border: none;
+  padding: 0 1rem;
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: rgba(0, 0, 0, 0.75);
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: flex-start;
+}
+
+.modal-container .modal-content form input[type="submit"], input[type="button"] {
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: rgba(0, 0, 0, 0.75);
+  align-self: end;
+}
+
+
+.modal-container .modal-card .modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: rgba(0, 0, 0, 0.8);
+}
+
+.modal-container .modal-card .modal-header img:hover {
+  transform: rotate(180deg);
+  transition: 1s all ease;
+}

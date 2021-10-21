@@ -3,8 +3,10 @@ import { Link } from 'react-router-dom';
 import './header.css';
 import Dropdown from '../dropdown/Dropdown';
 import Typing from '../typing/typing';
+import Modal from '../modal/Modal';
 import EventEmitter from '../../utils/EventEmitter';
 import { EVENT_CHANGE_HEADER } from '../../utils/events';
+import { post } from '../../utils/request';
 /** 导入 icon */
 import icon_search from '../../assets/icons/search.svg';
 import icon_link from '../../assets/icons/link.svg';
@@ -19,6 +21,7 @@ import icon_3d from '../../assets/icons/3d.svg';
 import icon_menu from '../../assets/icons/menu.svg';
 import icon_menu_open from '../../assets/icons/menu-open.svg';
 import { HEADER_HEIGHT } from '../../utils/config';
+import LocalStorage from '../../utils/LocalStorage';
 
 const list = [
   {
@@ -58,7 +61,7 @@ const list = [
   },
   {
     title: '关于',
-    path: '/pages/about',
+    path: '/pages/about_',
     icon: icon_link,
   },
   {
@@ -74,6 +77,7 @@ const Header = () => {
   let defaultBarStatus = document.documentElement.clientWidth >= 1000;
   const [isBar, setIsBar] = useState(defaultBarStatus); // 表示导航栏两种状态
   const [mask, setMask] = useState(false); // 导航栏的背景遮罩
+  const [modal, setModal] = useState(false); // Modal 开关
   const [header, setHeader] = useState({
     headerHeight: '100vh', // 100 vh
     backdrop: false,
@@ -125,6 +129,17 @@ const Header = () => {
     }
   }, []);
 
+  const loginSubmit = async (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const username = form[0].value;
+    const password = form[1].value;
+    const res = await post('/login', { username, password });
+    if (res?.code === 1 && res?.data?.token) {
+      LocalStorage.set('token', res.data.token);
+    }
+  }
+
   return (
     <div>
       <nav className="animated slideInDown">
@@ -152,10 +167,12 @@ const Header = () => {
               </div>
             } content={
               <>
-                <div style={{ marginBottom: "8px" }}>
-                  <Link to="/pages/admin/upload">upload</Link>
-                </div>
-                <div>exit</div>
+                <li onClick={() => {
+                  setModal(true);
+                  // console.log(modal);
+                }}>站长登录</li>
+                <li><Link to="/pages/admin/manage">网站管理</Link></li>
+                <li>退出登录</li>
               </>
             } ></Dropdown>
           </li>
@@ -183,6 +200,18 @@ const Header = () => {
         {/* 蒙版 */}
         <div className={ header.backdrop ? 'header-mask' : null }></div>
       </header>
+
+      <Modal
+        visible={modal}
+        onClose={() => setModal(false)}
+        title='站长登录'
+      >
+        <form onSubmit={loginSubmit} >
+          <label>姓名: <input type="text"/></label>
+          <label>密码: <input type="password" /></label>
+          <input type="submit" value="登 录"/>
+        </form>
+      </Modal>
     </div>
   )
 }

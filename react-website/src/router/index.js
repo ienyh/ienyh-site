@@ -10,6 +10,7 @@ import Music from "../views/pages/music/Music";
 import Search from "../views/pages/search/Search";
 import PagesIndex from '../views/pages/index/Index';
 import About from "../views/pages/about/About";
+import Manage from "../views/pages/admin/manage/Manage";
 
 const routes = [
   {
@@ -89,6 +90,12 @@ const routes = [
             component: UpLoad,
             exact: true,
             title: 'upload',
+          },
+          {
+            path: '/pages/admin/manage',
+            component: Manage,
+            exact: true,
+            title: 'manage',
           },
         ]
       },

@@ -27,11 +27,11 @@ form input[type='file'] {
   border: 2px solid rgba(0, 0, 0, 0.15);
 }
 
-form input[type='text'] {
+form input[type='text'], input[type='password'] {
   overflow: hidden;
   margin: 5px 0;
   padding: 4px 10px;
-  border-radius: 4px;
+  border-radius: 2px;
   border: 2px solid rgba(0, 0, 0, 0.15);
   font-family: var(--font-family);
 }

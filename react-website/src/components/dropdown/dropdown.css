@@ -8,12 +8,13 @@
 .dropdown-content {
   display: none;
   position: absolute;
+  left: 0;
+  top: 100%;
   background-color: var(--white);
   min-width: 60px;
+  width: 90px;
   box-shadow: 2px 8px 12px 0px rgba(0, 0, 0, 0.3);
-  padding: 10px 10px;
   margin: 1px 0;
-  text-align: left;
   color: var(--dark);
   border: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: 4px;
@@ -23,4 +24,17 @@
 .dropdown:hover .dropdown-content {
   display: block;
   transition: all 0.4s ease-in-out;
+}
+
+.dropdown-content li {
+  padding: 0;
+  text-align: center;
+  padding: .5rem;
+  font-weight: normal;
+  font-size: 1.4rem;
+}
+
+.dropdown-content li:hover {
+  color: var(--sunray);
+  font-weight: bold;
 }

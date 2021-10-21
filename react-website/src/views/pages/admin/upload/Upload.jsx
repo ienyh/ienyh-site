@@ -4,6 +4,9 @@ import './upload.css';
 import { addBlog } from '../../../../apis/blogApis';
 import markdownToHtml from '../../../../utils/markdown';
 
+import EventEmitter from '../../../../utils/EventEmitter';
+import { EVENT_CHANGE_HEADER } from '../../../../utils/events';
+import { HEADER_HEIGHT } from '../../../../utils/config';
 
 const UpLoad = (props) => {
   const { history } = props;
@@ -26,7 +29,7 @@ const UpLoad = (props) => {
   ]);
 
   useEffect(() => {
-    window.scrollTo(0, window.innerHeight - 60);
+    EventEmitter.emit(EVENT_CHANGE_HEADER, { headerHeight: HEADER_HEIGHT, });
   }, []);
 
   const submitHandler = async (e) => {
