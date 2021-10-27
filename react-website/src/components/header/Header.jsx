@@ -22,6 +22,7 @@ import icon_menu from '../../assets/icons/menu.svg';
 import icon_menu_open from '../../assets/icons/menu-open.svg';
 import { HEADER_HEIGHT } from '../../utils/config';
 import LocalStorage from '../../utils/LocalStorage';
+import { isLogined } from '../../utils/common';
 
 const list = [
   {
@@ -137,6 +138,10 @@ const Header = () => {
     const res = await post('/login', { username, password });
     if (res?.code === 1 && res?.data?.token) {
       LocalStorage.set('token', res.data.token);
+      LocalStorage.set('isLogin', true, 1000 * 60 * 60 * 24);
+      console.log('logined');
+    } else {
+      alert('账号密码错误');
     }
   }
 
@@ -171,8 +176,14 @@ const Header = () => {
                   setModal(true);
                   // console.log(modal);
                 }}>站长登录</li>
-                <li><Link to="/pages/admin/manage">网站管理</Link></li>
-                <li>退出登录</li>
+                {
+                  isLogined() ?
+                    <>
+                      <li><Link to="/pages/admin/manage">网站管理</Link></li>
+                      <li>退出登录</li>
+                    </> : null
+                }
+                
               </>
             } ></Dropdown>
           </li>

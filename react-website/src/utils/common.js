@@ -1,3 +1,8 @@
+import LocalStorage from './LocalStorage';
+
+export const isLogined = () => {
+  return LocalStorage.get('isLogin') === true;
+}
 
 export const isPC = () => {
   const userAgentInfo = navigator.userAgent || window.navigator.userAgent;
@@ -18,5 +23,21 @@ export function throttle (cb, wait) {
         timer = null;
       }, wait)
     }
+  }
+}
+
+/**
+ * 为了重写 history 的方法 pushState & replaceState
+ * @param {pushState|replaceState} type 
+ * @returns 
+ */
+export function historyRewrite (type) {
+  const func = history[type]
+  return function () {
+    const event = new Event(type);
+    event.arguments = arguments;
+    window.dispatchEvent(event);
+    const res = Reflect.apply(func, this, arguments);
+    return res;
   }
 }

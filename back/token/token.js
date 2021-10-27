@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken');
 
-const SECRET_KEY = 'chenyh!1119';
+const SECRET_KEY = 'znxjapjq7127412hkqjhsq7814723';
 
 class Jwt {
 
@@ -26,3 +26,6 @@ class Jwt {
   }
 
 }
+
+exports.SECRET_KEY = SECRET_KEY;
+exports.Jwt = Jwt;

@@ -57,7 +57,7 @@ class LocalStorage {
       LocalStorage.remove(key);
       return null;
     }
-    return value?.data ?? {};
+    return value?.data ?? null;
   }
 
   static remove = (key) => {

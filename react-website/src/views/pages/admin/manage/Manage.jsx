@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
+import dayjs from 'dayjs';
 import './manage.css';
 import EventEmitter from '../../../../utils/EventEmitter';
 import { EVENT_CHANGE_HEADER } from '../../../../utils/events';
@@ -29,20 +30,21 @@ const Manage = () => {
       <table>
         <thead>
           <tr>
-            <td>标题</td>
+            <td colSpan={3}>标题</td>
             <td>作者</td>
             <td>时间</td>
-            <td>字数</td>
+            <td colSpan={2}>字数</td>
             <td>标签</td>
+            <td>操作</td>
           </tr>
         </thead>
         <tbody>
           {
             blog.map(item => {
               return <tr key={uuidv4()}>
-                <td>{ item.title }</td>
+                <td colSpan={3}>{ item.title }</td>
                 <td>{ item.author }</td>
-                <td>{ item.create_time }</td>
+                <td colSpan={2}>{ dayjs(item.create_time).format('YYYY-MM-DD') }</td>
                 <td>{ item.numbers }</td>
                 <td>{ item.keyword }</td>
                 <td>

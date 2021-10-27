@@ -1,11 +1,19 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { Route, Switch, Redirect } from 'react-router-dom';
 import Header from '../../components/header/Header';
 import Footer from '../../components/footer/Footer';
 import Audio from '../../components/audio/Audio';
 
+
 const Pages = (props) => {
   const { routes } = props;
+
+  useEffect(() => {
+    // history.pushState = 
+    // window.addEventListener('popstate', e => {
+    //   console.log(e);
+    // });
+  }, []);
 
   return (
     <>
