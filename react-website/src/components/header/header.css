@@ -139,22 +139,27 @@ header .header-content .h-text-small {
   }
 
   .nav-menu {
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
     position: absolute;
-    top: 60px;
+    top: 100vh;
     right: 0;
-    bottom: 0;
-    width: 50vw;
-    height: calc(100vh - 60px);
+    left: 0;
+    width: 100vw;
     background-color: var(--black);
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    padding: 10px;
     z-index: 1;
-    transform: translateX(100%);
+    transform: translateY(-100%);
     transition: 0.4s ease-in-out;
   }
 
   .nav-menu li {
     margin: 2vh;
-    /* padding: 8px 10px; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   .menu-img {

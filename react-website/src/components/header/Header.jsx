@@ -65,13 +65,13 @@ const list = [
     path: '/pages/about_',
     icon: icon_link,
   },
-  {
-    title: 'three',
-    path: '/example/index.html',
-    icon: icon_3d,
-    external: true,
-    comment: '测试多页面',
-  },
+  // {
+  //   title: 'three',
+  //   path: '/example/index.html',
+  //   icon: icon_3d,
+  //   external: true,
+  //   comment: '测试多页面',
+  // },
 ];
 
 const Header = () => {
@@ -149,7 +149,7 @@ const Header = () => {
     <div>
       <nav className="animated slideInDown">
         <h1>Chenyh</h1>
-        <ul className="nav-menu" style={{ transform: isBar ? 'none' : 'translateX(100%)' }}>
+        <ul className="nav-menu" style={{ transform: isBar ? 'none' : 'translateY(-100%)' }}>
           {
             list.map(item => {
               return <li key={ item.path }>
@@ -163,7 +163,6 @@ const Header = () => {
               </li>
             })
           }
-          <li></li>
           <li className="hiddenInMobile">
             <Dropdown title={
               <div className="flex">

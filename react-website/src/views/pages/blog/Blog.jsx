@@ -3,6 +3,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 import './blog.css';
 import BlogCard from './components/BlogCard';
+import Calendar from '../../../components/calendar/Calendar';
 import { get } from '../../../utils/request';
 import EventEmitter from '../../../utils/EventEmitter';
 import { EVENT_CHANGE_HEADER } from '../../../utils/events';
@@ -67,7 +68,7 @@ const Blog = (props) => {
       
       <div className="bar">
         <h2>Tags<div className="bottom-line"></div></h2>
-        <ul>
+        <ul className="card">
           {
             tags.map(tag => {
               return <li key={uuidv4()}>
@@ -76,6 +77,7 @@ const Blog = (props) => {
             })
           }
         </ul>
+        <Calendar></Calendar>
       </div>
     </div>
   )

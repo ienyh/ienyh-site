@@ -2,6 +2,7 @@
   margin: 1.5rem 0;
   color: var(--dark);
   border-radius: 8px;
+  box-shadow: 1px 4px 4px -2px rgba(0, 0, 0, 0.2);
   display: flex;
   justify-content: space-between;
   align-items: center;
