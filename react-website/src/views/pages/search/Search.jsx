@@ -11,6 +11,7 @@ import icon_bing from '../../../assets/icons//bing.svg';
 import icon_npm from '../../../assets/icons/npm.svg';
 import icon_docker from '../../../assets/icons/docker.svg';
 
+import Notification from '../../../components/notification/Notification';
 
 const typeOptions = [
   { name: 'baidu', url: 'https://www.baidu.com/s?q1=', icon: icon_baidu },
@@ -79,6 +80,8 @@ const Search = React.memo(() => {
           </div>
         </div>
       </div>
+
+      <Notification type="error" />
     </>
   )
 })

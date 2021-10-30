@@ -133,15 +133,19 @@ const Header = () => {
   const loginSubmit = async (e) => {
     e.preventDefault();
     const form = e.target;
-    const username = form[0].value;
-    const password = form[1].value;
-    const res = await post('/login', { username, password });
-    if (res?.code === 1 && res?.data?.token) {
-      LocalStorage.set('token', res.data.token);
-      LocalStorage.set('isLogin', true, 1000 * 60 * 60 * 24);
-      console.log('logined');
+    const username = form[0].value.trim();
+    const password = form[1].value.trim();
+    if (username.length > 0 && password.length > 0) {
+      const res = await post('/login', { username, password });
+      if (res?.code === 1 && res?.data?.token) {
+        LocalStorage.set('token', res.data.token);
+        LocalStorage.set('isLogin', true, 1000 * 60 * 60 * 24);
+        console.log('logined');
+      } else {
+        alert('账号密码错误');
+      }
     } else {
-      alert('账号密码错误');
+      alert('输入账号密码');
     }
   }
 

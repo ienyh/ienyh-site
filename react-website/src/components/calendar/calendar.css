@@ -12,10 +12,12 @@
   border-bottom: 2px dashed rgba(0, 0, 0, 0.5);
 }
 
+
+
 .calendar .cal-body {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  padding: 0 0 6px 0;
+  padding: 0 4px 6px 4px;
 }
 
 .calendar .cal-body > li {

@@ -10,7 +10,7 @@ const isLeapYear = (year) => {
   return false;
 }
 
-const Calendar = React.memo((props) => {
+const Calendar = ((props) => {
   const { date } = props;
   const [current, setCurrent] = useState({
     date: null,
@@ -24,16 +24,16 @@ const Calendar = React.memo((props) => {
   useEffect(() => {
     setCurrent({
       ...current,
-      date: new Date(),
+      date: date ?? new Date(),
     });
-  }, []);
+  }, [date]);
 
   useEffect(() => {
     if (current.date instanceof Date) {
       const year = current.date.getFullYear();
       const month = current.date.getMonth();
       const calendar = [];
-      let week_days = current.date.getDay();
+      let week_days = current.date.getDay(), monthDays = current.date.getDate();
 
       let currMonthDays, prevMonthDays;
       if (month !== 1) {
@@ -50,12 +50,14 @@ const Calendar = React.memo((props) => {
 
       for (let i = 1; i <= currMonthDays; i++) {
         calendar.push({
-          type: 'curr',
+          type: i === monthDays ? 'today' : 'curr',
           value: i,
         });
       }
 
-      for (let i = 0; i < week_days; i++) {
+      // 27 周三 -> 1 周?
+      // 27 % 7 - 7 + 6
+      for (let i = 0; i < (monthDays % 7) - 1; i++) {
         calendar.unshift({
           type: 'prev',
           value: prevMonthDays - i,
@@ -74,7 +76,7 @@ const Calendar = React.memo((props) => {
         ...current,
         month_days: currMonthDays,
         week_days,
-        month_today: current.date.getDate(),
+        month_today: monthDays,
         calendar_arr: calendar,
       })
     }
@@ -84,19 +86,19 @@ const Calendar = React.memo((props) => {
     <div className="card calendar">
       <div className="cal-header">{ dayjs(current.date).format('YYYY年MM月') }</div>
       <ul className="cal-body">
-        <li className="cal-li-header">日</li>
-        <li className="cal-li-header">一</li>
-        <li className="cal-li-header">二</li>
-        <li className="cal-li-header">三</li>
-        <li className="cal-li-header">四</li>
-        <li className="cal-li-header">五</li>
-        <li className="cal-li-header">六</li>
+        <li className="cal-li-header"><span>日</span></li>
+        <li className="cal-li-header"><span>一</span></li>
+        <li className="cal-li-header"><span>二</span></li>
+        <li className="cal-li-header"><span>三</span></li>
+        <li className="cal-li-header"><span>四</span></li>
+        <li className="cal-li-header"><span>五</span></li>
+        <li className="cal-li-header"><span>六</span></li>
         {
           Array.isArray(current.calendar_arr) && current.calendar_arr.map(item => {
             return (
               <li
                 key={uuidv4()}
-                className={`${item.value === current.month_today ? "today" : ''} ${item.type !== 'curr' ? "prev-next" : ''}`}
+                className={`${item.type === 'today' ? 'today' : ''} ${(item.type === 'prev' || item.type === 'next') ? 'prev-next' : ''}`}
               >
                 {item.value}
               </li>

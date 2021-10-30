@@ -77,7 +77,7 @@ const Blog = (props) => {
             })
           }
         </ul>
-        <Calendar></Calendar>
+        <Calendar date={ new Date('2021-10-27') }></Calendar>
       </div>
     </div>
   )
