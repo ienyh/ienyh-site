@@ -1,4 +1,5 @@
 .blog h2 {
+  user-select: none;
   text-transform: uppercase;
   color: var(--github-black);
   font-size: 1.6rem;

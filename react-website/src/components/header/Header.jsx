@@ -23,6 +23,7 @@ import icon_menu_open from '../../assets/icons/menu-open.svg';
 import { HEADER_HEIGHT } from '../../utils/config';
 import LocalStorage from '../../utils/LocalStorage';
 import { isLogined } from '../../utils/common';
+import Notification from '../notification/index';
 
 const list = [
   {
@@ -140,12 +141,18 @@ const Header = () => {
       if (res?.code === 1 && res?.data?.token) {
         LocalStorage.set('token', res.data.token);
         LocalStorage.set('isLogin', true, 1000 * 60 * 60 * 24);
-        console.log('logined');
+        Notification.success({ title: '登录成功' });
       } else {
-        alert('账号密码错误');
+        Notification.error({
+          title: '账号密码错误',
+          content: '请重新输入',
+        });
       }
     } else {
-      alert('输入账号密码');
+      Notification.info({
+        title: '未输入账号密码',
+        content: '请重新输入',
+      });
     }
   }
 

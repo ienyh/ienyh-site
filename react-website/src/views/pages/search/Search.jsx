@@ -80,8 +80,6 @@ const Search = React.memo(() => {
           </div>
         </div>
       </div>
-
-      <Notification type="error" />
     </>
   )
 })

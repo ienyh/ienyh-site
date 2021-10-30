@@ -8,6 +8,7 @@ import { get } from '../../../utils/request';
 import EventEmitter from '../../../utils/EventEmitter';
 import { EVENT_CHANGE_HEADER } from '../../../utils/events';
 import LocalStorage from '../../../utils/LocalStorage';
+import Notification from '../../../components/notification/index';
 
 const Blog = (props) => {
   const [list, setList] = useState([]);
@@ -22,8 +23,13 @@ const Blog = (props) => {
   }
 
   const fetchTags = async () => {
-    const { data } = await get('/getTags');
-    setTags(data.filter(i => i !== null));
+    try {
+      const { data } = await get('/getTags');
+      setTags(data.filter(i => i !== null));
+      Notification.success({ title: '请求标签数据成功', duration: 2000 });
+    } catch (error) {
+      Notification.error({ title: '请求标签数据失败', content: error });
+    }
   }
 
   const loadHandler = () => {
@@ -32,7 +38,7 @@ const Blog = (props) => {
 
   useEffect(() => {
     // 发布事件
-    EventEmitter.emit(EVENT_CHANGE_HEADER, { title: <h1>归档</h1>, backdrop: true });
+    EventEmitter.emit(EVENT_CHANGE_HEADER, { title: <h1>归档</h1>, backdrop: false });
 
     // 如果本地有数据缓存则不向服务器请求数据
     const blogs = LocalStorage.get('blogs');
