@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import dayjs from 'dayjs';
+import { v4 as uuidv4 } from 'uuid';
 import 'github-markdown-css/github-markdown.css';
 import 'highlight.js/styles/github.css';
 import './article.css';
@@ -10,6 +11,8 @@ import { EVENT_CHANGE_HEADER } from '../../../../utils/events';
 const Article = (props) => {
   const { id } = props.match.params;
   const [blog, setBlog] = useState({});
+  const paths = window.location.pathname.split('/').filter(i => i !== '').map(i => decodeURIComponent(i));
+
 
   useEffect(() => {
     const fetch = async () => {
@@ -32,11 +35,6 @@ const Article = (props) => {
 
   return (
     <div className="container">
-      {/* <div className="article-header">
-        <h3>{ blog.title }</h3>
-        <h3>{ blog.author }</h3>
-        <h3>{ blog.create_time }</h3>
-      </div> */}
       {
         blog?.isReprint ? 
           <div className="reprint">
@@ -46,6 +44,12 @@ const Article = (props) => {
             </div>
           </div> 
           : null
+      }
+
+      {
+        paths.map(path => {
+          return <span key={uuidv4()}>{ path }</span>
+        })
       }
 
       <div

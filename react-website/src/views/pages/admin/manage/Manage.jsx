@@ -6,6 +6,7 @@ import EventEmitter from '../../../../utils/EventEmitter';
 import { EVENT_CHANGE_HEADER } from '../../../../utils/events';
 import { HEADER_HEIGHT } from '../../../../utils/config';
 import { get } from '../../../../utils/request';
+import LocalStorage from '../../../../utils/LocalStorage';
 
 
 const Manage = () => {
@@ -15,18 +16,20 @@ const Manage = () => {
   const fetchBlogs = async () => {
     const { data } = await get('/findAllBlog');
     const blogs = data instanceof Array && data.sort((a, b) => b.create_time - a.create_time);
-    console.log(blogs);
     setBlog(blogs);
-    // LocalStorage.set('blogs', blogs, 7200000); // 设置数据有效时长为两小时
+    LocalStorage.set('blogs', blogs, 7200000); // 设置数据有效时长为两小时
   }
 
   useEffect(() => {
     EventEmitter.emit(EVENT_CHANGE_HEADER, { headerHeight: HEADER_HEIGHT });
-    fetchBlogs();
+    // 如果本地有数据缓存则不向服务器请求数据
+    const blogs = LocalStorage.get('blogs');
+    if (blogs) setBlog(blogs);
+    else fetchBlogs();
   }, []);
 
   return (
-    <div className="container">
+    <div className="container table-container">
       <table>
         <thead>
           <tr>

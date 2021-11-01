@@ -20,6 +20,7 @@ const Blog = (props) => {
     const blogs = data instanceof Array && data.sort((a, b) => b.create_time - a.create_time);
     setList(blogs);
     LocalStorage.set('blogs', blogs, 7200000); // 设置数据有效时长为两小时
+    Notification.success({ title: '请求博客数据成功', duration: 2000 });
   }
 
   const fetchTags = async () => {
@@ -83,7 +84,7 @@ const Blog = (props) => {
             })
           }
         </ul>
-        <Calendar date={ new Date('2021-10-27') }></Calendar>
+        <Calendar></Calendar>
       </div>
     </div>
   )

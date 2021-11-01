@@ -39,6 +39,7 @@ const Music = () => {
         }
       }
       EventEmitter.emit(EVENT_CHANGE_AUDIO, tmp[prev]);
+      setCurrent(tmp[prev]);
     });
     EventEmitter.on(EVENT_SWITCH_NEXT_MUSIC, (music) => {
       const src = music.src;
@@ -50,6 +51,7 @@ const Music = () => {
         }
       }
       EventEmitter.emit(EVENT_CHANGE_AUDIO, tmp[next]);
+      setCurrent(tmp[next]);
     });
     return () => {
       EventEmitter.emit(EVENT_OPEN_AUDIO, false);
@@ -63,11 +65,13 @@ const Music = () => {
       <div className="container">
         <div className="music-top" style={{ padding: "1rem", margin: "1rem 0" }}>
           <div className="card music-top-left">
+            <h2>Music Today</h2>
             {
               tmp.map((item) => {
                 return <div
                   className="music-item"
-                  key={item.src} onClick={
+                  key={item.src}
+                  onClick={
                     async () => {
                       await setCurrent({ ...item });
                       EventEmitter.emit(EVENT_CHANGE_AUDIO, item);
@@ -79,12 +83,13 @@ const Music = () => {
             }
           </div>
           <div className="card music-top-right">
-            { current.src }
+            <div className="music-img">
+              <img draggable={false} src="https://www.zhouxingxing.fun/img/text/3min.png" />
+            </div>
+            <h2>{current.musicName}</h2>
           </div>
         </div>
       </div>
-
-      {/* <Audio {...current} autoplay></Audio> */}
     </>
   )
 }

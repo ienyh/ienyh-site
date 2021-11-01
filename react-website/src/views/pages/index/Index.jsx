@@ -1,16 +1,20 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
 import './index.css';
+import BlogCard from '../blog/components/BlogCard';
+import Calendar from '../../../components/calendar/Calendar';
 import { get } from '../../../utils/request';
 import EventEmitter from '../../../utils/EventEmitter';
 import { EVENT_CHANGE_HEADER } from '../../../utils/events';
 import LocalStorage from '../../../utils/LocalStorage';
-import Typing from '../../../components/typing/typing';
-import BlogCard from '../blog/components/BlogCard';
+import Notification from '../../../components/notification/index';
+
+import icon_announce from '../../../assets/icons/announce.svg';
 
 const Index = (props) => {
   const [list, setList] = useState([]);
+  const [tags, setTags] = useState([]);
 
   // 向服务器请求数据
   const fetchBlogs = async () => {
@@ -18,55 +22,75 @@ const Index = (props) => {
     const blogs = data instanceof Array && data.sort((a, b) => b.create_time - a.create_time);
     setList(blogs);
     LocalStorage.set('blogs', blogs, 7200000); // 设置数据有效时长为两小时
+    Notification.success({ title: '请求博客数据成功', duration: 2000 });
   }
 
-  const unloadHandler = () => {
-    fetchBlogs(); // 页面刷新之前请求数据
+  const fetchTags = async () => {
+    try {
+      const { data } = await get('/getTags');
+      setTags(data.filter(i => i !== null));
+      Notification.success({ title: '请求标签数据成功', duration: 2000 });
+    } catch (error) {
+      Notification.error({ title: '请求标签数据失败', content: error });
+    }
+  }
+
+  const loadHandler = () => {
+    fetchBlogs(); // 页面刷新则重新请求数据
   }
 
   useEffect(() => {
     // 发布事件
-    EventEmitter.emit(EVENT_CHANGE_HEADER, {
-      title: <h1>Chenyh's Blog</h1>,
-      backdrop: false,
-      text: <Typing time={ 6000 } circle={ false }>Start Coding Start Life</Typing>,
-    });
+    EventEmitter.emit(EVENT_CHANGE_HEADER, { title: <h1>归档</h1>, backdrop: false });
 
     // 如果本地有数据缓存则不向服务器请求数据
     const blogs = LocalStorage.get('blogs');
     if (blogs) setList(blogs);
     else fetchBlogs();
 
-    window.addEventListener('unload', unloadHandler);
+    fetchTags();
+
+    window.addEventListener('load', loadHandler);
     return () => {
-      window.removeEventListener('unload', unloadHandler);
+      window.removeEventListener('load', loadHandler);
     }
   }, []);
 
   return (
-    <div>
-      <div className="container">
-        <div className="blogs">
-          <div className="top-line">
-            <h2>Article</h2>
-          </div>
-          {
-            list.splice(0, 5).map((blog, index) =>
-              <BlogCard
-                id="card"
-                {...blog}
-                key={uuidv4()}
-                right={index % 2 === 0}
-              />
-            )
-          }
-          <div
-            className="blogs-more"
-            onClick={ () => { props.history.push('/pages/blog') } }
-          >
-            <span>more ➡</span>
+    <div className="blog container">
+      <div className="blogs">
+        <h2>Article<div className="bottom-line"></div></h2>
+        {
+          list.map((blog, index) =>
+            <BlogCard
+              id="card"
+              { ...blog }
+              key={ uuidv4() }
+              animate
+            />
+          )
+        }
+      </div>
+      
+      <div className="bar">
+        <div className="card announce">
+          <img src={icon_announce} draggable={false}/>
+          <div>
+            <span>这是一条替代通知</span>
+            <span></span>
           </div>
         </div>
+        <h2>Tags<div className="bottom-line"></div></h2>
+        <ul className="card">
+          {
+            tags.map(tag => {
+              return <li key={uuidv4()}>
+                {  tag.toString() }
+              </li>
+            })
+          }
+        </ul>
+        <Calendar></Calendar>
       </div>
     </div>
   )

@@ -1,38 +1,124 @@
-.top-line {
+.blog h2 {
+  user-select: none;
+  text-transform: uppercase;
+  color: var(--github-black);
+  font-size: 1.6rem;
+  font-style: italic;
+  font-family: 'Nunito-Regular', Georgia, Times, monospace;
   background-color: var(--sunray);
-  height: 4rem;
-  border-radius: 2px;
+  padding: 4px 10px;
+  border-radius: 4px;
   box-shadow: 
     inset 1px 2px 2px -1px rgba(0, 0, 0, 0.2), 
     1px 4px 4px -2px rgba(0, 0, 0, 0.2);
 }
 
-.top-line h2 {
-  user-select: none;
-  text-transform: uppercase;
-  padding: 0 1rem;
-  line-height: 4rem;
-  font-size: 1.6rem;
-  font-style: italic;
-  font-family: 'Nunito-Regular', Georgia, Times, monospace;
+.blog {
+  margin: 1rem auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
 }
 
-.blogs-more {
+.blogs {
+  flex: 3;
+  padding: 0.4rem .8rem;
+  margin-right: 1rem;
+}
+
+.top-line {
+  width: 100%;
+  height: 4px;
+  background-color: var(--github-black);
+  overflow: hidden;
+  margin-bottom: 2px;
+}
+
+.bottom-line {
+  width: 10%;
+  height: 2px;
+  background-color: #ddd;
+  overflow: hidden;
+}
+
+.bar {
+  flex: 1;
+}
+
+.bar > ul {
   display: flex;
-  justify-content: end;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: var(--white);
+  border-radius: 5px;
+  padding: 1rem;
+  margin: 1rem 0;
+}
+
+.bar > ul li {
+  cursor: pointer;
+  font-size: 1.6rem;
+  text-transform: uppercase;
+  margin: 0 12px;
+  padding: 4px 0;
+  border-radius: 5px;
+  background: var(--white);
+  color: var(--sunray);
+  position: relative;
+}
+
+.bar > ul li:hover {
+  transform: scale(1.1) translateY(-2px);
+  transition: all .25s ease-in-out;
+}
+
+.bar > ul li:hover::after  {
+  content: "";
+  position: absolute;
+  top: 90%;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background-color: var(--sunray);
+}
+
+.announce {
+  margin: 0 0 10px 0;
+  padding: 10px;
+  font-size: 1.4rem;
+  color: #1d1d1f;
+  display: flex;
+  justify-content: flex-start;
   align-items: center;
 }
 
-.blogs-more span {
-  text-transform: uppercase;
-  font-size: 1.4rem;
-  font-style: italic;
-  font-weight: bold;
-  font-family: 'Nunito-Regular', Georgia, Times, monospace;
-  cursor: pointer;
+.announce > img {
+  width: 24px;
+  height: 24px;
+  margin: 0 6px 0 0;
+  user-select: none;
 }
 
-.blogs-more span:hover {
-  color: var(--sunray);
-  text-decoration: underline;
+@media screen and (max-width: 1080px) {
+  .blog {
+    flex-direction: column-reverse;
+    margin: 1rem .5rem;
+  }
+
+  .blogs {
+    margin: unset;
+  }
+
+  .bar {
+    margin: unset;
+    width: 100%;
+    padding: 0;
+    background-color: unset;
+  }
+
+  .bar ul li {
+    background: unset;
+  }
 }
+

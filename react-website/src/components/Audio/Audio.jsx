@@ -54,12 +54,12 @@ const Audio = React.memo(() => {
 
   // 当前歌曲播放完成处理的事件
   const endedHandler = function () {
-    console.log('endedHandler');
+    // 切换下一首音乐
     EventEmitter.emit(EVENT_SWITCH_NEXT_MUSIC, basic);
   }
 
   useEffect(() => {
-    // 注册事件
+    // 监听事件
     EventEmitter.on(EVENT_DISPLAY_AUDIO, isDisplay => {
       setDisplay(isDisplay);
     });
@@ -85,7 +85,7 @@ const Audio = React.memo(() => {
     }
     audioRef.current.addEventListener('durationchange', durationchangeHandler);
     audioRef.current.addEventListener('timeupdate', timeupdateHandler);
-    audioRef.current.addEventListener('ended', endedHandler)
+    audioRef.current.addEventListener('ended', endedHandler);
     return () => {
       audioRef.current.removeEventListener('durationchange', durationchangeHandler);
       audioRef.current.removeEventListener('timeupdate', timeupdateHandler);
@@ -108,9 +108,49 @@ const Audio = React.memo(() => {
     if (name === 'left_previous') {
       EventEmitter.emit(EVENT_SWITCH_PREV_MUSIC, basic);
     } else if (name === 'right_next') {
+      console.log(basic);
       EventEmitter.emit(EVENT_SWITCH_NEXT_MUSIC, basic);
     }
-  }, 600);
+  }, 500);
+
+  let isMousePress = false;
+
+  const start = e => {
+    // console.log(e);
+    isMousePress = true;
+    // 禁止默认事件（避免鼠标拖拽进度点的时候选中文字）
+    if (e && e.preventDefault) {
+      e.preventDefault();
+    } else {
+      e.returnValue = false;
+    }
+  }
+
+  const move = e => {
+    if (isMousePress) {
+      console.log(e.clientX);
+    }
+  }
+
+  const end = e => {
+    // 这里注意鼠标按下和抬起会触发 click 事件
+    isMousePress = false;
+  }
+
+  const musicClick = e => {
+    const { offsetX } = e.nativeEvent;
+    if (audioRef.current) {
+      const { duration } = audioRef.current;
+      const tmp = Math.round(duration * (offsetX / 240).toFixed(2));
+      audioRef.current.currentTime = tmp;
+      setCurrentTime(tmp);
+      setRate((offsetX / 240).toFixed(2));
+    }
+  }
+
+  useLayoutEffect(() => {
+    
+  }, []);
 
   return (
     <>
@@ -158,8 +198,18 @@ const Audio = React.memo(() => {
               <div className="audio-bar-time-top">{ `${format(currentTime)} / ${format(duration)} ` }</div>
             </div>
             <div className="audio-bar-bottom">
-              <div className="audio-bar-before" style={{ width: 240 }}>
-                <div className="audio-bar-after" style={{ width: 240 * rate }}></div>
+              <div
+                className="audio-bar-before"
+                style={{ width: 240 }}
+                onMouseDown={start}
+                onMouseMove={move}
+                onMouseUp={end}
+                onClick={musicClick}
+              >
+                <div
+                  className="audio-bar-after"
+                  style={{ width: 240 * rate }}
+                ></div>
               </div>
             </div>
           </div>

@@ -7,8 +7,15 @@
 
 .music-top .music-top-left {
   flex: 3;
-  font-size: 1.6rem;
+  font-size: 1.4rem;
   margin-right: 1rem;
+}
+
+.music-top .music-top-left h2 {
+  font-size: 1.6rem;
+  color: var(--sunray);
+  padding: 4px 10px;
+  user-select: none;
 }
 
 .music-top .music-top-right {
@@ -41,17 +48,54 @@
   border-bottom-right-radius: inherit;
 }
 
+.music-top-right .music-img {
+  display: block;
+  overflow: hidden;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  margin: 10px auto;
+  animation: music-img-rotate 12s linear infinite forwards;
+  transition: all .2s ease; 
+}
+
+.music-top-right .music-img img {
+  display: block;
+  width: inherit;
+  height: inherit;
+}
+
+.music-top-right .music-img:hover {
+  transform: scale(1.1);
+  transition: all .3s ease;
+}
+
+@keyframes music-img-rotate {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.music-top-right h2 {
+  color: var(--sunray);
+  text-align: center;
+}
+
 @media screen and (max-width: 1000px) {
   .music-top {
     display: flex;
     align-items: center;
-    flex-direction: column;
+    flex-direction: column-reverse;
   }
 
   .music-top .music-top-left {
     flex: unset;
     width: 100%;
-    margin: 0 0 1rem;
+    margin: 1rem 0 1rem;
   }
 
   .music-top .music-top-right {

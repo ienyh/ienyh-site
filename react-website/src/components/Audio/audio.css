@@ -43,7 +43,7 @@
 .audio-container .controls_img {
   width: 32px;
   height: 32px;
-  border-radius: 2px;
+  border-radius: 50%;
   overflow: hidden;
   margin: 0 20px;
 }
@@ -99,6 +99,7 @@
   position: relative;
   border-radius: 5px;
   overflow: hidden;
+  cursor: pointer;
 }
 
 .audio-bar-after {
@@ -108,7 +109,9 @@
   position: absolute;
   top: 0;
   left: 0;
+  cursor: pointer;
 }
+
 
 .audio-bar-time-top {
   margin: 0 1rem;
