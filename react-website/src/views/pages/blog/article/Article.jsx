@@ -7,23 +7,26 @@ import './article.css';
 import { getBlogByTitle } from '../../../../apis/blogApis';
 import EventEmitter from '../../../../utils/EventEmitter';
 import { EVENT_CHANGE_HEADER } from '../../../../utils/events';
+import Back from '../../../../components/backtotop/Back';
 
 const Article = (props) => {
   const { id } = props.match.params;
   const [blog, setBlog] = useState({});
   const paths = window.location.pathname.split('/').filter(i => i !== '').map(i => decodeURIComponent(i));
 
+  const fetchArticle = async () => {
+    const res = await getBlogByTitle(id);
+    if (res.code === 1 && res?.data) {
+      const tmp = Object.assign(res.data, {
+        create_time: dayjs(new Date(res.data.create_time)).format('YYYY-MM-DD HH:mm'),
+      });
+      setBlog(tmp);
+      return tmp;
+    }
+  }
 
   useEffect(() => {
-    const fetch = async () => {
-      const res = await getBlogByTitle(id);
-      if (res.code === 1 && res?.data) {
-        const tmp = Object.assign(res.data, { create_time: dayjs(new Date(res.data.create_time)).format('YYYY-MM-DD HH:mm') });
-        setBlog(tmp);
-        return tmp;
-      }
-    }
-    fetch()
+    fetchArticle()
       .then((res) => {
         EventEmitter.emit(EVENT_CHANGE_HEADER, {
           title: <h1>{ id }</h1>,
@@ -34,7 +37,7 @@ const Article = (props) => {
   }, []);
 
   return (
-    <div className="container">
+    <div className="container article-container">
       {
         blog?.isReprint ? 
           <div className="reprint">
@@ -46,11 +49,11 @@ const Article = (props) => {
           : null
       }
 
-      {
+      {/* {
         paths.map(path => {
           return <span key={uuidv4()}>{ path }</span>
         })
-      }
+      } */}
 
       <div
         dangerouslySetInnerHTML={{ __html: blog.content }}
@@ -58,9 +61,11 @@ const Article = (props) => {
       ></div>
 
       <div className="article-footer">
-        <div className="item left">⬅️ Pymongo 去除数据</div>
-        <div className="item right">利用 selenium 抓取 ➡️</div>
+        <div className="item left">⬅️ 上一篇</div>
+        <div className="item right">下一篇 ➡️</div>
       </div>
+
+      <Back></Back>
     </div>
   )
 }

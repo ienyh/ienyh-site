@@ -4,9 +4,10 @@
 }
 
 .article {
-  /* margin: 1rem; */
   padding: 1rem 2rem;
   border-radius: .8rem;
+  box-shadow: var(--box-shadow);
+  margin: 0 0 1rem 0;
 }
 
 .article code {
@@ -14,12 +15,15 @@
 }
 
 .markdown-body .highlight pre, .markdown-body pre {
-  /* border: 1px solid rgba(0, 0, 0, 0.3); */
   background: #f5f5f5;
   position: relative;
 }
 
-.markdown-body .highlight pre, .markdown-body pre ::after {
+.markdown-body ul {
+  list-style: square;
+}
+
+/* .markdown-body .highlight pre, .markdown-body pre ::after {
   content: 'copy';
   position: absolute;
   right: 4px;
@@ -31,18 +35,27 @@
 
 .markdown-body .highlight pre, .markdown-body pre ::after:active {
   background-color: var(--github-black);
+} */
+
+blockquote::before {
+  content: '📃';
 }
 
 .article-footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
-
   padding: 0 1rem;
 }
 
-.article-footer .item {
+.article-footer > .item {
   white-space: pre;
+  cursor: pointer;
+}
+
+.article-footer > .item:hover {
+  color: var(--sunray);
+  font-weight: bold;
 }
 
 .reprint {
@@ -57,7 +70,7 @@
 }
 
 .reprint div {
-  padding: 2rem 1rem;
+  padding: 1.6rem 1rem;
   backdrop-filter: blur(3px);
 }
 
@@ -70,12 +83,18 @@
 }
 
 @media screen and (max-width: 1000px) {
+
   .article {
     margin: 0;
     padding: 1rem;
+    box-shadow: none;
   }
 
   .reprint {
-    margin: 1rem 0;
+    margin: 1rem .4rem;
+  }
+
+  .reprint div {
+    padding: 1.2rem 1rem;
   }
 }

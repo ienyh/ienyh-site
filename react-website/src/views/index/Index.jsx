@@ -1,11 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './index.css';
 
-function Index () {
+function Index (props) {
+
+  const [animate, setAnimate] = useState(false);
+
+  const clickHandler = () => {
+    setAnimate(true);
+        setTimeout(() => {
+          props.history.push('/pages');
+        }, 500);
+  }
+
   return (
-    <div className="index">
-      <Link to="/pages">start blog</Link>
+    <div className="index" data-fade-out={animate}>
+      <h3 className="" onClick={clickHandler}>Start Blog</h3>
     </div>
   )
 }

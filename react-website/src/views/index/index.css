@@ -1,12 +1,52 @@
 .index {
-  text-align: center;
-  color: var(--black);
-  font-size: 40px;
-  background-image: url('../../assets/imgs/bg.jpg');
+  background-image: url('../../assets/imgs/bg-2.jpg');
   width: 100vw;
   height: 100vh;
   background-position: bottom;
   background-size: cover;
 
-  padding-top: 40vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: index-fade-in .5s;
+}
+
+.index[data-fade-out=true] {
+  animation: index-fade-out .5s;
+}
+
+.index > h3 {
+  color: var(--white);
+  font-size: 42px;
+  letter-spacing: 3px;
+  font-family: var(--font-family-Nunito);
+  cursor: pointer;
+  position: relative;
+  padding: 0 10px;
+}
+
+.index > h3:hover {
+  outline: 2px dashed aquamarine;
+}
+
+@keyframes index-fade-out {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    transform: translateY(100%);
+    opacity: 1;
+  }
+}
+
+@keyframes index-fade-in {
+  from {
+    opacity: 1;
+    transform: translateY(100%);
+  }
+
+  to {
+    opacity: 1;
+  }
 }

@@ -207,9 +207,12 @@ const Header = () => {
       {
         mask ? <div className="mask"></div> : null
       }
-      <header className="animated fadeInDown" style={{
-        height: header.headerHeight,
-      }}>
+      <header
+        className="animated fadeInDown"
+        style={{
+          height: header.headerHeight,
+        }}
+      >
         <div className="header-content">
           <div>
             {header.title}

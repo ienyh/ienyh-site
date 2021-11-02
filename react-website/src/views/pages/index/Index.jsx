@@ -41,7 +41,7 @@ const Index = (props) => {
 
   useEffect(() => {
     // 发布事件
-    EventEmitter.emit(EVENT_CHANGE_HEADER, { title: <h1>归档</h1>, backdrop: false });
+    EventEmitter.emit(EVENT_CHANGE_HEADER, { title: <h1>首页</h1>, backdrop: false });
 
     // 如果本地有数据缓存则不向服务器请求数据
     const blogs = LocalStorage.get('blogs');

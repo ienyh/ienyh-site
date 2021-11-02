@@ -19,6 +19,7 @@
   z-index: 9;
   animation-name: search;
   animation-duration: .5s;
+  user-select: none;
 }
 
 .search-input-container {
@@ -68,12 +69,12 @@
 .search-input {
   width: 100%;
   margin: 10px auto;
-
   display: flex;
   justify-content: space-between;
   align-items: center;
   height: 48px;
   overflow: hidden;
+  box-shadow: 1px 4px 4px -2px rgba(0, 0, 0, 0.2);
 }
 
 .search-input input {

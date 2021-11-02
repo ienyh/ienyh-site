@@ -11,8 +11,6 @@ import icon_bing from '../../../assets/icons//bing.svg';
 import icon_npm from '../../../assets/icons/npm.svg';
 import icon_docker from '../../../assets/icons/docker.svg';
 
-import Notification from '../../../components/notification/Notification';
-
 const typeOptions = [
   { name: 'baidu', url: 'https://www.baidu.com/s?q1=', icon: icon_baidu },
   { name: 'google', url: '', icon: icon_google },
@@ -60,11 +58,11 @@ const Search = React.memo(() => {
         <div className="search-input-container">
           <div className="search-input">
             <div className="search-left-type" onClick={ clickHandler }>
-              <img src={current.icon} />
+              <img src={current.icon} draggable={false}/>
             </div>
             <input type="text" value={searchText} onChange={ (e) => setSearchText(e.target.value)}/>
             <div className="search-right-icon" onClick={ searchClickHandler }>
-              <img src={icon_search} alt="" />
+              <img src={icon_search} draggable={false} />
               <span>点击搜索</span>
             </div>
           </div>
@@ -73,7 +71,7 @@ const Search = React.memo(() => {
             {
               typeOptions.map(item => {
                 return <div key={uuidv4()} onClick={() => { setCurrent(item) }}>
-                  <img src={item.icon}/>
+                  <img src={item.icon} draggable={false}/>
                 </div>
               })
             }

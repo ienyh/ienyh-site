@@ -2,6 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Notification from './Notification.jsx';
 
+const notices = [];
+
 function notice (type, title, content, duration = 2000, onClose = () => {}) {
   const div = document.createElement('div');
   document.body.appendChild(div);
