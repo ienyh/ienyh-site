@@ -98,6 +98,31 @@
   height: 24px;
   margin: 0 6px 0 0;
   user-select: none;
+  animation: announce-bounce 3s ease-in-out infinite;
+}
+
+@keyframes announce-bounce {
+  0% {
+    transform: none;
+  }
+  20% {
+    transform: none;
+  }
+  40% {
+    transform: translateY(-30%) scale(1.1);
+  }
+  50%{
+    transform: translateY(-10%) scale(1.1);
+  }
+  60%{
+    transform: translateY(-30%) scale(1.1);
+  }
+  80%{
+    transform: none;
+  }
+  100%{
+    transform: none;
+  }
 }
 
 @media screen and (max-width: 1080px) {
