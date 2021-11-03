@@ -146,12 +146,14 @@ const Header = () => {
         Notification.error({
           title: '账号密码错误',
           content: '请重新输入',
+          duration: 1000,
         });
       }
     } else {
       Notification.info({
         title: '未输入账号密码',
         content: '请重新输入',
+        duration: 1000,
       });
     }
   }

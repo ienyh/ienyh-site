@@ -36,10 +36,27 @@ html, body {
   min-height: 100vh;
 }
 
+/* 通知栏容器样式 */
+.notification-container {
+  z-index: 999;
+  position: fixed;
+  top: var(--header-height);
+  right: 60px;
+}
+
 @media screen and (max-width: 1000px) {
   html, body {
     background-color: #f5f5f5;
     font-size: 9px;
+  }
+
+  .notification-container {
+    z-index: 999;
+    position: fixed;
+    top: var(--header-height);
+    left: 50%;
+    right: unset;
+    transform: translateX(-50%);
   }
 }
 

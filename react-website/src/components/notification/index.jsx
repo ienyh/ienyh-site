@@ -2,17 +2,19 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Notification from './Notification.jsx';
 
-const notices = [];
+const notificationContainer = document.createElement('div');
+notificationContainer.classList.add('notification-container');
+document.body.appendChild(notificationContainer);
 
 function notice (type, title, content, duration = 2000, onClose = () => {}) {
   const div = document.createElement('div');
-  document.body.appendChild(div);
+  notificationContainer.appendChild(div);
   ReactDOM.render(<Notification type={ type } title={ title } content={ content } />, div);
 
   setTimeout(() => {
     onClose({ type, title, content, duration });
     ReactDOM.unmountComponentAtNode(div);
-    document.body.removeChild(div);
+    notificationContainer.removeChild(div);
   }, duration || 2000);
 }
 

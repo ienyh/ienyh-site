@@ -86,6 +86,8 @@
   margin-right: 4px;
   background: var(--sunray);
   color: var(--github-black);
+  font-size: 1.2rem;
+  font-family: var(--font-family-Nunito);
 }
 
 .blog-card .desc {

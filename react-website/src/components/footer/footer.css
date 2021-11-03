@@ -3,6 +3,8 @@ footer {
   flex-direction: column;
   /* justify-content: center; */
   align-items: center;
+  font-family: var(--font-family);
+  font-size: 1.2rem;
 }
 
 footer a {

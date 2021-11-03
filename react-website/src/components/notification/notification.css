@@ -1,7 +1,4 @@
 .notification {
-  position: fixed;
-  top: 100px;
-  right: 40px;
   z-index: 999;
   padding: 8px 10px;
   border-radius: 4px;
@@ -9,12 +6,12 @@
   animation: put-notification-pc .4s ease;
   background-color: rgba(255, 255, 255, 1);
   min-width: 160px;
-  max-width: 80vw;
+  margin: 0 0 8px 0;
 }
 
 @keyframes put-notification-pc {
   from {
-    transform: scale(0.4) translateX(100%) translateY(-100%);
+    transform: scale(0.4) translateY(-100%);
     opacity: 0;
   }
 
@@ -63,7 +60,6 @@
     right: 0;
     max-width: 180px;
     min-width: 140px;
-    margin: auto;
     animation: put-notification-mobile .4s ease;
   }
 

@@ -19,7 +19,7 @@ const Index = (props) => {
   // 向服务器请求数据
   const fetchBlogs = async () => {
     const { data } = await get('/findAllBlog');
-    const blogs = data instanceof Array && data.sort((a, b) => b.create_time - a.create_time);
+    const blogs = data instanceof Array && data.sort((a, b) => b.create_time - a.create_time).slice(0, 5);
     setList(blogs);
     LocalStorage.set('blogs', blogs, 7200000); // 设置数据有效时长为两小时
     Notification.success({ title: '请求博客数据成功', duration: 2000 });
@@ -31,7 +31,7 @@ const Index = (props) => {
       setTags(data.filter(i => i !== null));
       Notification.success({ title: '请求标签数据成功', duration: 2000 });
     } catch (error) {
-      Notification.error({ title: '请求标签数据失败', content: error });
+      Notification.error({ title: '请求标签数据失败' });
     }
   }
 

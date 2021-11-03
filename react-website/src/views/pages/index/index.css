@@ -73,14 +73,19 @@
   transition: all .25s ease-in-out;
 }
 
-.bar > ul li:hover::after  {
+.bar > ul li::after {
   content: "";
   position: absolute;
   top: 90%;
   left: 0;
-  width: 100%;
+  width: 0px;
   height: 1px;
   background-color: var(--sunray);
+}
+
+.bar > ul li:hover::after  {
+  width: 100%;
+  transition: .3s width ease-in-out;
 }
 
 .announce {
