@@ -20,23 +20,19 @@
   transition: transform .2s ease;
 }
 
-.back-to-top:hover {
-  transform: scale(1.1);
-  transition: transform .3s ease;
+.back-to-top:active {
+  transform: scale(0.9);
+  transition: transform .1s ease;
 }
 
 @media screen and (max-width: 1000px) {
   .back-to-top {
-    padding: 4px;
+    padding: 6px;
     bottom: 20px;
     right: 20px;
     border-radius: 50%;
-    border: 1px solid rgba(18, 150, 219, .4);
-    box-shadow: 1px 4px 4px -2px rgba(18, 150, 219, 0.2);
-  }
-
-  .back-to-top:hover {
-    transform: none;
+    border: 2px solid rgba(18, 150, 219, .2);
+    box-shadow: 1px 4px 4px -2px rgba(18, 150, 219, 0.3);
   }
 
   .back-to-top > span {

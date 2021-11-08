@@ -1,3 +1,10 @@
+.article-container {
+  max-width: 1000px;
+  overflow: visible;
+  position: relative;
+  transform: none;
+}
+
 .article-header {
   font-size: 1.6rem;
   margin: 1rem 1rem 0 1rem;
@@ -8,6 +15,7 @@
   border-radius: .8rem;
   box-shadow: var(--box-shadow);
   margin: 0 0 1rem 0;
+  box-shadow: 3px 3px 4px -2px rgba(0, 0, 0, 0.2), -3px -3px 4px -2px rgba(0, 0, 0, 0.2);
 }
 
 .article code {
@@ -67,6 +75,7 @@ blockquote::before {
   margin: 0 0 1rem 0;
   font-size: 1.6rem;
   color: var(--white);
+  box-shadow: 3px 3px 4px -2px rgba(0, 0, 0, 0.2), -3px -3px 4px -2px rgba(0, 0, 0, 0.2);
 }
 
 .reprint div {
@@ -80,6 +89,49 @@ blockquote::before {
 
 .reprint a:hover {
   text-decoration: underline;
+}
+
+
+.article-directory {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  padding: 2px 8px;
+  width: 180px;
+  background-color: var(--white);
+  position: fixed;
+  margin-left: -200px;
+  top: calc(36vh + 2rem);
+  z-index: 99;
+  border-radius: 4px;
+  box-shadow: 2px 2px 4px -2px rgba(0, 0, 0, 0.2), -2px -2px 8px -4px rgba(0, 0, 0, 0.2);
+}
+
+.article-directory > a[data-level] {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-weight: normal;
+  cursor: pointer;
+}
+
+.article-directory > a[data-level]:hover {
+  font-weight: bold;
+  color: var(--sunray);
+}
+
+.article-directory > a[data-level='h1'] {
+  font-size: 1.5rem;
+}
+
+.article-directory > a[data-level='h2'] {
+  padding: 0 0 0 10px;
+  font-size: 1.4rem;
+}
+
+.article-directory > a[data-level='h3'] {
+  padding: 0 0 0 20px;
+  font-size: 1.3rem;
 }
 
 @media screen and (max-width: 1000px) {
@@ -96,5 +148,9 @@ blockquote::before {
 
   .reprint div {
     padding: 1.2rem 1rem;
+  }
+
+  .article-directory {
+    display: none;
   }
 }

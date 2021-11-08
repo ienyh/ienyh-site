@@ -20,22 +20,31 @@ const Back = () => {
     }
   }, []);
 
+
+
   // 点击返回顶部
   const toTop = () => {
+    // 滚动高度越高，返回顶部速度越快，设置速度下限 100
+    const scrollTopHeight = parseInt(window.scrollY);
+    const speed = Math.round(scrollTopHeight / 80) > 100 ? Math.round(scrollTopHeight / 80) : 100;
+
     // 优先使用 requestAnimationFrame, 降级处理使用 setInterval
-    if (requestAnimationFrame && cancelAnimationFrame) {
-      let top = document.documentElement.scrollTop;
-      if (top >= 80) {
-        document.documentElement.scrollTop -= 100;
-        requestAnimationFrame(toTop);
-      } else {
-        document.documentElement.scrollTop = 0;
+    if (requestAnimationFrame) {
+      const tmpfunc = () => {
+        let top = document.documentElement.scrollTop;
+        if (top >= 80) {
+          document.documentElement.scrollTop -= speed;
+          requestAnimationFrame(tmpfunc);
+        } else {
+          document.documentElement.scrollTop = 0;
+        }
       }
+      tmpfunc(speed);
     } else {
       let timer = setInterval(() => {
         let top = document.documentElement.scrollTop;
         if (top >= 80) {
-          document.documentElement.scrollTop -= 100;
+          document.documentElement.scrollTop -= speed;
         } else {
           document.documentElement.scrollTop = 0;
           timer && clearInterval(timer);
