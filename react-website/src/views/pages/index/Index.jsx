@@ -19,8 +19,8 @@ const Index = (props) => {
   // 向服务器请求数据
   const fetchBlogs = async () => {
     const { data } = await get('/findAllBlog');
-    const blogs = data instanceof Array && data.sort((a, b) => b.create_time - a.create_time).slice(0, 5);
-    setList(blogs);
+    const blogs = data instanceof Array && data.sort((a, b) => b.create_time - a.create_time);
+    setList(blogs.slice(0, 5));
     LocalStorage.set('blogs', blogs, 7200000); // 设置数据有效时长为两小时
     Notification.success({ title: '请求博客数据成功', duration: 2000 });
   }

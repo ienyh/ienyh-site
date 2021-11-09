@@ -39,7 +39,7 @@ const Back = () => {
           document.documentElement.scrollTop = 0;
         }
       }
-      tmpfunc(speed);
+      tmpfunc();
     } else {
       let timer = setInterval(() => {
         let top = document.documentElement.scrollTop;
@@ -60,6 +60,7 @@ const Back = () => {
       style={{
         display: canBack ? '' : 'none'
       }}
+      title="返回顶部"
     >
       <img src={icon_back_to_top} width="24px" height="24px"/>
       <span>Back</span>

@@ -31,7 +31,7 @@
   list-style: square;
 }
 
-/* .markdown-body .highlight pre, .markdown-body pre ::after {
+.markdown-body .highlight pre, .markdown-body pre ::after {
   content: 'copy';
   position: absolute;
   right: 4px;
@@ -39,11 +39,12 @@
   background-color: var(--sunray);
   padding: 0 4px;
   border-radius: 4px;
+  cursor: pointer;
 }
 
 .markdown-body .highlight pre, .markdown-body pre ::after:active {
   background-color: var(--github-black);
-} */
+}
 
 blockquote::before {
   content: '📃';
@@ -91,12 +92,23 @@ blockquote::before {
   text-decoration: underline;
 }
 
+@keyframes directory {
+  from {
+    transform: scale(0.2) translateX(-200%);
+    opacity: 0;
+  }
+
+  to {
+    transform: none;
+    opacity: 1;
+  }
+}
 
 .article-directory {
   display: flex;
   flex-direction: column;
   justify-content: start;
-  padding: 2px 8px;
+  padding: 1rem;
   width: 180px;
   background-color: var(--white);
   position: fixed;
@@ -113,6 +125,8 @@ blockquote::before {
   text-overflow: ellipsis;
   font-weight: normal;
   cursor: pointer;
+  display: block;
+  padding: 2px 0;
 }
 
 .article-directory > a[data-level]:hover {
@@ -125,12 +139,12 @@ blockquote::before {
 }
 
 .article-directory > a[data-level='h2'] {
-  padding: 0 0 0 10px;
+  padding: 2px 0 0 12px;
   font-size: 1.4rem;
 }
 
 .article-directory > a[data-level='h3'] {
-  padding: 0 0 0 20px;
+  padding: 2px 0 0 24px;
   font-size: 1.3rem;
 }
 
@@ -151,6 +165,10 @@ blockquote::before {
   }
 
   .article-directory {
+    display: none;
+  }
+
+  .markdown-body .highlight pre, .markdown-body pre ::after {
     display: none;
   }
 }

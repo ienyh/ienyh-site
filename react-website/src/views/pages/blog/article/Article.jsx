@@ -61,13 +61,6 @@ const Article = (props) => {
     }
   }, [articleRef.current]);
 
-  const directoryClickHandler = e => {
-    console.log(e.target);
-    const { id } = e.target;
-    location.hash = id;
-  }
-
-
   return (
     <div className="container article-container">
       {
@@ -98,7 +91,10 @@ const Article = (props) => {
         <div className="item right">下一篇 ➡️</div>
       </div>
 
-      <div ref={directoryRef} className="article-directory" onClick={directoryClickHandler}></div>
+      <div
+        ref={directoryRef}
+        className="article-directory"
+      ></div>
 
       {/* 返回顶部 */}
       <BackToTop></BackToTop>
