@@ -64,6 +64,8 @@ nav {
   position: relative;
 }
 
+
+
 .nav-menu > li .line {
   position: absolute;
   top: 28px;
@@ -81,6 +83,22 @@ nav {
   width: 20px;
   height: 20px;
   margin-right: 5px;
+  /* animation: li-img-rotate 4s ease infinite forwards; */
+}
+
+.nav-menu > li:hover img {
+  transform: rotate(360deg);
+  transition: transform .5s ease;
+}
+
+@keyframes li-img-rotate {
+  85% {
+    transform: rotate(0deg)
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 .menu-img {

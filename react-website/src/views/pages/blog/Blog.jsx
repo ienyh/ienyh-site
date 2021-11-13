@@ -4,6 +4,7 @@ import { v4 as uuidv4 } from 'uuid';
 import './blog.css';
 import BlogCard from './components/BlogCard';
 import Calendar from '../../../components/calendar/Calendar';
+import Pagination from '../../../components/pagination/Pagination';
 import { get } from '../../../utils/request';
 import EventEmitter from '../../../utils/EventEmitter';
 import { EVENT_CHANGE_HEADER } from '../../../utils/events';
@@ -57,9 +58,7 @@ const Blog = (props) => {
   return (
     <div className="blog container">
       <div className="blogs">
-        {/* <div className="top-line"></div> */}
         <h2>Article<div className="bottom-line"></div></h2>
-        
         {
           list.map((blog, index) =>
             <BlogCard
@@ -67,10 +66,13 @@ const Blog = (props) => {
               { ...blog }
               key={ uuidv4() }
               animate
-              // right={index % 2 === 0}
             />
           )
         }
+        <Pagination
+          total={11}
+          pageSize={5}
+        />
       </div>
       
       <div className="bar">

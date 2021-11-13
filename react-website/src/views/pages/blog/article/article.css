@@ -31,7 +31,7 @@
   list-style: square;
 }
 
-.markdown-body .highlight pre, .markdown-body pre ::after {
+.markdown-body .highlight pre::after, .markdown-body pre ::after {
   content: 'copy';
   position: absolute;
   right: 4px;
@@ -42,12 +42,22 @@
   cursor: pointer;
 }
 
-.markdown-body .highlight pre, .markdown-body pre ::after:active {
+.markdown-body .highlight pre::after:active, .markdown-body pre::after:active {
   background-color: var(--github-black);
 }
 
-blockquote::before {
+.markdown-body .highlight blockquote::before, .markdown-body blockquote::before {
   content: '📃';
+}
+
+.markdown-body h1::before, h2::before, h3::before {
+  content: "before";
+  top: -100%;
+  background-color: var(--sunray);
+  display: block;
+  height: 70px;
+  margin-top: -70px;
+  visibility: hidden;
 }
 
 .article-footer {
@@ -127,11 +137,27 @@ blockquote::before {
   cursor: pointer;
   display: block;
   padding: 2px 0;
+  position: relative;
 }
 
 .article-directory > a[data-level]:hover {
   font-weight: bold;
   color: var(--sunray);
+}
+
+.article-directory > a[data-level]::before {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background-color: var(--border-grey);
+  width: 3px;
+  height: 100%;
+}
+
+.article-directory > a[data-level]:hover::before {
+  background-color: var(--sunray);
 }
 
 .article-directory > a[data-level='h1'] {

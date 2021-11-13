@@ -3,14 +3,13 @@ import { Link } from 'react-router-dom';
 import './index.css';
 
 function Index (props) {
-
   const [animate, setAnimate] = useState(false);
 
   const clickHandler = () => {
     setAnimate(true);
-        setTimeout(() => {
-          props.history.push('/pages');
-        }, 500);
+    setTimeout(() => {
+      props.history.push('/pages');
+    }, 500);
   }
 
   return (

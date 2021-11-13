@@ -23,6 +23,7 @@
   cursor: pointer;
   position: relative;
   padding: 0 10px;
+  transition: .2s all ease;
 }
 
 .index > h3:hover {
