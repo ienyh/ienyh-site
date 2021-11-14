@@ -11,15 +11,17 @@ import { EVENT_CHANGE_HEADER } from '../../../utils/events';
 import LocalStorage from '../../../utils/LocalStorage';
 import Notification from '../../../components/notification/index';
 
-const Blog = (props) => {
+const Blog = () => {
   const [list, setList] = useState([]);
   const [tags, setTags] = useState([]);
+  const [allBlogs, setAllBlogs] = useState([]); // 所有博客
 
   // 向服务器请求数据
   const fetchBlogs = async () => {
     const { data } = await get('/findAllBlog');
     const blogs = data instanceof Array && data.sort((a, b) => b.create_time - a.create_time);
-    setList(blogs);
+    setAllBlogs(blogs);
+    setList(blogs.slice(0, 5));
     LocalStorage.set('blogs', blogs, 7200000); // 设置数据有效时长为两小时
     Notification.success({ title: '请求博客数据成功', duration: 2000 });
   }
@@ -30,7 +32,7 @@ const Blog = (props) => {
       setTags(data.filter(i => i !== null));
       Notification.success({ title: '请求标签数据成功', duration: 2000 });
     } catch (error) {
-      Notification.error({ title: '请求标签数据失败', content: error });
+      Notification.error({ title: '请求标签数据失败' });
     }
   }
 
@@ -44,7 +46,10 @@ const Blog = (props) => {
 
     // 如果本地有数据缓存则不向服务器请求数据
     const blogs = LocalStorage.get('blogs');
-    if (blogs) setList(blogs);
+    if (blogs) {
+      setAllBlogs(blogs);
+      setList(blogs.slice(0, 5));
+    }
     else fetchBlogs();
 
     fetchTags();
@@ -55,12 +60,18 @@ const Blog = (props) => {
     }
   }, []);
 
+  const pageChangeHandler = (page) => {
+    const { current, pageSize, total } = page;
+    console.log(page);
+    setList(allBlogs.slice((current - 1) * pageSize, current * pageSize));
+  }
+
   return (
     <div className="blog container">
       <div className="blogs">
         <h2>Article<div className="bottom-line"></div></h2>
         {
-          list.map((blog, index) =>
+          list.map((blog, _index) =>
             <BlogCard
               id="card"
               { ...blog }
@@ -69,10 +80,7 @@ const Blog = (props) => {
             />
           )
         }
-        <Pagination
-          total={11}
-          pageSize={5}
-        />
+        <Pagination total={ Array.isArray(allBlogs) ? allBlogs.length : 0} pageSize={5} onChange={pageChangeHandler}/>
       </div>
       
       <div className="bar">

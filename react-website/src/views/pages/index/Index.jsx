@@ -45,7 +45,7 @@ const Index = (props) => {
 
     // 如果本地有数据缓存则不向服务器请求数据
     const blogs = LocalStorage.get('blogs');
-    if (blogs) setList(blogs);
+    if (blogs) setList(blogs.slice(0, 5));
     else fetchBlogs();
 
     fetchTags();
