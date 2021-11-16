@@ -81,7 +81,7 @@ exports.findAllBlog = async (req, res) => {
  * @param {*} res 
  */
 exports.deleteBlogByTitle = async (req, res) => {
-  const { title } = req.body;
+  const { title } = req.query;
   try {
     const mongodb_res = await deleteOne({ title });
     consola.success('<deleteBlog>: 删除博客成功');

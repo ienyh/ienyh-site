@@ -1,7 +1,9 @@
+const consola = require('consola');
 const jwt = require('express-jwt');
 const blog = require('./blog/blog');
 const tag = require('./blog/tag');
 const user = require('./user/user');
+const word = require('./word/word');
 const { SECRET_KEY } = require('../token/token');
 
 module.exports = app => {
@@ -16,15 +18,24 @@ module.exports = app => {
           '/findAllBlog',
           '/getTags',
           '/login',
+          '/addWord',
+          '/getAllWords',
         ]
       })
   );
 
   app.use((err, req, res, next) => {
     if (err.name === 'UnauthorizedError') {
-      res.json({ code: 0, mes: '验证错误', data: {} });
+      res.json({ code: 0, message: '验证错误' });
+    } else {
+      next(req, res);
     }
   });
+
+  app.use((req, res, next) => {
+    next();
+    consola.info(`consola => [ ${req.route.path} ]`);
+  })
 
   app.get('/getBlogByTitle', blog.getBlogByTitle);
   app.get('/findAllBlog', blog.findAllBlog);
@@ -35,4 +46,7 @@ module.exports = app => {
 
   app.post('/login', user.login);
   app.post('/addUser', user.addUser);
+
+  app.post('/addWord', word.addWord);
+  app.get('/getAllWords', word.getAllWords);
 }
