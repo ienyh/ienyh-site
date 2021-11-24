@@ -111,7 +111,7 @@ const Audio = React.memo(() => {
       console.log(basic);
       EventEmitter.emit(EVENT_SWITCH_NEXT_MUSIC, basic);
     }
-  }, 500);
+  }, 300);
 
   let isMousePress = false;
 

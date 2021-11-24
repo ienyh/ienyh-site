@@ -9,10 +9,7 @@ const Pages = (props) => {
   const { routes } = props;
 
   useEffect(() => {
-    // history.pushState = 
-    // window.addEventListener('popstate', e => {
-    //   console.log(e);
-    // });
+    // console.log(props);
   }, []);
 
   return (

@@ -11,7 +11,7 @@ export default defineConfig({
       input: {
         main: resolve(__dirname, 'index.html'),
         example: resolve(__dirname, 'example/index.html'),
-        example1: resolve(__dirname, 'example/example1.html'),
+        contact: resolve(__dirname, 'example/contact.html'),
       }
     }
   }

@@ -46,33 +46,31 @@ const list = [
     path: '/pages/music',
     icon: icon_music,
   },
-  {
-    title: '标签',
-    path: '/pages/blog5',
-    icon: icon_discount,
-  },
-  {
-    title: '工具',
-    path: '/pages/blog6',
-    icon: icon_tool,
-  },
-  {
-    title: '图片',
-    path: '/pages/blog7',
-    icon: icon_picture,
-  },
-  {
-    title: '关于',
-    path: '/pages/about_',
-    icon: icon_link,
-  },
   // {
-  //   title: 'three',
-  //   path: '/example/index.html',
-  //   icon: icon_3d,
-  //   external: true,
-  //   comment: '测试多页面',
+  //   title: '标签',
+  //   path: '/pages/blog5',
+  //   icon: icon_discount,
   // },
+  // {
+  //   title: '工具',
+  //   path: '/pages/blog6',
+  //   icon: icon_tool,
+  // },
+  // {
+  //   title: '图片',
+  //   path: '/pages/blog7',
+  //   icon: icon_picture,
+  // },
+  // {
+  //   title: '关于',
+  //   path: '/pages/about_',
+  //   icon: icon_link,
+  // },
+  {
+    title: '留言板',
+    path: '/pages/message',
+    icon: icon_3d,
+  },
 ];
 
 const Header = () => {

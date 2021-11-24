@@ -1,3 +1,14 @@
+@keyframes back-to-top {
+  from {
+    bottom: 0px;
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+
+  }
+}
+
 .back-to-top {
   position: fixed;
   right: 40px;
@@ -17,7 +28,8 @@
   justify-content: center;
   align-items: center;
   font-family: var(--font-family-Nunito);
-  transition: transform .2s ease;
+  /* transition: transform .2s ease; */
+  animation: back-to-top .2s ease;
 }
 
 .back-to-top:active {

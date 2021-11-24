@@ -6,6 +6,7 @@ import './footer.css';
 const config = {
   github: "https://www.github.com/ienyh/ienyh-site",
   baidu: "https://tongji.baidu.com/web/35239738/overview/index",
+  contact: "/pages/message",
 }
 
 const Footer = () => {
@@ -22,6 +23,7 @@ const Footer = () => {
       <div style={{ whiteSpace: "pre" }}>
         <a href={config.github} target="_blank">项目地址    </a>
         <a href={config.baidu} target="_blank">百度统计    </a>
+        <a href={config.contact} >给我留言    </a>
       </div>
       <div>
         <span style={{ whiteSpace: "pre" }}>copyright@www.chenyh.site     </span>

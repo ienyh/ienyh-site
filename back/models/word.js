@@ -8,6 +8,8 @@ const wordSchema = new mongoose.Schema({
 
   message: { type: String, required: true },
 
+  device_info: { type: String, required: true },
+
   people_name: { type: String, require: false },
 
   people_gender: { type: String, require: false },

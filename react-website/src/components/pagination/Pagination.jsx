@@ -25,7 +25,8 @@ const Pagination = props => {
 
   // 下一页处理函数
   const rightHandler = () => {
-    setCurrentIndex(currentIndex + 1 <= total ? currentIndex + 1 : total);
+    const max = Math.ceil(total / pageSize)
+    setCurrentIndex(currentIndex + 1 <= max ? currentIndex + 1 : max);
   }
 
   return (

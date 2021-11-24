@@ -11,26 +11,39 @@ import Search from "../views/pages/search/Search";
 import PagesIndex from '../views/pages/index/Index';
 import About from "../views/pages/about/About";
 import Manage from "../views/pages/admin/manage/Manage";
+import Message from "../views/pages/message/Message";
 
 const routes = [
+  // {
+  //   path: '/',
+  //   component: Index,
+  //   exact: true,
+  //   title: '首页',
+  // },
+  // {
+  //   path: '/index',
+  //   component: Index,
+  //   exact: true,
+  //   title: '首页',
+  // },
   {
     path: '/',
-    component: Index,
-    exact: true,
-    title: '首页',
-  },
-  {
-    path: '/index',
-    component: Index,
-    exact: true,
-    title: '首页',
-  },
-  {
-    path: '/pages',
     component: Pages,
     exact: false,
     title: '页面',
     children: [
+      {
+        path: '/',
+        component: PagesIndex,
+        exact: true,
+        title: 'PagesIndex',
+      },
+      {
+        path: '/index',
+        component: PagesIndex,
+        exact: true,
+        title: 'PagesIndex',
+      },
       {
         path: '/pages',
         component: PagesIndex,
@@ -78,6 +91,12 @@ const routes = [
         component: Three,
         exact: true,
         title: 'three',
+      },
+      {
+        path: '/pages/message',
+        component: Message,
+        exact: true,
+        title: 'message',
       },
       {
         path: '/pages/admin',

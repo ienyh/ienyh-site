@@ -1,3 +1,5 @@
+@import '../../src/assets/font/fonts.css';
+
 :root {
   --github-black: #24292f;
   --border-grey: rgba(0, 0, 0, 0.15);
@@ -9,6 +11,11 @@
   --pale-spring-bud: #D4D4AA;
   --sunray: #EDB458;
   --fulvous: #E8871E;
+
+  --header-height: 60px;
+  --font-family: 'HarmonyOS_Sans_Regular', "Microsoft Yahei", 'Times New Roman', Times, serif;
+  --font-family-Nunito: 'Nunito-Regular', 'HarmonyOS_Sans_Regular', "Microsoft Yahei", 'Times New Roman', Times, serif;
+  --box-shadow: 1px 4px 4px -2px rgba(0, 0, 0, 0.2);
 }
 
 * {

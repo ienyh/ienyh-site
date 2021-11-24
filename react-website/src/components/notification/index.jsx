@@ -19,13 +19,34 @@ function notice (type, title, content, duration = 2000, onClose = () => {}) {
 }
 
 export default {
-  info ({ title, content, duration, onClose }) {
-    notice('info', title, content, duration, onClose);
+  info (config) {
+    if (typeof config === 'string') {
+      notice('info', config);
+    } else if (typeof config === 'object' && config !== null) {
+      const { title, content, duration, onClose } = config;
+      notice('info', title, content, duration, onClose);
+    } else {
+      throw Error('[Notification] config error!');
+    }
   },
-  success ({ title, content, duration, onClose }) {
-    notice('success', title, content, duration, onClose);
+  success (config) {
+    if (typeof config === 'string') {
+      notice('success', config);
+    } else if (typeof config === 'object' && config !== null) {
+      const { title, content, duration, onClose } = config;
+      notice('success', title, content, duration, onClose);
+    } else {
+      throw Error('[Notification] config error!');
+    }
   },
-  error ({ title, content, duration, onClose }) {
-    notice('error', title, content, duration, onClose);
+  error (config) {
+    if (typeof config === 'string') {
+      notice('error', config);
+    } else if (typeof config === 'object' && config !== null) {
+      const { title, content, duration, onClose } = config;
+      notice('error', title, content, duration, onClose);
+    } else {
+      throw Error('[Notification] config error!');
+    }
   },
 }
