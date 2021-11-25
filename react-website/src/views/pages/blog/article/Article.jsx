@@ -28,6 +28,7 @@ const Article = (props) => {
   }
 
   useEffect(() => {
+    document.title = id;
     fetchArticle()
       .then((res) => {
         EventEmitter.emit(EVENT_CHANGE_HEADER, {

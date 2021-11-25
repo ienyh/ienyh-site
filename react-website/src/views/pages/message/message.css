@@ -88,6 +88,7 @@
   display: flex;
   justify-content: start;
   align-items: center;
+  flex-wrap: wrap;
 }
 
 .message-container .respond form .bottom-info > input {
@@ -112,5 +113,7 @@
 }
 
 @media screen and (max-width: 1000px) {
-  
+  .message-container .respond form .bottom-info > input[type="email"] {
+    display: none;
+  }
 }

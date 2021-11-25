@@ -24,9 +24,18 @@ exports.getAllWords = async (req, res) => {
  * @param {*} res 
  */
 exports.addWord = async (req, res) => {
-  const { uid, time = Date.now(), message, device_info, people_name = '', people_gender = '', people_email = '' } = req.body;
+  const {
+    uid,
+    time = Date.now(),
+    message,
+    device_info,
+    people_name = '',
+    people_gender = '',
+    people_email = '',
+    avatar
+  } = req.body;
   if (time && message) {
-    const word = new Word({ uid, time, message, device_info, people_name, people_gender, people_email });
+    const word = new Word({ uid, time, message, device_info, people_name, people_gender, people_email, avatar });
     try {
       const result = await save(word);
       consola.success('<addWord>: 添加留言成功');

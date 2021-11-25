@@ -13,6 +13,7 @@ const Message = () => {
 
   const [comments, setComments] = useState([]);
   const [currents, setCurrents] = useState([]);
+  let base64_avatar;
 
   const fetchComments = async () => {
     const res = await get('/getAllWords');
@@ -36,25 +37,44 @@ const Message = () => {
         message: form[0].value.trim(),
         people_name: form[1].value.trim(),
         email: form[2].value.trim(),
-        device_info: browser() + clientOS(),
+        device_info: browser() + ' ' + clientOS(),
+        avatar: base64_avatar,
       }
-      const res = await post('/addWord', comment);
-      if (res.code === 1 && res?.data) {
-        setComments([comment, ...comments]);
-        setCurrents([comment, ...comments].slice(0, 8));
-        Notification.success('留言成功');
-        form[0].value = '';
-      }
+
+      console.log(comment);
+      // const res = await post('/addWord', comment);
+      // if (res.code === 1 && res?.data) {
+      //   setComments([comment, ...comments]);
+      //   setCurrents([comment, ...comments].slice(0, 8));
+      //   Notification.success('留言成功');
+      //   form[0].value = '';
+      // }
     } catch (error) {
       console.log(error);
       Notification.error('留言失败');
     }
   }
 
-  const pageChangeHandler = (page) => {
-    console.log(page);
+  const pageChangeHandler = page => {
     const { current, pageSize, total } = page;
     setCurrents(comments.slice((current - 1) * pageSize, current * pageSize));
+  }
+
+  const fileChangeHandler = function (e) {
+    const file = e?.target?.files?.[0];
+    
+    const fileReader = new FileReader();
+    fileReader.addEventListener("load", () => {
+      const img = new Image();
+      img.src = fileReader.result;
+      const canvas = document.createElement('canvas');
+      const ctx = canvas.getContext('2d');
+      img.addEventListener('load', () => {
+        ctx.drawImage(img, 0, 0, 40, 40);
+        base64_avatar = canvas.toDataURL(file.type, 0.8); // 压缩成 BASE64
+      });
+    });
+    file && fileReader.readAsDataURL(file);
   }
 
   return <div className="message-container">
@@ -67,7 +87,7 @@ const Message = () => {
               <img src="https://s3.mashiro.top/avatar/81e3b67f18b96d483095f468680337df?s=80&d=mm&r=g"/>
               <div className="message-info-name">
                 <h4>{ item.people_name }</h4>
-                <span>{ comments.length - index - 1 } 楼  发布于 {timeago.format(item.time, 'zh_CN')} (来自 {browser()}  {clientOS()})</span>
+                <span>发布于 {timeago.format(item.time, 'zh_CN')} (来自 { item.device_info }))</span>
               </div>
             </div>
             <p className="message-body">{ item.message }</p>
@@ -88,6 +108,7 @@ const Message = () => {
           <input type="text" placeholder="email" />
           <input type="submit" value="提 交"/>
         </div>
+        <input type="file" accept=".jpg, .jpeg, .png" onChange={fileChangeHandler}/>
       </form>
     </div>
   </div>
