@@ -181,13 +181,26 @@ const Audio = React.memo(() => {
             />
           </div>
           <div className="controls_bar">
-            <img src={icon_previous} name="left_previous" alt="previous" onClick={switchMusicHandler} />
+            <div className="poptip" data-poptip="上一首">
+              <img src={icon_previous} name="left_previous" alt="previous" onClick={switchMusicHandler} />
+            </div>
             {
               status ?
-                <img src={icon_pause} name="mid_pause" alt="pause" onClick={changePauseHandler} /> :
-                <img src={icon_continue} name="mid_continue" alt="continue" onClick={changePauseHandler} />
+                <div className="poptip" data-poptip="暂停">
+                  <img
+                    src={icon_pause}
+                    name="mid_pause"
+                    alt="pause"
+                    onClick={changePauseHandler}
+                  />
+                </div> :
+                <div className="poptip" data-poptip="播放">
+                  <img src={icon_continue} name="mid_continue" alt="continue" onClick={changePauseHandler} />
+                </div>
             }
-            <img src={icon_next} name="right_next" alt="next" onClick={switchMusicHandler} />
+            <div className="poptip" data-poptip="下一首">
+              <img src={icon_next} name="right_next" alt="next" onClick={switchMusicHandler} />
+            </div>
           </div>
           <div className="controls_img">
             <img src="https://avatars.githubusercontent.com/u/51840260?s=48&v=4" alt="" />

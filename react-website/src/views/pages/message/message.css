@@ -38,11 +38,17 @@
 
 .message-info .message-info-name {
   margin-left: 10px;
+  flex: 1;
+  overflow: hidden;
 }
 
 .message-info .message-info-name > h4 {
   font-size: 1.5rem;
   color: var(--sunray);
+  cursor: default;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .message-info .message-info-name > span {
@@ -55,6 +61,8 @@
 
 .message-body {
   padding: 16px 8px;
+  overflow: hidden;
+  cursor: default;
 }
 
 .message-container .respond {
@@ -86,14 +94,15 @@
 
 .message-container .respond form .bottom-info {
   display: flex;
-  justify-content: start;
+  justify-content: space-between;
   align-items: center;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
+  align-content: space-around;
 }
 
 .message-container .respond form .bottom-info > input {
   height: 40px;
-  margin: 0 10px;
+  margin-left: 20px;
   padding: 0 10px;
   border: 1px solid #ddd;
   background-color: #fff;
@@ -101,19 +110,35 @@
   box-shadow: 0 1px 10px -6px rgb(0 0 0 / 80%);
 }
 
+.message-container .respond form .bottom-info > input[type="submit"] {
+  background-color: var(--sunray);
+  color: #fff;
+  cursor: pointer;
+}
+
+.message-container .respond form .bottom-info > input:not([type="submit"]) {
+  flex: 1;
+}
+
 .message-container .respond form .bottom-info > input:focus {
   outline: 1px solid var(--sunray);
 }
 
-.message-container .respond form .bottom-info > img {
+.message-container .respond form .bottom-info img {
+  display: block;
   width: 40px;
   height: 40px;
-  border-radius: 3px;
+  cursor: pointer;
+  border-radius: 50%;
   box-shadow: 0 1px 10px -6px rgb(0 0 0 / 80%);
 }
 
 @media screen and (max-width: 1000px) {
-  .message-container .respond form .bottom-info > input[type="email"] {
-    display: none;
+  .message-container .respond form .bottom-info {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    flex-wrap: wrap;
+    align-content: center;
   }
 }

@@ -21,7 +21,7 @@ const Footer = () => {
   return (
     <footer style={{ display: display ? 'flex' : 'none' }}>
       <div style={{ whiteSpace: "pre" }}>
-        <a href={config.github} target="_blank">项目地址    </a>
+        <a href={config.github} target="_blank" className="poptip" data-poptip="点击去往 github 项目地址">项目地址    </a>
         <a href={config.baidu} target="_blank">百度统计    </a>
         <a href={config.contact} >给我留言    </a>
       </div>

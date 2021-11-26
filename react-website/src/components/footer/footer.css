@@ -5,6 +5,7 @@ footer {
   align-items: center;
   font-family: var(--font-family);
   font-size: 1.2rem;
+  cursor: default;
 }
 
 footer a {

@@ -113,3 +113,17 @@ export function clientOS () {
   }
   return "other";
 }
+
+export function convertBase64UrlToBlob (urlData) {
+  const array = urlData.split(',');
+  const type = array[0].match(/:(.*?);/)[1];
+  const bytes = atob(urlData.split(',')[1]); // 去掉 url 的头，并转换为 byte
+
+  // 处理异常,将 ascii 码小于 0 的转换为大于 0
+  const ab = new ArrayBuffer(bytes.length);
+  const u8arr = new Uint8Array(ab);
+  for (let i = 0; i < bytes.length; i++) {
+    u8arr[i] = bytes.charCodeAt(i);
+  }
+  return new Blob([u8arr] , { type });
+}

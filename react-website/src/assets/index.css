@@ -108,3 +108,45 @@ button {
   background-color: #3498db;
   color: #ecf0f1;
 }
+
+
+/* 提示气泡 start */
+.poptip {
+  position: relative;
+  cursor: pointer;
+}
+
+.poptip::after {
+  visibility: hidden;
+  opacity: 0;
+  overflow: visible;
+  z-index: 9;
+  transform: translate3d(0, 0, 0);
+  transition: all 0.3s ease .05s;
+
+  content: attr(data-poptip);
+  position: absolute;
+  margin-bottom: -1px;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+
+  padding: 6px 12px;
+  font-size: 1.2rem;
+  font-weight: normal;
+  color: white;
+  background: #b4a078;
+  line-height: 1.2rem;
+  padding: 6px 12px;
+  white-space: nowrap;
+  border-radius: 2px;
+  box-shadow: 0px 0px 3px #b4a078;
+}
+
+.poptip:hover::after {
+  visibility: visible;
+  opacity: 1;
+  transform: translateX(-50%) translateY(-6px);
+}
+
+/* 提示气泡 end */

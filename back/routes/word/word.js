@@ -32,7 +32,7 @@ exports.addWord = async (req, res) => {
     people_name = '',
     people_gender = '',
     people_email = '',
-    avatar
+    avatar, // Base64
   } = req.body;
   if (time && message) {
     const word = new Word({ uid, time, message, device_info, people_name, people_gender, people_email, avatar });

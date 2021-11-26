@@ -57,7 +57,7 @@ const Search = React.memo(() => {
       <div className="search">
         <div className="search-input-container">
           <div className="search-input">
-            <div className="search-left-type" onClick={ clickHandler }>
+            <div className="search-left-type poptip" data-poptip={current.name} onClick={ clickHandler }>
               <img src={current.icon} draggable={false}/>
             </div>
             <input type="text" value={searchText} onChange={ (e) => setSearchText(e.target.value)}/>
@@ -70,7 +70,7 @@ const Search = React.memo(() => {
           <div className="type-container" style={{ display: display ? 'flex' : 'none' }}>
             {
               typeOptions.map(item => {
-                return <div key={uuidv4()} onClick={() => { setCurrent(item) }}>
+                return <div key={uuidv4()} onClick={() => { setCurrent(item) }} className="poptip" data-poptip={item.name}>
                   <img src={item.icon} draggable={false}/>
                 </div>
               })

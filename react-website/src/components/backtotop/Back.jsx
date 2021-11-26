@@ -55,12 +55,12 @@ const Back = () => {
 
   return <>
     <div
-      className="back-to-top"
+      className="back-to-top poptip"
+      data-poptip="点击返回顶部"
       onClick={toTop}
       style={{
         display: canBack ? '' : 'none'
       }}
-      title="返回顶部"
     >
       <img src={icon_back_to_top} width="24px" height="24px"/>
       <span>Back</span>

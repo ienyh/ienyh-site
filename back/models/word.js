@@ -16,7 +16,7 @@ const wordSchema = new mongoose.Schema({
 
   people_email: { type: String, require: false },
 
-  avatar: { type: String, require: false },
+  avatar: { type: String, require: false }, // Base64
   
 });
 
