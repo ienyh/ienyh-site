@@ -61,9 +61,58 @@
 
 .message-body {
   padding: 16px 8px;
-  overflow: hidden;
   cursor: default;
+  overflow: hidden;
+  position: relative;
 }
+
+.message-body .message-content {
+  max-height: 200px;
+  overflow: hidden;
+}
+
+.message-body > input[id*=readmore] {
+  display: none;
+}
+
+.message-body > input[id*=readmore] + label {
+  display: block;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 60px;
+  width: 100%;
+  background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, var(--back-color) 70%);
+}
+
+.message-body > input[id*=readmore] + label::after {
+  content: "展开更多";
+  font-size: 1.2rem;
+  background-color: #333;
+  color: var(--white);
+  display: inline-block;
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 2px 6px;
+  border-radius: 4px;
+  box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.3 );
+  cursor: pointer;
+}
+
+.message-body > input[id*=readmore] + label:hover:after {
+  background-color: rgba(0, 0, 0, 1);
+}
+
+.message-body > input[id*=readmore]:checked + label {
+  display: none;
+}
+
+.message-body > input[id*=readmore]:checked ~ .message-content {
+  height: auto;
+}
+
 
 .message-container .respond {
   margin: 20px 0 80px;

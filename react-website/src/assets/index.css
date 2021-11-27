@@ -7,7 +7,7 @@
 :root {
   --github-black: #24292f;
   --border-grey: rgba(0, 0, 0, 0.15);
-  --black: rgba(31, 41, 55, 1);
+  --black: #1d1d1f;
   --dark: rgba(17, 24, 39, 1);
   --white: rgba(255, 255, 255, 1);
   --honeydew: #EBF5DF;
@@ -15,6 +15,7 @@
   --pale-spring-bud: #D4D4AA;
   --sunray: #EDB458;
   --fulvous: #E8871E;
+  --back-color: #f5f5f7;
 
   --header-height: 60px;
   --font-family: 'HarmonyOS_Sans_Regular', "Microsoft Yahei", 'Times New Roman', Times, serif;
@@ -30,7 +31,7 @@
 
 html, body {
   display: block;
-  background-color: #f5f5f5;
+  background-color: var(--back-color);
   font-family: 'HarmonyOS_Sans_Regular', "Microsoft Yahei", 'Times New Roman', Times, serif;
   font-size: 10px;
   min-height: 100vh;

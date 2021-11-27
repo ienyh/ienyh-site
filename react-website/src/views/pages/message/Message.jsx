@@ -49,7 +49,6 @@ const Message = () => {
         device_info: browser() + ' ' + clientOS(),
         avatar: avatar,
       }
-      console.log(comment);
       const res = await post('/addWord', comment);
       if (res.code === 1 && res?.data) {
         setComments([comment, ...comments]);
@@ -71,17 +70,33 @@ const Message = () => {
 
   const fileChangeHandler = function (e) {
     const file = e?.target?.files?.[0];
+
+    if (file?.size > 10000000) {
+      Notification.error('图片过大');
+      return;
+    }
+
     const fileReader = new FileReader();
     fileReader.addEventListener("load", () => {
       const img = new Image();
       img.src = fileReader.result;
       const canvas = document.createElement('canvas');
-      canvas.width = 200;
-      canvas.height = 200;
       const ctx = canvas.getContext('2d');
-      img.addEventListener('load', () => {
-        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-        const data = canvas.toDataURL(file.type, 0.8); // 通过 canvas 压缩成 Base64
+      img.addEventListener('load', function () {
+        const x = this.width; // img 的宽
+        const y = this.height; // img 的宽
+        const canvasOffset = 300;
+        // 宽 大于 高，则裁剪宽，反之裁剪高
+        if (x > y) {
+          canvas.width = canvasOffset;
+          canvas.height = canvasOffset;
+          ctx.drawImage(img, Math.round((x - y) / 2), 0, y, y, 0, 0, canvasOffset, canvasOffset); // 裁剪图片
+        } else {
+          canvas.width = canvasOffset;
+          canvas.height = canvasOffset;
+          ctx.drawImage(img, 0, Math.round((y - x) / 2), x, x, 0, 0, canvasOffset, canvasOffset);
+        }
+        const data = canvas.toDataURL(file.type, 1080 / Math.min(x, y) > 1 ? 1 : (1080 / Math.min(x, y)).toFixed(1)); // 通过 canvas 压缩成 Base64
         setAvatar(data);
       });
     });
@@ -101,7 +116,11 @@ const Message = () => {
                 <span>发布于 {timeago.format(item.time, 'zh_CN')} (来自 { item.device_info }))</span>
               </div>
             </div>
-            <p className="message-body">{ item.message }</p>
+            <div className="message-body">
+              <input type="checkbox" id={ `readmore${index}` } />
+              <label htmlFor={ `readmore${index}` }></label>
+              <p className="message-content">{ item.message }</p>
+            </div>
           </li>
         })
       }
