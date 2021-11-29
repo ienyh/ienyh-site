@@ -62,7 +62,6 @@ const Blog = () => {
 
   const pageChangeHandler = (page) => {
     const { current, pageSize, total } = page;
-    console.log(page);
     setList(allBlogs.slice((current - 1) * pageSize, current * pageSize));
   }
 

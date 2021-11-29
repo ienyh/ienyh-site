@@ -8,6 +8,7 @@ import { get, post } from '../../../utils/request';
 import { browser, clientOS, convertBase64UrlToBlob } from '../../../utils/common';
 import Pagination from '../../../components/pagination/Pagination';
 import Notification from '../../../components/notification';
+import BackToTop from '../../../components/backtotop/Back';
 
 import icon_avatar_temp from '../../../assets/icons/avatar_temp.svg';
 import LocalStorage from '../../../utils/LocalStorage';
@@ -26,6 +27,9 @@ const Message = () => {
       const temp = res.data.sort((a, b) => b.time - a.time);
       setComments(temp);
       setCurrents(temp.slice(0, 8));
+      Notification.info("加载留言成功");
+    } else {
+      Notification.error("加载留言失败");
     }
   }
 
@@ -85,7 +89,7 @@ const Message = () => {
       img.addEventListener('load', function () {
         const x = this.width; // img 的宽
         const y = this.height; // img 的宽
-        const canvasOffset = 300;
+        const canvasOffset = 200;
         // 宽 大于 高，则裁剪宽，反之裁剪高
         if (x > y) {
           canvas.width = canvasOffset;
@@ -104,6 +108,7 @@ const Message = () => {
   }
 
   return <div className="message-container">
+    <BackToTop></BackToTop>
     <h2>Comments | {comments.length} 条评论</h2>
     <ul className="message-group">
       {
@@ -117,7 +122,7 @@ const Message = () => {
               </div>
             </div>
             <div className="message-body">
-              <input type="checkbox" id={ `readmore${index}` } />
+              <input type="checkbox" id={ `readmore${index}` } defaultChecked="false" />
               <label htmlFor={ `readmore${index}` }></label>
               <p className="message-content">{ item.message }</p>
             </div>
@@ -131,7 +136,7 @@ const Message = () => {
     <div className="respond">
       <h2>respond me</h2>
       <form onSubmit={submit} >
-        <textarea placeholder="说点什么 ..." required></textarea>
+        <textarea placeholder="说点什么 ..." required maxLength="200"></textarea>
         <div className="bottom-info">
           <div className="poptip" data-poptip="点击上传图像">
             <img

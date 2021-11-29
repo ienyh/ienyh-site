@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import './header.css';
 import Dropdown from '../dropdown/Dropdown';
 import Typing from '../typing/typing';
@@ -61,19 +61,19 @@ const list = [
   //   path: '/pages/blog7',
   //   icon: icon_picture,
   // },
-  // {
-  //   title: '关于',
-  //   path: '/pages/about_',
-  //   icon: icon_link,
-  // },
   {
-    title: '留言板',
+    title: '关于',
+    path: '/pages/about_',
+    icon: icon_link,
+  },
+  {
+    title: '留言',
     path: '/pages/message',
     icon: icon_3d,
   },
 ];
 
-const Header = () => {
+const Header = props => {
   let defaultBarStatus = document.documentElement.clientWidth >= 1000;
   const [isBar, setIsBar] = useState(defaultBarStatus); // 表示导航栏两种状态
   const [mask, setMask] = useState(false); // 导航栏的背景遮罩
@@ -92,7 +92,7 @@ const Header = () => {
 
   const scrollHandler = () => {
     const t = document.documentElement.scrollTop || document.body.scrollTop;
-    if (t <= 5) setMask(false);
+    if (t <= 10) setMask(false);
     else setMask(true);
   }
 
@@ -100,6 +100,7 @@ const Header = () => {
   const resizeHandler = () => {
     setIsBar(window.innerWidth >= 1000);
   }
+
 
   useEffect(() => {
     // 订阅事件
@@ -129,6 +130,7 @@ const Header = () => {
     }
   }, []);
 
+  // 站长登录提交事件
   const loginSubmit = async (e) => {
     e.preventDefault();
     const form = e.target;
@@ -156,20 +158,30 @@ const Header = () => {
     }
   }
 
+  const navClickHandler = e => {
+    if (e.target?.id === 'nav-menu') {
+      setIsBar(true);
+    } else {
+      props?.history?.push(e.target?.id || '/pages');
+      setIsBar(true);
+    }
+  }
+
   return (
     <div>
       <nav className="animated slideInDown">
         <h1>Chenyh</h1>
-        <ul className="nav-menu" style={{ transform: isBar ? 'none' : 'translateY(-100%)' }}>
+        <ul
+          id="nav-menu"
+          className="nav-menu"
+          style={{ transform: isBar ? 'none' : 'translateY(-100%)' }}
+          onClick={navClickHandler}
+        >
           {
             list.map(item => {
               return <li key={ item.path }>
                 <img src={ item.icon || icon_link } />
-                {
-                  item?.external ?
-                    <a href={item.path} >{item.title}</a> :
-                    <Link to={item.path}>{item.title}</Link>
-                }
+                <div id={item.path}>{item.title}</div>
                 <div className="line"></div>
               </li>
             })
@@ -184,7 +196,6 @@ const Header = () => {
               <>
                 <li onClick={() => {
                   setModal(true);
-                  // console.log(modal);
                 }}>站长登录</li>
                 {
                   isLogined() ?
@@ -199,7 +210,7 @@ const Header = () => {
           </li>
         </ul>
         {
-          !isBar ?
+          isBar ?
             <img src={ icon_menu } className="menu-img" onClick={switchBar} /> :
             <img src={ icon_menu_open } className="menu-img" onClick={switchBar}/>
         }
@@ -240,4 +251,4 @@ const Header = () => {
   )
 }
 
-export default Header;
+export default withRouter(Header);

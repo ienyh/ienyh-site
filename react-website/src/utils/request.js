@@ -6,7 +6,7 @@ const BASE_URL = "https://www.chenyh.site:9000";
 
 const instance = axios.create({
   baseURL: BASE_URL,
-  timeout: 5000,
+  timeout: 8000,
   responseType: "json",
   headers: {
     "Content-Type": "application/json;charset=utf-8",

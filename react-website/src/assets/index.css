@@ -117,6 +117,7 @@ button {
   cursor: pointer;
 }
 
+.poptip::before,
 .poptip::after {
   visibility: hidden;
   opacity: 0;
@@ -124,7 +125,26 @@ button {
   z-index: 9;
   transform: translate3d(0, 0, 0);
   transition: all 0.3s ease .05s;
+}
 
+.poptip::before {
+  content: '';
+  width: 0; 
+  height: 0;
+  border: 6px solid transparent;
+  border-top-color: #b4a078;
+  position: absolute;
+  left: calc(50% - 6px);
+  top: 0px;
+}
+
+.poptip:hover::before {
+  visibility: visible;
+  opacity: 1;
+  transform: translateX(0%) translateY(-10px);
+}
+
+.poptip::after {
   content: attr(data-poptip);
   position: absolute;
   margin-bottom: -1px;
@@ -147,7 +167,7 @@ button {
 .poptip:hover::after {
   visibility: visible;
   opacity: 1;
-  transform: translateX(-50%) translateY(-6px);
+  transform: translateX(-50%) translateY(-10px);
 }
 
 /* 提示气泡 end */
