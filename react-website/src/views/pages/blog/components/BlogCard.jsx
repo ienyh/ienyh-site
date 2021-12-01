@@ -9,10 +9,10 @@ import { isPC } from '../../../../utils/common';
 import tmp_img from '../../../../assets/imgs/tmp_blog.jpg';
 import { BLOG_SCROLL_CONFIG } from '../../../../utils/config';
 
-function Blog (props) {
+function BlogCard (props) {
   const cardRef = useRef();
 
-  let { title, create_time, author, keyword, desc, head_img, right, animate = false, isReprint } = props;
+  let { title, create_time, author, keyword, desc, head_img, right, animate = false, isReprint, index, prev, next } = props;
   create_time = dayjs(new Date(create_time)).format('YYYY-MM-DD HH:mm');
 
   const imgErrorHandler = (e) => {
@@ -35,7 +35,7 @@ function Blog (props) {
       </div>
       <div className="title-right">
         <h1 className="title">
-          <Link to={ `/pages/article/${title}` }>{ title }</Link>
+          <Link to={ `/pages/article/${encodeURI(title)}?index=${index}&prev=${encodeURI(prev?.title)}&next=${encodeURI(next?.title)}` }>{ title }</Link>
         </h1>
         <div className="time">{ author } 发布于 {create_time}</div>
           <div className='tabs-container'>
@@ -59,4 +59,4 @@ function Blog (props) {
   )
 }
 
-export default Blog;
+export default BlogCard;

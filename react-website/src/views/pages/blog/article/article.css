@@ -70,11 +70,30 @@
 .article-footer > .item {
   white-space: pre;
   cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 6px 10px;
+  border-radius: 4px;
+  user-select: none;
+}
+
+.article-footer > .item span {
+  display: inline-block;
+  height: 100%;
+  font-weight: bold;
+  max-width: 100px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .article-footer > .item:hover {
+  background-color: var(--white);
+  box-shadow: 1px 2px 6px -2px rgba(0, 0, 0, 0.2);
+}
+
+.article-footer > .item:hover span {
   color: var(--sunray);
-  font-weight: bold;
 }
 
 .reprint {

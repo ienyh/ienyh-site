@@ -61,10 +61,23 @@ exports.getBlogByTitle = (req, res) => {
 exports.findAllBlog = async (req, res) => {
   try {
     const blogs = await Blog.find();
-    const basicBlogs = blogs.map((blog) => {
+    const basicBlogs = blogs.sort((a, b) => b.create_time - a.create_time).map((blog, index) => {
       // 这里过滤掉了 内容 content
       const { title, author, create_time, update_time, desc, keyword, numbers, isReprint, img_url, reprint_url } = blog;
-      return { title, author, create_time, update_time, desc, keyword, numbers, isReprint, img_url, reprint_url };
+      return {
+        title,
+        author,
+        create_time,
+        update_time,
+        desc,
+        keyword,
+        numbers,
+        isReprint,
+        img_url,
+        reprint_url,
+        prev: blogs[index === 0 ? blogs.length - 1 : index - 1].title,
+        next: blogs[index === blogs.length - 1 ? 0 : index + 1].title,
+      };
     });
     consola.success('<findAllBlog>: 查询所有博客成功');
     responseClient(res, 1, "查询所有博客成功", basicBlogs);

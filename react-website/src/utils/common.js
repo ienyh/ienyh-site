@@ -127,3 +127,18 @@ export function convertBase64UrlToBlob (urlData) {
   }
   return new Blob([u8arr] , { type });
 }
+
+/**
+ * 
+ * @param {String} propertyName 
+ * @returns 
+ */
+export function getQueryProperty (propertyName) {
+  const query = {};
+  const querys = decodeURI(window.location.search.substring(1)).split('&');
+  querys.forEach(q => {
+    const temp = q.split('=');
+    query[temp[0]] = temp[1];
+  })
+  return query[propertyName];
+}

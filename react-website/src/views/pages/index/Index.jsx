@@ -64,12 +64,18 @@ const Index = (props) => {
           list.map((blog, index) =>
             <BlogCard
               id="card"
-              { ...blog }
-              key={ uuidv4() }
+              {...blog}
+              key={uuidv4()}
               animate
+              prev={list[index === 0 ? list.length - 1 : index - 1]}
+              next={list[index === list.length - 1 ? 0 : index + 1]}
+              index={ index }
             />
           )
         }
+        <div className="blogs-more">
+          <span className="poptip" data-poptip="点击查看更多" onClick={() => { props.history.push('/pages/blog') }}> more</span>
+        </div>
       </div>
       
       <div className="bar">

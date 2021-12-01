@@ -70,12 +70,15 @@ const Blog = () => {
       <div className="blogs">
         <h2>Article<div className="bottom-line"></div></h2>
         {
-          list.map((blog, _index) =>
+          list.map((blog, index) =>
             <BlogCard
               id="card"
-              { ...blog }
-              key={ uuidv4() }
+              {...blog}
+              key={uuidv4()}
               animate
+              prev={allBlogs[index === 0 ? allBlogs.length - 1 : index - 1]}
+              next={allBlogs[index === allBlogs.length - 1 ? 0 : index + 1]}
+              index={index}
             />
           )
         }

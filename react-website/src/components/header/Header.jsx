@@ -170,7 +170,7 @@ const Header = props => {
   return (
     <div>
       <nav className="animated slideInDown">
-        <h1>Chenyh</h1>
+        <h2 onClick={ () => { props.history.push('/pages/index') } }>Chenyh</h2>
         <ul
           id="nav-menu"
           className="nav-menu"

@@ -16,6 +16,7 @@ header {
   align-items: center;
   z-index: 1;
   transition: all .5s ease-in-out;
+  box-shadow: 0 4px 4px -2px rgba(0, 0, 0, .4);
 }
 
 header .header-mask {
@@ -42,6 +43,15 @@ nav {
   font-weight: bold;
 }
 
+nav > h2 {
+  font-weight: 900;
+  font-family: var(--font-family-Nunito);
+  font-size: 24px;
+  user-select: none;
+  cursor: pointer;
+  color: var(--sunray);
+}
+
 .mask {
   position: fixed;
   height: var(--header-height);
@@ -62,6 +72,7 @@ nav {
   align-items: center;
   margin-left: 17px;
   position: relative;
+  cursor: pointer;
 }
 
 .nav-menu > li .line {
