@@ -23,16 +23,16 @@ const Blog = () => {
     setAllBlogs(blogs);
     setList(blogs.slice(0, 5));
     LocalStorage.set('blogs', blogs, 7200000); // 设置数据有效时长为两小时
-    Notification.success({ title: '请求博客数据成功', duration: 2000 });
+    Notification.success({ title: '请求博客数据成功', position: 'right' });
   }
 
   const fetchTags = async () => {
     try {
       const { data } = await get('/getTags');
       setTags(data.filter(i => i !== null));
-      Notification.success({ title: '请求标签数据成功', duration: 2000 });
+      Notification.success({ title: '请求标签数据成功', position: 'right' });
     } catch (error) {
-      Notification.error({ title: '请求标签数据失败' });
+      Notification.error({ title: '请求标签数据失败', position: 'right' });
     }
   }
 

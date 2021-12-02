@@ -13,6 +13,9 @@ import BackToTop from '../../../components/backtotop/Back';
 import icon_avatar_temp from '../../../assets/icons/avatar_temp.svg';
 import LocalStorage from '../../../utils/LocalStorage';
 
+const MAX_PAGE_SIZE = 10; // 单页留言最大条数
+const MAX_TEXTAREA_LENGTH = 400; // textarea 输入最大长度
+
 const Message = () => {
   const fileRef = useRef();
   const [comments, setComments] = useState([]);
@@ -26,7 +29,7 @@ const Message = () => {
     if (res.code === 1 && res?.data) {
       const temp = res.data.sort((a, b) => b.time - a.time);
       setComments(temp);
-      setCurrents(temp.slice(0, 8));
+      setCurrents(temp.slice(0, MAX_PAGE_SIZE));
       Notification.info("加载留言成功");
     } else {
       Notification.error("加载留言失败");
@@ -42,12 +45,13 @@ const Message = () => {
     setEmail(email || "");
   }, []);
 
+  // 留言表单提交
   const submit = async (e) => {
     e.preventDefault();
     const form = e.target;
     try {
       const comment = {
-        message: form[0].value.trim(),
+        message: form[0].value,
         people_name: form[1].value.trim(),
         email: form[2].value.trim(),
         device_info: browser() + ' ' + clientOS(),
@@ -67,11 +71,14 @@ const Message = () => {
     }
   }
 
+  // 翻页处理
   const pageChangeHandler = page => {
     const { current, pageSize, total } = page;
     setCurrents(comments.slice((current - 1) * pageSize, current * pageSize));
   }
 
+  // 处理上传的头像照片
+  // 使用 canvas 进行压缩处理
   const fileChangeHandler = function (e) {
     const file = e?.target?.files?.[0];
 
@@ -82,14 +89,17 @@ const Message = () => {
 
     const fileReader = new FileReader();
     fileReader.addEventListener("load", () => {
-      const img = new Image();
-      img.src = fileReader.result;
       const canvas = document.createElement('canvas');
       const ctx = canvas.getContext('2d');
+
+      const img = new Image();
+      img.src = fileReader.result;
       img.addEventListener('load', function () {
+
         const x = this.width; // img 的宽
         const y = this.height; // img 的宽
         const canvasOffset = 200;
+
         // 宽 大于 高，则裁剪宽，反之裁剪高
         if (x > y) {
           canvas.width = canvasOffset;
@@ -100,11 +110,23 @@ const Message = () => {
           canvas.height = canvasOffset;
           ctx.drawImage(img, 0, Math.round((y - x) / 2), x, x, 0, 0, canvasOffset, canvasOffset);
         }
-        const data = canvas.toDataURL(file.type, 1080 / Math.min(x, y) > 1 ? 1 : (1080 / Math.min(x, y)).toFixed(1)); // 通过 canvas 压缩成 Base64
+
+        const data = canvas.toDataURL(file.type, 720 / Math.min(x, y) > 1 ? 1 : (1080 / Math.min(x, y)).toFixed(1)); // 通过 canvas 压缩成 Base64
         setAvatar(data);
       });
     });
     file && fileReader.readAsDataURL(file);
+  }
+
+  // textarea value 值变化时监听事件
+  const textareaChangeHandler = e => {
+    const { target } = e;
+    if (target.value.length >= MAX_TEXTAREA_LENGTH) {
+      target.style.setProperty('outline', '1px solid red');
+      Notification.info({ title: `最多输入 ${MAX_TEXTAREA_LENGTH} 个字符哦！`, duration: 1000 });
+    } else {
+      target.style.setProperty('outline', 'none');
+    }
   }
 
   return <div className="message-container">
@@ -131,12 +153,12 @@ const Message = () => {
       }
     </ul>
 
-    <Pagination pageSize={8} total={comments.length} onChange={pageChangeHandler}></Pagination>
+    <Pagination pageSize={MAX_PAGE_SIZE} total={comments.length} onChange={pageChangeHandler}></Pagination>
 
     <div className="respond">
       <h2>respond me</h2>
       <form onSubmit={submit} >
-        <textarea placeholder="说点什么 ..." required maxLength="200"></textarea>
+        <textarea placeholder="说点什么 ..." required maxLength={MAX_TEXTAREA_LENGTH} onChange={ textareaChangeHandler }></textarea>
         <div className="bottom-info">
           <div className="poptip" data-poptip="点击上传图像">
             <img

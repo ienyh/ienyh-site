@@ -37,13 +37,29 @@ html, body {
   min-height: 100vh;
 }
 
+
 /* 通知栏容器样式 */
 .notification-container {
   z-index: 999;
   position: fixed;
   top: var(--header-height);
-  right: 60px;
+  left: 50%;
+  transform: translateX(-50%);
 }
+
+.notification-container-left {
+  left: 60px;
+  transform: none;
+}
+
+.notification-container-right {
+  left: unset;
+  right: 60px;
+  transform: none;
+}
+
+/* 通知栏容器样式 */
+
 
 @media screen and (max-width: 1000px) {
   html, body {
@@ -52,11 +68,8 @@ html, body {
   }
 
   .notification-container {
-    z-index: 999;
-    position: fixed;
-    top: var(--header-height);
-    left: 50%;
     right: unset;
+    left: 50%;
     transform: translateX(-50%);
   }
 }
