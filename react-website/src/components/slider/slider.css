@@ -1,0 +1,70 @@
+.slider {
+  /* width: 200px; */
+}
+
+
+.slider .slider-swapper {
+  display: flex;
+  align-items: center;
+}
+
+.slider .slider-swapper .slider-road {
+  position: relative;
+  cursor: pointer;
+  flex: 1;
+  width: 100%;
+  height: 12px;
+}
+
+/* 背部灰条 */
+.slider .slider-swapper .slider-road::before {
+  content: '';
+  display: block;
+  background-color: grey;
+  height: 3px;
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  border-radius: 2px;
+}
+
+.slider .slider-swapper .slider-road .slider-bar {
+  position: absolute;
+  left: 0;
+  right: 60%;
+  background-color: royalblue;
+  height: 3px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.slider .slider-swapper .slider-road .slider-btn,
+.slider .slider-swapper .slider-road .slider-btn::after {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+}
+
+.slider .slider-swapper .slider-road .slider-btn {
+  transform: translateX(-50%);
+}
+
+.slider .slider-swapper .slider-road .slider-btn:hover {
+  transform: translateX(-50%) scale(1.16);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, .1);
+}
+
+.slider .slider-swapper .slider-road .slider-btn::after {
+  content: '';
+  display: inline-block;
+  background-color: #fff;
+  border: 2px solid royalblue;
+  border-radius: 50%;
+  box-sizing: border-box;
+  transition: all .3s cubic-bezier(.3, 1.3, .3 1);
+}

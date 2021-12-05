@@ -1,4 +1,4 @@
-import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
+import React, { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import './audio.css';
 import EventEmitter from '../../utils/EventEmitter.js';
 import {
@@ -8,7 +8,8 @@ import {
   EVENT_SWITCH_PREV_MUSIC,
   EVENT_SWITCH_NEXT_MUSIC,
 } from '../../utils/events';
-import { throttle } from '../../utils/common';
+import { throttle, isMobile } from '../../utils/common';
+import Slider from '../slider/Slider';
 /** 引入图标 */
 import icon_pause from  '../../assets/icons/pause.svg';
 import icon_continue from  '../../assets/icons/continue.svg';
@@ -31,13 +32,17 @@ const Audio = React.memo(() => {
     src: '',
     img: '',
   });
-  const [display, setDisplay] = useState(false);
-  const [hide, setHide] = useState(false);
-  const [status, setStatus] = useState(true);
-  const [duration, setDuration] = useState(0);
-  const [currentTime, setCurrentTime] = useState(0);
-  const [rate, setRate] = useState(0);
-  const audioRef = useRef();
+  const [display, setDisplay] = useState(false); // 该组件是否显示
+  const [hide, setHide] = useState(false); // 该组件是否展开
+  const [status, setStatus] = useState(true); // 当前是否正在播放
+  const [duration, setDuration] = useState(0); // 播放总时间
+  const [currentTime, setCurrentTime] = useState(0); // 当前已播放时间
+  const [rate, setRate] = useState(0); // 当前播放进度 [0, 1]
+  const audioRef = useRef(); // <Audio></Audio>
+  const sliderRef = useRef(); // Slider
+
+  let isMousePress = false; // 判断进度条上鼠标或者手指是否按下
+
 
   const durationchangeHandler = function () {
     const duration = audioRef.current.duration;
@@ -47,7 +52,7 @@ const Audio = React.memo(() => {
   const timeupdateHandler = function () {
     const { currentTime, duration } = audioRef.current;
     setCurrentTime(Math.round(currentTime));
-    if (currentTime && duration) {
+    if (currentTime && duration && !isMousePress) {
       setRate((currentTime / duration).toFixed(2));
     }
   }
@@ -86,11 +91,40 @@ const Audio = React.memo(() => {
     audioRef.current.addEventListener('durationchange', durationchangeHandler);
     audioRef.current.addEventListener('timeupdate', timeupdateHandler);
     audioRef.current.addEventListener('ended', endedHandler);
+
+    const slider = sliderRef.current;
+    if (slider) {
+      slider.addEventListener('click', musicClick, false);
+      if (isMobile()) {
+        slider.addEventListener('touchstart', onMouseDownHandler, false);
+        slider.addEventListener('touchmove', onMouseMoveHandler, false);
+        slider.addEventListener('touchend', onMouseUpHandler, false);
+      } else {
+        slider.addEventListener('mousedown', onMouseDownHandler, false);
+        slider.addEventListener('mousemove', onMouseMoveHandler, false);
+        slider.addEventListener('mouseup', onMouseUpHandler, false);
+        slider.addEventListener('mouseleave', mouseleaveHandler, false);
+      }
+    }
+
     return () => {
       audioRef.current.removeEventListener('durationchange', durationchangeHandler);
       audioRef.current.removeEventListener('timeupdate', timeupdateHandler);
       audioRef.current.removeEventListener('ended', endedHandler);
+
+      slider.removeEventListener('click', musicClick);
+      if (isMobile()) {
+        slider.removeEventListener('touchstart', onMouseDownHandler);
+        slider.removeEventListener('touchmove', onMouseMoveHandler);
+        slider.removeEventListener('touchend', onMouseUpHandler);
+      } else {
+        slider.removeEventListener('mousedown', onMouseDownHandler);
+        slider.removeEventListener('mousemove', onMouseMoveHandler);
+        slider.removeEventListener('mouseup', onMouseUpHandler);
+        slider.removeEventListener('mouseleave', mouseleaveHandler);
+      }
     }
+
   }, [basic.src]);
 
   const changePauseHandler = () => {
@@ -101,6 +135,7 @@ const Audio = React.memo(() => {
     }
     setStatus(!status);
   }
+  
 
   // 节流处理 上一首和下一首按钮点击事件
   const switchMusicHandler = throttle((e) => {
@@ -113,33 +148,56 @@ const Audio = React.memo(() => {
     }
   }, 300);
 
-  let isMousePress = false;
 
-  const start = e => {
-    // console.log(e);
+  // 鼠标按下
+  const onMouseDownHandler = e => {
+    e?.stopPropagation();
+    e.preventDefault();
     isMousePress = true;
-    // 禁止默认事件（避免鼠标拖拽进度点的时候选中文字）
-    if (e && e.preventDefault) {
-      e.preventDefault();
-    } else {
-      e.returnValue = false;
-    }
   }
 
-  const move = e => {
+
+  // 鼠标移动
+  const onMouseMoveHandler = e => {
     if (isMousePress) {
-      console.log(e.clientX);
+      const { left, width } = e.target.getBoundingClientRect();
+      let dotPageX;
+      if (e instanceof TouchEvent) {
+        // 移动端 touch 处理
+        dotPageX = e.touches[0].pageX;
+      } else {
+        // PC 处理
+        dotPageX = e.pageX;
+      }
+      const percent = ((dotPageX - left) / width).toFixed(2);
+
+      if (percent > 1) setRate(1);
+      else if (percent <= 0) setRate(0);
+      else setRate(percent);
+
+      // const { duration } = audioRef.current;
+      // const tmp = Math.round(duration * percent);
+      // setCurrentTime(tmp);
     }
   }
 
-  const end = e => {
+  // 鼠标抬起
+  const onMouseUpHandler = e => {
     // 这里注意鼠标按下和抬起会触发 click 事件
     isMousePress = false;
   }
 
+  // 鼠标离开
+  const mouseleaveHandler = e => {
+    isMousePress = false;
+  }
+
+
+
+  // 点击进度条
   const musicClick = e => {
-    const { offsetX } = e.nativeEvent;
-    if (audioRef.current) {
+    const { offsetX } = e;
+    if (audioRef.current && basic.src) {
       const { duration } = audioRef.current;
       const tmp = Math.round(duration * (offsetX / 240).toFixed(2));
       audioRef.current.currentTime = tmp;
@@ -148,14 +206,10 @@ const Audio = React.memo(() => {
     }
   }
 
-  useLayoutEffect(() => {
-    
-  }, []);
-
   return (
     <>
       <audio
-        ref={audioRef}
+        ref={ audioRef }
         style={{ display: 'none' }}
       >
         <source src={basic.src} />
@@ -202,30 +256,28 @@ const Audio = React.memo(() => {
               <img src={icon_next} name="right_next" alt="next" onClick={switchMusicHandler} />
             </div>
           </div>
+
           <div className="controls_img">
             <img src="https://avatars.githubusercontent.com/u/51840260?s=48&v=4" alt="" />
           </div>
+
           <div className="audio-bar">
             <div className="audio-bar-top">
               <span>{basic.musicName ?? '***'} - {basic.singer ?? '***'}</span>
               <div className="audio-bar-time-top">{ `${format(currentTime)} / ${format(duration)} ` }</div>
             </div>
-            <div className="audio-bar-bottom">
-              <div
-                className="audio-bar-before"
-                style={{ width: 240 }}
-                onMouseDown={start}
-                onMouseMove={move}
-                onMouseUp={end}
-                onClick={musicClick}
-              >
-                <div
-                  className="audio-bar-after"
-                  style={{ width: 240 * rate }}
-                ></div>
+
+            {/* 进度条 */}
+            <div className="audio-bar-bottom" ref={ sliderRef }>
+              <div className="audio-bar-before" style={{ width: 240 }}>
+                <div className="audio-bar-after" style={{ width: 240 * rate }}></div>
               </div>
             </div>
+
           </div>
+
+
+
         </div>
       </div>
     </>

@@ -9,6 +9,9 @@ import {
   EVENT_SWITCH_PREV_MUSIC,
   EVENT_SWITCH_NEXT_MUSIC,
 } from '../../../utils/events';
+import Slider from '../../../components/slider/Slider';
+
+
 
 const tmp = [
   { musicName: '我太笨', singer: '锤娜丽莎', src: 'https://www.zhouxingxing.fun/music/1.mp3' },
@@ -60,6 +63,11 @@ const Music = () => {
     }
   }, []);
 
+
+  const onSliderChangeHandler = (data) => {
+    console.log(data);
+  }
+
   return (
     <>
       <div className="container">
@@ -87,6 +95,8 @@ const Music = () => {
               <img draggable={false} src="https://www.zhouxingxing.fun/img/text/3min.png" />
             </div>
             <h2>{current.musicName}</h2>
+
+            <Slider min={0} max={100} value={40} onChange={ onSliderChangeHandler }></Slider>
           </div>
         </div>
       </div>

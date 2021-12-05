@@ -13,6 +13,11 @@ export const isPC = () => {
   return true;
 }
 
+export const isMobile = () =>
+  /(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i.test(
+    navigator.userAgent
+  );
+
 // 当持续触发事件时，保证一定时间段内只调用一次事件处理函数。
 export function throttle (cb, wait) {
   let timer;
